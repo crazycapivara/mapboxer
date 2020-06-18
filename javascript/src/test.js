@@ -4,6 +4,9 @@ global.mapboxer = mapboxerWidget;
 global.HTMLWidgets = { };
 
 const widgetData = {
+  calls: [
+    { methodName: "addNavigationControl", args: { } }
+  ],
   mapProps: {
     center: [ -74.5, 40 ],
     zoom: 9,

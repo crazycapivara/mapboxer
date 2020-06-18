@@ -1,3 +1,5 @@
+import methods from "./methods";
+
 export default function(widgetElement, width, height) {
   let map = null;
 
@@ -7,6 +9,7 @@ export default function(widgetElement, width, height) {
 
     widgetData.mapProps.container = widgetElement.id;
     map = new mapboxgl.Map(widgetData.mapProps);
+    widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
   }
 
   function resize(width, height) {

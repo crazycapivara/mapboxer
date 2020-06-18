@@ -8,6 +8,7 @@
 #' @export
 mapboxer <- function(style = use_carto_style(), ..., width = NULL, height = NULL, element_id = NULL) {
   widget_data <- list(
+    calls = list(),
     mapProps = list(
       style = style,
       ...
