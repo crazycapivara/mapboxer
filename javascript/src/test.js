@@ -5,7 +5,15 @@ global.HTMLWidgets = { };
 
 const widgetData = {
   calls: [
-    { methodName: "addNavigationControl", args: { } }
+    {
+      methodName: "addNavigationControl",
+      args: {
+        pos: "top-left",
+        options: {
+          showCompass: false
+        }
+      }
+    }
   ],
   mapProps: {
     center: [ -74.5, 40 ],
