@@ -1,25 +1,23 @@
-#' <Add Title>
+#' Create a mapboxer widget
 #'
-#' <Add Description>
-#'
-#' @import htmlwidgets
-#'
+#' @param ... Map properties ...
+#' @param width The width of the widget.
+#' @param height The height of the widget.
+#' @param element_id ...
 #' @export
-mapboxer <- function(message, width = NULL, height = NULL, elementId = NULL) {
-
-  # forward options using x
-  x = list(
-    message = message
+mapboxer <- function(message, ..., width = NULL, height = NULL, element_id = NULL) {
+  widget_data <- list(
+    message = message,
+    mapProps = list(...)
   )
 
-  # create widget
   htmlwidgets::createWidget(
     name = 'mapboxer',
-    x,
+    x = widget_data,
     width = width,
     height = height,
     package = 'mapboxer',
-    elementId = elementId,
+    elementId = element_id,
     dependencies = use_deps("mapbox-gl")
   )
 }
@@ -39,9 +37,8 @@ mapboxer <- function(message, width = NULL, height = NULL, elementId = NULL) {
 #'   is useful if you want to save an expression in a variable.
 #'
 #' @name mapboxer-shiny
-#'
 #' @export
-mapboxerOutput <- function(outputId, width = '100%', height = '400px'){
+mapboxerOutput <- function(outputId, width = '100%', height = '400px') {
   htmlwidgets::shinyWidgetOutput(outputId, 'mapboxer', width, height, package = 'mapboxer')
 }
 

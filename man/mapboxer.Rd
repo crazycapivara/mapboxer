@@ -2,10 +2,20 @@
 % Please edit documentation in R/mapboxer.R
 \name{mapboxer}
 \alias{mapboxer}
-\title{<Add Title>}
+\title{Create a mapboxer widget}
 \usage{
-mapboxer(message, width = NULL, height = NULL, elementId = NULL)
+mapboxer(message, ..., width = NULL, height = NULL,
+  element_id = NULL)
+}
+\arguments{
+\item{...}{Map properties ...}
+
+\item{width}{The width of the widget.}
+
+\item{height}{The height of the widget.}
+
+\item{element_id}{...}
 }
 \description{
-<Add Description>
+Create a mapboxer widget
 }
