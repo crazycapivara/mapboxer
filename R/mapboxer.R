@@ -1,13 +1,17 @@
 #' Create a mapboxer widget
 #'
+#' @param style The map's Mapbox style.
 #' @param ... Map properties ...
 #' @param width The width of the widget.
 #' @param height The height of the widget.
 #' @param element_id ...
 #' @export
-mapboxer <- function(..., width = NULL, height = NULL, element_id = NULL) {
+mapboxer <- function(style = use_carto_style(), ..., width = NULL, height = NULL, element_id = NULL) {
   widget_data <- list(
-    mapProps = list(...)
+    mapProps = list(
+      style = style,
+      ...
+    )
   )
 
   htmlwidgets::createWidget(
