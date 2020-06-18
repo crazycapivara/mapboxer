@@ -19,7 +19,8 @@ mapboxer <- function(message, width = NULL, height = NULL, elementId = NULL) {
     width = width,
     height = height,
     package = 'mapboxer',
-    elementId = elementId
+    elementId = elementId,
+    dependencies = use_deps("mapbox-gl")
   )
 }
 

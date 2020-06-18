@@ -7,6 +7,7 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     // TODO: define shared variables for this instance
+    console.log(mapboxgl.version);
 
     return {
 
