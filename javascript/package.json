@@ -1,0 +1,13 @@
+{
+  "name": "mapboxer",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack src/index.js --mode production -o ../inst/htmlwidgets/mapboxer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Stefan Kuethe",
+  "license": "MIT"
+}
