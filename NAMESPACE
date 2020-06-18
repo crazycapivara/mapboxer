@@ -2,6 +2,7 @@
 
 export("%<>%")
 export("%>%")
+export(add_navigation_control)
 export(mapboxer)
 export(mapboxerOutput)
 export(renderMapboxer)
