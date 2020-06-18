@@ -13,6 +13,13 @@ const widgetData = {
           showCompass: false
         }
       }
+    },
+    {
+      methodName: "addControl",
+      args: {
+        controlName: "ScaleControl",
+        pos: "bottom-right"
+      }
     }
   ],
   mapProps: {

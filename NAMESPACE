@@ -3,6 +3,7 @@
 export("%<>%")
 export("%>%")
 export(add_navigation_control)
+export(add_scale_control)
 export(mapboxer)
 export(mapboxerOutput)
 export(renderMapboxer)
