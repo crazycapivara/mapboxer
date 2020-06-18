@@ -5,8 +5,6 @@ export default function(widgetElement, width, height) {
     console.log(mapboxgl.version);
     console.log(widgetData);
 
-    widgetElement.innerText = widgetData.message;
-
     widgetData.mapProps.container = widgetElement.id;
     map = new mapboxgl.Map(widgetData.mapProps);
   }

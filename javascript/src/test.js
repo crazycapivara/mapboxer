@@ -4,7 +4,6 @@ global.mapboxer = mapboxerWidget;
 global.HTMLWidgets = { };
 
 const widgetData = {
-  message: "mapboxer",
   mapProps: {
     center: [ -74.5, 40 ],
     zoom: 9,

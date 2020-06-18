@@ -4,8 +4,7 @@
 \alias{mapboxer}
 \title{Create a mapboxer widget}
 \usage{
-mapboxer(message, ..., width = NULL, height = NULL,
-  element_id = NULL)
+mapboxer(..., width = NULL, height = NULL, element_id = NULL)
 }
 \arguments{
 \item{...}{Map properties ...}

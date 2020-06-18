@@ -5,9 +5,8 @@
 #' @param height The height of the widget.
 #' @param element_id ...
 #' @export
-mapboxer <- function(message, ..., width = NULL, height = NULL, element_id = NULL) {
+mapboxer <- function(..., width = NULL, height = NULL, element_id = NULL) {
   widget_data <- list(
-    message = message,
     mapProps = list(...)
   )
 
