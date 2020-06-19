@@ -14,7 +14,6 @@ function addSource(props) {
 }
 
 function addLayer(props) {
-  props.style.layout = props.style.layout || { };
   console.log(props.style);
   const map = this;
   map.on("load", () => map.addLayer(props.style));
