@@ -13,7 +13,15 @@ function addSource(props) {
   map.on("load", () => map.addSource(props.id, source));
 }
 
+function addLayer(props) {
+  console.log(props.style);
+  const map = this;
+  // console.log(map.addLayer);
+  map.on("load", () => map.addLayer(props.style));
+}
+
 export default {
   addControl,
-  addSource
+  addSource,
+  addLayer
 };

@@ -1,5 +1,6 @@
-import points from "./test/data/points.json";
+import points from "./test/data/bart-stations.json";
 import mapboxerWidget from "./widget";
+import style from "./test/circle-layer";
 
 global.HTMLWidgets = { };
 
@@ -28,10 +29,16 @@ const widgetData = {
         id: "points",
         data: points
       }
+    },
+    {
+      methodName: "addLayer",
+      args: {
+        style: style
+      }
     }
   ],
   mapProps: {
-    center: [ -74.5, 40 ],
+    center: [ -122.45, 37.8 ],
     zoom: 9,
     style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
   }
