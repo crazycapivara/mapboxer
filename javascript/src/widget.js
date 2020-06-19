@@ -1,5 +1,7 @@
 import methods from "./methods";
 
+global.mapboxer = { };
+
 export default function(widgetElement, width, height) {
   let map = null;
 
@@ -8,7 +10,7 @@ export default function(widgetElement, width, height) {
     console.log(widgetData);
 
     widgetData.mapProps.container = widgetElement.id;
-    map = new mapboxgl.Map(widgetData.mapProps);
+    map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
     widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
   }
 
@@ -16,5 +18,5 @@ export default function(widgetElement, width, height) {
     // not implemented yet
   }
 
-  return { renderValue, resize, map };
+  return { renderValue, resize };
 }

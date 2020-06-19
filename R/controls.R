@@ -4,7 +4,6 @@ add_control <- function(map, control_name, ..., pos = NULL) {
 
 #' @export
 add_navigation_control <- function(map, ..., pos = NULL) {
-  # invoke_method(map, "addNavigationControl", pos = pos, options = list(...))
   add_control(map, "NavigationControl", ..., pos = pos)
 }
 

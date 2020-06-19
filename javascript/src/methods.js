@@ -4,12 +4,16 @@ function addControl(props) {
   map.addControl(control, props.pos);
 }
 
-function addNavigationControl(props) {
+function addSource(props) {
   const map = this;
-  map.addControl(new mapboxgl.NavigationControl(props.options), props.pos);
+  const source = {
+    type: "geojson",
+    data: props.data
+  };
+  map.on("load", () => map.addSource(props.id, source));
 }
 
 export default {
   addControl,
-  addNavigationControl
+  addSource
 };

@@ -1,13 +1,14 @@
+import points from "./test/data/points.json";
 import mapboxerWidget from "./widget";
 
-global.mapboxer = mapboxerWidget;
 global.HTMLWidgets = { };
 
 const widgetData = {
   calls: [
     {
-      methodName: "addNavigationControl",
+      methodName: "addControl",
       args: {
+        controlName: "NavigationControl",
         pos: "top-left",
         options: {
           showCompass: false
@@ -20,6 +21,13 @@ const widgetData = {
         controlName: "ScaleControl",
         pos: "bottom-right"
       }
+    },
+    {
+      methodName: "addSource",
+      args: {
+        id: "points",
+        data: points
+      }
     }
   ],
   mapProps: {
@@ -29,6 +37,13 @@ const widgetData = {
   }
 };
 
+console.log(widgetData);
+
 const widgetElement = document.getElementById("widget");
 const widget = mapboxerWidget(widgetElement);
 widget.renderValue(widgetData);
+
+global.debug = {
+  mapboxerWidget,
+  points
+};
