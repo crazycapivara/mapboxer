@@ -3,7 +3,7 @@ fill_style <- list(
   type = "fill",
   source = "melbourne",
   paint = list(
-    "fill-color" = "blue",
+    "fill-color" = c("get", "fillColor"),
     "fill-opacity" = 0.7
   )
 )
