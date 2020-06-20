@@ -38,6 +38,10 @@ const widgetData = {
       args: {
         style: style
       }
+    },
+    {
+      methodName: "addPopup",
+      args: { layer: "circles" }
     }
   ],
   mapProps: {
