@@ -9,7 +9,10 @@ fill_style <- list(
 )
 
 data <- geojsonsf::geo_melbourne
+data <- geojsonsf::geojson_sf(geojsonsf::geo_melbourne)
+class(data)
 
 mapboxer() %>%
+  set_view_state(lng =  144.9624, lat = -37.8105) %>%
   add_source(data, "melbourne") %>%
   add_layer(fill_style)
