@@ -27,7 +27,10 @@ const widgetData = {
       methodName: "addSource",
       args: {
         id: "points",
-        data: points
+        source: {
+          type: "geojson",
+          data: points
+        }
       }
     },
     {
@@ -43,8 +46,6 @@ const widgetData = {
     style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
   }
 };
-
-console.log(widgetData);
 
 const widgetElement = document.getElementById("widget");
 const widget = mapboxerWidget(widgetElement);

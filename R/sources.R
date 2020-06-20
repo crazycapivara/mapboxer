@@ -1,3 +1,4 @@
-add_source <- function(map, data, id) {
-  invoke_method(map, "addSource", data = data, id = id)
+add_source <- function(map, data, id, type = "geojson") {
+  map %>%
+    invoke_method("addSource", id = id, source = list(data = data, type = type))
 }

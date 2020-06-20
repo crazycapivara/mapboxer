@@ -6,15 +6,10 @@ function addControl(props) {
 
 function addSource(props) {
   const map = this;
-  const source = {
-    type: "geojson",
-    data: props.data
-  };
-  map.on("load", () => map.addSource(props.id, source));
+  map.on("load", () => map.addSource(props.id, props.source));
 }
 
 function addLayer(props) {
-  console.log(props.style);
   const map = this;
   map.on("load", () => map.addLayer(props.style));
 }
