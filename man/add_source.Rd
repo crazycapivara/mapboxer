@@ -2,27 +2,16 @@
 % Please edit documentation in R/sources.R
 \name{add_source}
 \alias{add_source}
-\alias{add_source.default}
-\alias{add_source.json}
-\alias{add_source.sf}
 \title{Add a data source to the map}
 \usage{
-add_source(map, data, id, ...)
-
-\method{add_source}{default}(map, data, id, ...)
-
-\method{add_source}{json}(map, data, id, ...)
-
-\method{add_source}{sf}(map, data, id, ...)
+add_source(map, source, id = "mapboxer")
 }
 \arguments{
-\item{map}{The map widget.}
+\item{map}{A map widget.}
 
-\item{data}{The data ...}
+\item{source}{A source created by \link{create_source}.}
 
 \item{id}{The unique id of the data source.}
-
-\item{...}{Optional parameters, see ...}
 }
 \description{
 Add a data source to the map

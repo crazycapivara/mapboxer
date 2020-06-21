@@ -1,35 +1,54 @@
 #' Add a data source to the map
 #'
-#' @param map The map widget.
-#' @param data The data ...
+#' @param map A map widget.
+#' @param source A source created by \link{create_source}.
 #' @param id The unique id of the data source.
-#' @param ... Optional parameters, see ...
 #' @export
-add_source <- function(map, data, id, ...) {
-  UseMethod("add_source", data)
-}
-
-#' @rdname add_source
-#' @export
-add_source.default <- function(map, data, id, ...) {
+add_source <- function(map, source, id = "mapboxer") {
   map %>%
-    invoke_method("addSource", id = id, source = list(data = data, ...))
+    invoke_method(
+      "addSource",
+      id = id,
+      source = source
+    )
 }
 
-#' @rdname add_source
+#' Create a Mapbox data source
+#'
+#' @param ... see \href{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources}
 #' @export
-add_source.json <- function(map, data, id, ...) {
-  source <- list(
-    data = data,
-    type = "geojson"
+create_source <- function(...) {
+  UseMethod("create_source")
+}
+
+#' @rdname create_source
+#' @export
+create_source.default <- function(...) {
+  list(...)
+}
+
+#' @rdname create_source
+#' @export
+create_source.json <- function(data, ...) {
+  list(
+    type = "geojson",
+    data = data
   )
-  map %>%
-    invoke_method("addSource", id = id, source = source)
 }
 
-#' @rdname add_source
+#' @param data A data frame containing data that can be converted to \code{geojson}.
+#' @param lng The longitude ...
+#' @param lat The Latitude ...
+#' @rdname create_source
 #' @export
-add_source.sf <- function(map, data, id, ...) {
-  map %>%
-    add_source.json(geojsonsf::sf_geojson(data), id, ...)
+create_source.data.table <- function(data, ..., lng = "lng", lat = "lat") {
+  geojsonsf::df_geojson(data, lng, lat) %>%
+    create_source.json(...)
+}
+
+#' @rdname create_source
+#' @export
+create_source.sf <- function(data, ...) {
+  geojsonsf::sf_geojson(data) %>%
+    create_source.json(...)
 }

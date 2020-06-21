@@ -11,9 +11,10 @@ fill_style <- list(
 data <- geojsonsf::geo_melbourne
 data <- geojsonsf::geojson_sf(geojsonsf::geo_melbourne)
 class(data)
+source <- create_source(data)
 
 mapboxer() %>%
   set_view_state(lng =  144.9624, lat = -37.8105) %>%
-  add_source(data, "melbourne") %>%
+  add_source(source, "melbourne") %>%
   add_layer(fill_style) %>%
   add_popup("melbourne", "Area: {{AREASQKM}} km<sup>2</sup>")
