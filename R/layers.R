@@ -7,3 +7,9 @@ add_layer <- function(map, style) {
   map %>%
     invoke_method("addLayer", style = style)
 }
+
+#' @export
+add_popup <- function(map, layer, popup) {
+  map %>%
+    invoke_method("addPopup", layer = layer, popup = popup)
+}

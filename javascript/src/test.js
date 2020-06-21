@@ -41,7 +41,7 @@ const widgetData = {
     },
     {
       methodName: "addPopup",
-      args: { layer: "circles", prop: "name" }
+      args: { layer: "circles", popup: "Name: {{name}}" }
     }
   ],
   mapProps: {

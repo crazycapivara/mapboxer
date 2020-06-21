@@ -1,3 +1,5 @@
+import { render } from "mustache";
+
 function addControl(props) {
   const map = this;
   const control = new mapboxgl[props.controlName](props.options);
@@ -14,13 +16,16 @@ function addLayer(props) {
   map.on("load", () => map.addLayer(props.style));
 }
 
-function addPopup(props) {
+function addPopup(args) {
   const map = this;
   map.on("load", () => {
-    map.on("click", props.layer, (e) => {
+    const layer = args.layer;
+    map.on("click", layer, (e) => {
       const lngLat = Object.values(e.lngLat);
       const feature = e.features[0];
-      const content = feature.properties[props.prop];
+      // props.textField?
+      // const content = feature.properties[args.text];
+      const content = render(args.popup, feature.properties);
       // console.log(feature);
 
       new mapboxgl.Popup()
@@ -29,9 +34,9 @@ function addPopup(props) {
         .addTo(map);
     });
 
-    map.on("mouseenter", props.layer, () => map.getCanvas().style.cursor = "pointer");
+    map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
 
-    map.on("mouseleave", props.layer, () => map.getCanvas().style.cursor = "");
+    map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
   });
 }
 
