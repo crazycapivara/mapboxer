@@ -3,3 +3,4 @@
 ^LICENSE\.md$
 ^javascript$
 ^\.travis\.yml$
+^README\.Rmd$
