@@ -1,4 +1,5 @@
 import methods from "./methods";
+import { DEFAULT_SOURCE } from "./constants";
 
 global.mapboxer = {
   methods
@@ -14,7 +15,7 @@ export default function(widgetElement, width, height) {
     widgetData.mapProps.container = widgetElement.id;
     map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
     if (widgetData.source) {
-      methods.addSource.call(map, { id: "mapboxer", source: widgetData.source });
+      methods.addSource.call(map, { id: DEFAULT_SOURCE, source: widgetData.source });
     }
 
     widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));

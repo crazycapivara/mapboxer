@@ -1,4 +1,5 @@
 import { render } from "mustache";
+import { DEFAULT_SOURCE } from "./constants";
 
 function addControl(props) {
   const map = this;
@@ -11,9 +12,10 @@ function addSource(props) {
   map.on("load", () => map.addSource(props.id, props.source));
 }
 
-function addLayer(props) {
+function addLayer(args) {
   const map = this;
-  map.on("load", () => map.addLayer(props.style));
+  args.style.source = args.style.source || DEFAULT_SOURCE;
+  map.on("load", () => map.addLayer(args.style));
 }
 
 function addPopup(args) {
@@ -23,10 +25,7 @@ function addPopup(args) {
     map.on("click", layer, (e) => {
       const lngLat = Object.values(e.lngLat);
       const feature = e.features[0];
-      // props.textField?
-      // const content = feature.properties[args.text];
       const content = render(args.popup, feature.properties);
-      // console.log(feature);
 
       new mapboxgl.Popup()
         .setLngLat(lngLat)

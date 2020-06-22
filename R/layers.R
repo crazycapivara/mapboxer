@@ -9,10 +9,6 @@
 #' @param popup A \code{mustache} template string.
 #' @export
 add_layer <- function(map, style, popup = NULL) {
-  if (is.null(style$source) && !is.null(map$x$source)) {
-    style$source <- "mapboxer"
-  }
-
   map %<>%
     invoke_method("addLayer", style = style)
   if (is.null(popup)) return(map)
