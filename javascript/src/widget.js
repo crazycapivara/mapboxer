@@ -11,6 +11,7 @@ export default function(widgetElement, width, height) {
 
     widgetData.mapProps.container = widgetElement.id;
     map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
+    if (widgetData.source) console.log("Default Source found!");
     widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
   }
 

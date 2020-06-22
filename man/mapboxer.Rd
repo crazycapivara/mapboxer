@@ -4,10 +4,12 @@
 \alias{mapboxer}
 \title{Create a mapboxer widget}
 \usage{
-mapboxer(style = use_carto_style(), ..., width = NULL, height = NULL,
-  element_id = NULL)
+mapboxer(source = NULL, style = use_carto_style(), ..., width = NULL,
+  height = NULL, element_id = NULL)
 }
 \arguments{
+\item{source}{...}
+
 \item{style}{The map's Mapbox style.}
 
 \item{...}{Map properties ...}
