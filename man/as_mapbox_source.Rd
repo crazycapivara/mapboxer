@@ -18,7 +18,7 @@ as_mapbox_source(data, ...)
 }
 \arguments{
 \item{data}{A data frame that contains longitudes and latitudes in separate columns
-or an object of class \code{sf}.}
+or an \code{sf}-object.}
 
 \item{lng}{The name of the column containing the longitudes.}
 

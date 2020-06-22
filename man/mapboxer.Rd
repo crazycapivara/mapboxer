@@ -13,7 +13,7 @@ mapboxer(source = NULL, style = use_carto_style(), ..., width = NULL,
 
 \item{style}{The map's Mapbox style.}
 
-\item{...}{The properties of the map, see \href{https://docs.mapbox.com/mapbox-gl-js/api/map/}.}
+\item{...}{The properties of the map, see \url{https://docs.mapbox.com/mapbox-gl-js/api/map/}.}
 
 \item{width}{The width of the widget.}
 

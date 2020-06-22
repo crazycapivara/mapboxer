@@ -2,7 +2,7 @@
 #'
 #' @param source A \link{mapbox_source} that is added to the map with the ID \code{mapboxer}.
 #' @param style The map's Mapbox style.
-#' @param ... The properties of the map, see \href{https://docs.mapbox.com/mapbox-gl-js/api/map/}.
+#' @param ... The properties of the map, see \url{https://docs.mapbox.com/mapbox-gl-js/api/map/}.
 #' @param width The width of the widget.
 #' @param height The height of the widget.
 #' @param element_id The unique ID of the widget.

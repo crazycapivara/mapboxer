@@ -13,8 +13,8 @@ add_source <- function(map, source, id = "mapboxer") {
 #'
 #' @param type The type of the source, e. g. \code{geojson}.
 #' @param ... The properties of the source.
-#'   See \href{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available props
-#'   for the given type.
+#'   See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available parameters/options
+#'   for the given source type.
 #' @export
 mapbox_source <- function(type, ...) {
   structure(list(type = type, ...), class = "mapbox_source")
@@ -23,7 +23,7 @@ mapbox_source <- function(type, ...) {
 #' Convert a data object to a mapbox geojson source
 #'
 #' @param data A data frame that contains longitudes and latitudes in separate columns
-#'   or an object of class \code{sf}.
+#'   or an \code{sf}-object.
 #' @export
 as_mapbox_source <- function(data, ...) {
   UseMethod("as_mapbox_source")
