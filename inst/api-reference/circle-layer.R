@@ -8,9 +8,11 @@ circle_style <- list(
   )
 )
 
-data <- geojsonsf::df_geojson(deckgl::bart_stations, lon = "lng", lat = "lat")
+source <- deckgl::bart_stations %>%
+  as_mapbox_source(lng = "lng", lat = "lat")
+class(source$data)
 
 mapboxer() %>%
   set_view_state(lng = -122.45, lat = 37.8) %>%
-  add_source(data, "bart-stations") %>%
+  add_source(source, "bart-stations") %>%
   add_layer(circle_style)

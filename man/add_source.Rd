@@ -9,7 +9,7 @@ add_source(map, source, id = "mapboxer")
 \arguments{
 \item{map}{A map widget.}
 
-\item{source}{A source created by \link{create_source}.}
+\item{source}{A Mapbox source.}
 
 \item{id}{The unique id of the data source.}
 }

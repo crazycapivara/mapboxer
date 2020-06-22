@@ -1,54 +1,48 @@
 #' Add a data source to the map
 #'
 #' @param map A map widget.
-#' @param source A source created by \link{create_source}.
+#' @param source A Mapbox source.
 #' @param id The unique id of the data source.
 #' @export
 add_source <- function(map, source, id = "mapboxer") {
   map %>%
-    invoke_method(
-      "addSource",
-      id = id,
-      source = source
-    )
+    invoke_method("addSource", id = id, source = source)
 }
 
 #' Create a Mapbox data source
 #'
-#' @param ... see \href{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources}
+#' @param type The type of the source, e. g. \code{geojson}.
+#' @param ... The properties of the source.
+#'   See \href{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available props
+#'   for the given type.
 #' @export
-create_source <- function(...) {
-  UseMethod("create_source")
+mapbox_source <- function(type, ...) {
+  structure(list(type = type, ...), class = "mapbox_source")
 }
 
-#' @rdname create_source
 #' @export
-create_source.default <- function(...) {
-  list(...)
+as_mapbox_source <- function(data, ...) {
+  UseMethod("as_mapbox_source")
 }
 
-#' @rdname create_source
-#' @export
-create_source.json <- function(data, ...) {
-  list(
-    type = "geojson",
-    data = data
-  )
+mapbox_geojson_source <- function(data, ...) {
+  mapbox_source(type = "geojson", data = data, ...)
 }
 
-#' @param data A data frame containing data that can be converted to \code{geojson}.
-#' @param lng The longitude ...
-#' @param lat The Latitude ...
-#' @rdname create_source
 #' @export
-create_source.data.table <- function(data, ..., lng = "lng", lat = "lat") {
+#' @name as_mapbox_source
+as_mapbox_source.json <- mapbox_geojson_source
+
+#' @export
+#' @name as_mapbox_source
+as_mapbox_source.data.frame <- function(data, lng = "lng", lat = "lat", ...) {
   geojsonsf::df_geojson(data, lng, lat) %>%
-    create_source.json(...)
+    mapbox_geojson_source(...)
 }
 
-#' @rdname create_source
 #' @export
-create_source.sf <- function(data, ...) {
+#' @name as_mapbox_source
+as_mapbox_source.sf <- function(data, ...) {
   geojsonsf::sf_geojson(data) %>%
-    create_source.json(...)
+    mapbox_geojson_source(...)
 }

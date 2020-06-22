@@ -11,7 +11,8 @@ fill_style <- list(
 data <- geojsonsf::geo_melbourne
 data <- geojsonsf::geojson_sf(geojsonsf::geo_melbourne)
 class(data)
-source <- create_source(data)
+source <- as_mapbox_source(data)
+class(source$data)
 
 mapboxer() %>%
   set_view_state(lng =  144.9624, lat = -37.8105) %>%
