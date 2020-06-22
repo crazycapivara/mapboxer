@@ -1,13 +1,16 @@
 #' Create a mapboxer widget
 #'
-#' @param source ...
+#' @param source A \link{mapbox_source} that is added to the map with the ID \code{mapboxer}.
 #' @param style The map's Mapbox style.
-#' @param ... Map properties ...
+#' @param ... The properties of the map, see \href{https://docs.mapbox.com/mapbox-gl-js/api/map/}.
 #' @param width The width of the widget.
 #' @param height The height of the widget.
-#' @param element_id ...
+#' @param element_id The unique ID of the widget.
+#' @param token A Mapbox API access token. Only needed if you want to use styles from Mapbox.
 #' @export
-mapboxer <- function(source = NULL, style = use_carto_style(), ..., width = NULL, height = NULL, element_id = NULL) {
+mapboxer <- function(source = NULL, style = use_carto_style(), ...,
+                     width = NULL, height = NULL, element_id = NULL,
+                     token = Sys.getenv("MAPBOX_API_TOKEN")) {
   widget_data <- list(
     source = source,
     calls = list(),

@@ -5,20 +5,23 @@
 \title{Create a mapboxer widget}
 \usage{
 mapboxer(source = NULL, style = use_carto_style(), ..., width = NULL,
-  height = NULL, element_id = NULL)
+  height = NULL, element_id = NULL,
+  token = Sys.getenv("MAPBOX_API_TOKEN"))
 }
 \arguments{
-\item{source}{...}
+\item{source}{A \link{mapbox_source} that is added to the map with the ID \code{mapboxer}.}
 
 \item{style}{The map's Mapbox style.}
 
-\item{...}{Map properties ...}
+\item{...}{The properties of the map, see \href{https://docs.mapbox.com/mapbox-gl-js/api/map/}.}
 
 \item{width}{The width of the widget.}
 
 \item{height}{The height of the widget.}
 
-\item{element_id}{...}
+\item{element_id}{The unique ID of the widget.}
+
+\item{token}{A Mapbox API access token. Only needed if you want to use styles from Mapbox.}
 }
 \description{
 Create a mapboxer widget
