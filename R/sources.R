@@ -1,7 +1,7 @@
 #' Add a data source to the map
 #'
-#' @param map A map widget.
-#' @param source A Mapbox source.
+#' @inheritParams set_view_state
+#' @param source A Mapbox data source.
 #' @param id The unique id of the data source.
 #' @export
 add_source <- function(map, source, id = "mapboxer") {
@@ -20,6 +20,10 @@ mapbox_source <- function(type, ...) {
   structure(list(type = type, ...), class = "mapbox_source")
 }
 
+#' Convert a data object to a mapbox geojson source
+#'
+#' @param data A data frame that contains longitudes and latitudes in separate columns
+#'   or an object of class \code{sf}.
 #' @export
 as_mapbox_source <- function(data, ...) {
   UseMethod("as_mapbox_source")
@@ -33,6 +37,8 @@ mapbox_geojson_source <- function(data, ...) {
 #' @name as_mapbox_source
 as_mapbox_source.json <- mapbox_geojson_source
 
+#' @param lng The name of the column containing the longitudes.
+#' @param lat The name of the column containing the latitudes.
 #' @export
 #' @name as_mapbox_source
 as_mapbox_source.data.frame <- function(data, lng = "lng", lat = "lat", ...) {

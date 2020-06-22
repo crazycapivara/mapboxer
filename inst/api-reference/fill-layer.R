@@ -17,5 +17,4 @@ class(source$data)
 mapboxer() %>%
   set_view_state(lng =  144.9624, lat = -37.8105) %>%
   add_source(source, "melbourne") %>%
-  add_layer(fill_style) %>%
-  add_popup("melbourne", "Area: {{AREASQKM}} km<sup>2</sup>")
+  add_layer(fill_style, popup = "Area: {{AREASQKM}} km<sup>2</sup>") #%>% add_popup("melbourne", "Area: {{AREASQKM}} km<sup>2</sup>")

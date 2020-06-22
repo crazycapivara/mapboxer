@@ -1,11 +1,20 @@
 #' Add a layer to the map
 #'
-#' @param map ...
-#' @param style The definition of the layer.
+#' Adds any kind of layer to the map.
+#' The type of the layer is specified by the \code{type} property of the
+#' layer definintion.
+#' @inheritParams set_view_state
+#' @param style A named list that contains the definition of the layer.
+#'   See \link{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.
+#' @param popup A \code{mustache} template string.
 #' @export
-add_layer <- function(map, style) {
-  map %>%
+add_layer <- function(map, style, popup = NULL) {
+  map %<>%
     invoke_method("addLayer", style = style)
+  if (is.null(popup)) return(map)
+
+  map %>%
+    add_popup(style$id, popup)
 }
 
 #' @export

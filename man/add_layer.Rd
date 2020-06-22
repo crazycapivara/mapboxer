@@ -4,13 +4,18 @@
 \alias{add_layer}
 \title{Add a layer to the map}
 \usage{
-add_layer(map, style)
+add_layer(map, style, popup = NULL)
 }
 \arguments{
-\item{map}{...}
+\item{map}{A \link{mapboxer} object.}
 
-\item{style}{The definition of the layer.}
+\item{style}{A named list that contains the definition of the layer.
+See \link{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.}
+
+\item{popup}{A \code{mustache} template string.}
 }
 \description{
-Add a layer to the map
+Adds any kind of layer to the map.
+The type of the layer is specified by the \code{type} property of the
+layer definintion.
 }
