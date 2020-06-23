@@ -12,6 +12,8 @@ export default function(widgetElement, width, height) {
     console.log(mapboxgl.version);
     console.log(widgetData);
 
+    const mapStyle = widgetData.mapProps.style;
+    mapStyle.sources = mapStyle.sources || { };
     widgetData.mapProps.container = widgetElement.id;
     map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
     if (widgetData.source) {
