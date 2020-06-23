@@ -21,11 +21,11 @@ mapboxer <- function(source = NULL, style = use_carto_style(), ...,
   )
 
   htmlwidgets::createWidget(
-    name = 'mapboxer',
+    name = "mapboxer",
     x = widget_data,
     width = width,
     height = height,
-    package = 'mapboxer',
+    package = "mapboxer",
     elementId = element_id,
     dependencies = use_deps("mapbox-gl")
   )
@@ -47,13 +47,15 @@ mapboxer <- function(source = NULL, style = use_carto_style(), ...,
 #'
 #' @name mapboxer-shiny
 #' @export
-mapboxerOutput <- function(outputId, width = '100%', height = '400px') {
-  htmlwidgets::shinyWidgetOutput(outputId, 'mapboxer', width, height, package = 'mapboxer')
+mapboxerOutput <- function(outputId, width = "100%", height = "400px") {
+  htmlwidgets::shinyWidgetOutput(outputId, "mapboxer", width, height, package = "mapboxer")
 }
 
 #' @rdname mapboxer-shiny
 #' @export
 renderMapboxer <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(expr, mapboxerOutput, env, quoted = TRUE)
 }

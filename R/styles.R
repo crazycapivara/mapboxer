@@ -13,12 +13,12 @@ use_carto_style <- function(theme = "dark-matter") {
 #' @param color The color of the background.
 #' @export
 use_background_style <- function(color = "#111") {
-    list(
+  list(
     version = 8,
     layers = list(
       list(
         id = "background",
-        type =  "background",
+        type = "background",
         paint = list(
           "background-color" = color
         )
