@@ -13,7 +13,19 @@ export default function(widgetElement, width, height) {
     console.log(widgetData);
 
     const mapStyle = widgetData.mapProps.style;
-    mapStyle.sources = mapStyle.sources || { };
+
+    // The background layer needs an empty sources object.
+    if (typeof mapStyle === "object") {
+      mapStyle.sources = mapStyle.sources || { };
+
+      // The 'tiles' property needs to be an array.
+      Object.values(mapStyle.sources).forEach(source => {
+        if (source.hasOwnProperty("tiles") & !Array.isArray(source.tiles)) {
+          source.tiles = Array(source.tiles);
+        }
+      })
+    }
+
     widgetData.mapProps.container = widgetElement.id;
     map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
     if (widgetData.source) {

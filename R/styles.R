@@ -26,3 +26,28 @@ use_background_style <- function(color = "#111") {
     )
   )
 }
+
+#' Use a stamen raster map style
+#' @export
+use_stamen_raster_style <- function() {
+  use_raster_style()
+}
+
+use_raster_style <- function(tiles = NULL, attribution = NULL) {
+  read_style("stamen-raster-style.yml")
+}
+
+read_style <- function(filename) {
+  file.path("styles", filename) %>%
+    system.file(package = getPackageName()) %>%
+    yaml::read_yaml()
+}
+
+#' Set the style of the map
+#' @inheritParams set_view_state
+#' @inheritParams mapboxer
+#' @export
+set_style <- function(map, style) {
+  map$x$mapProps$style = style
+  map
+}
