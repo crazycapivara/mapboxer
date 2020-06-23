@@ -5,7 +5,7 @@
 \alias{as_mapbox_source.json}
 \alias{as_mapbox_source.data.frame}
 \alias{as_mapbox_source.sf}
-\title{Convert a data object to a mapbox geojson source}
+\title{Convert a data object to a Mapbox geojson source}
 \usage{
 as_mapbox_source(data, ...)
 
@@ -30,5 +30,5 @@ or an \code{sf}-object.}
 \item{lat}{The name of the column containing the latitudes.}
 }
 \description{
-Convert a data object to a mapbox geojson source
+Convert a data object to a Mapbox geojson source
 }

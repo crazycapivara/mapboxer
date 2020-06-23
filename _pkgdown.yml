@@ -1,0 +1,22 @@
+destination: docs
+reference:
+- title: mapboxer Instance
+  contents:
+  - matches("mapboxer")
+
+- title: Sources
+  contents:
+    - matches("source")
+
+- title: Layers
+  contents:
+    - add_layer
+    - add_popup
+
+- title: Styles
+  contents:
+    - matches("style")
+
+- title: Misc
+  contents:
+    - set_view_state
