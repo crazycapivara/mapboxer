@@ -13,18 +13,21 @@ use_carto_style <- function(theme = "dark-matter") {
 #' @param color The color of the background.
 #' @export
 use_background_style <- function(color = "#111") {
-  list(
-    version = 8,
-    layers = list(
-      list(
-        id = "background",
-        type = "background",
-        paint = list(
-          "background-color" = color
-        )
-      )
-    )
-  )
+  style <- read_style("background-style.yml")
+  style$layers[[1]]$paint$`background-color` <- color
+  style
+  #list(
+  #  version = 8,
+  #  layers = list(
+  #    list(
+  #      id = "background",
+  #      type = "background",
+  #      paint = list(
+  #        "background-color" = color
+  #      )
+  #    )
+  #  )
+  #)
 }
 
 #' Use a stamen raster map style
