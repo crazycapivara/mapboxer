@@ -10,7 +10,7 @@ mapbox_source(type, ...)
 \item{type}{The type of the source, e. g. \code{geojson}.}
 
 \item{...}{The properties of the source.
-See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available parameters/options
+See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available options
 for the given source type.}
 }
 \description{
