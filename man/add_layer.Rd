@@ -10,7 +10,7 @@ add_layer(map, style, popup = NULL)
 \item{map}{A \link{mapboxer} object.}
 
 \item{style}{A named list that contains the definition of the layer.
-See \link{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.}
+See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.}
 
 \item{popup}{A \code{mustache} template string.}
 }
