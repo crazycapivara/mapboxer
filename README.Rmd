@@ -51,3 +51,9 @@ geojsonsf::geo_melbourne %>%
   set_view_state(lng =  144.9624, lat = -37.8105, zoom = 10, pitch = 35) %>%
   add_layer(fill_style, popup = "Area: {{AREASQKM}} km<sup>2</sup>")
 ```
+
+## Documentation
+
+The package is still in an early stage, so the documention is work in progress.
+
+[mapboxer-docs](https://crazycapivara.github.io/mapboxer/)
