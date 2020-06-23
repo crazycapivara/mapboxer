@@ -1,3 +1,4 @@
+#' @importFrom methods getPackageName
 read_deps <- function(pkg_name = getPackageName()) {
   system.file("htmlwidgets/deps.yaml", package = pkg_name) %>%
     yaml::read_yaml()

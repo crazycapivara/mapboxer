@@ -24,6 +24,7 @@ mapbox_source <- function(type, ...) {
 #'
 #' @param data A data frame that contains longitudes and latitudes in separate columns
 #'   or an \code{sf}-object.
+#' @inheritDotParams mapbox_source
 #' @export
 as_mapbox_source <- function(data, ...) {
   UseMethod("as_mapbox_source")

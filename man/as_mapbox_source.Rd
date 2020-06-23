@@ -20,6 +20,11 @@ as_mapbox_source(data, ...)
 \item{data}{A data frame that contains longitudes and latitudes in separate columns
 or an \code{sf}-object.}
 
+\item{...}{Arguments passed on to \code{mapbox_source}
+\describe{
+  \item{type}{The type of the source, e. g. \code{geojson}.}
+}}
+
 \item{lng}{The name of the column containing the longitudes.}
 
 \item{lat}{The name of the column containing the latitudes.}
