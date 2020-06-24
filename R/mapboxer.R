@@ -17,7 +17,8 @@ mapboxer <- function(source = NULL, style = use_carto_style(), ...,
     mapProps = list(
       style = style,
       ...
-    )
+    ),
+    accessToken = token
   )
 
   htmlwidgets::createWidget(

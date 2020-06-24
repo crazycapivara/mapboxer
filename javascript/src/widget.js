@@ -9,7 +9,7 @@ export default function(widgetElement, width, height) {
   let map = null;
 
   function renderValue(widgetData) {
-    console.log(mapboxgl.version);
+    console.log("mapboxgl", mapboxgl.version);
     console.log(widgetData);
 
     const mapStyle = widgetData.mapProps.style;
@@ -26,6 +26,7 @@ export default function(widgetElement, width, height) {
       })
     }
 
+    mapboxgl.accessToken = widgetData.accessToken || null;
     widgetData.mapProps.container = widgetElement.id;
     map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
     if (widgetData.source) {
