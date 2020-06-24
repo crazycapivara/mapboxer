@@ -41,7 +41,7 @@ get_osm_raster_tiles <- function() {
 }
 
 read_style <- function(filename) {
-    yaml::read_yaml(filename)
+  yaml::read_yaml(filename)
 }
 
 get_style_file <- function(filename) {
@@ -54,6 +54,6 @@ get_style_file <- function(filename) {
 #' @inheritParams mapboxer
 #' @export
 set_style <- function(map, style) {
-  map$x$mapProps$style = style
+  map$x$mapProps$style <- style
   map
 }
