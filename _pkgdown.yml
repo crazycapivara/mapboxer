@@ -16,6 +16,11 @@ reference:
 - title: Styles
   contents:
     - matches("style")
+    - get_osm_raster_tiles
+
+- title: Controls
+  contents:
+    - matches("control")
 
 - title: Misc
   contents:
