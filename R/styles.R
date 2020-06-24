@@ -24,20 +24,14 @@ use_background_style <- function(color = "#111") {
 use_stamen_raster_style <- function(theme = "watercolor") {
   tiles <- paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
     as.list()
-  use_raster_style(tiles)
+  use_raster_style(tiles, STAMEN_ATTRIBUTION)
 }
 
-use_raster_style <- function(tiles = NULL, attribution = NULL) {
+use_raster_style <- function(tiles, attribution = NULL) {
   style <- get_style_file("stamen-raster-style.yml") %>%
     read_style()
-  if (!is.null(tiles)) {
-    style$sources$`raster-tiles`$tiles <- tiles
-  }
-
-  if (!is.null(attribution)) {
-    style$sources$`raster-tiles`$attribution <- attribution
-  }
-
+  style$sources$`raster-tiles`$tiles <- tiles
+  style$sources$`raster-tiles`$attribution <- attribution
   style
 }
 
