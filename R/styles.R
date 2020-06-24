@@ -13,7 +13,8 @@ use_carto_style <- function(theme = "dark-matter") {
 #' @param color The color of the background.
 #' @export
 use_background_style <- function(color = "#111") {
-  style <- read_style("background-style.yml")
+  style <- get_style_file("background-style.yml") %>%
+    read_style()
   style$layers[[1]]$paint$`background-color` <- color
   style
 }
@@ -27,7 +28,15 @@ use_stamen_raster_style <- function(theme = "watercolor") {
   use_raster_style(tiles, STAMEN_ATTRIBUTION)
 }
 
-use_raster_style <- function(tiles, attribution = NULL) {
+#' Use raster tiles as map style
+#' @param tiles A list of tile urls.
+#' @param attribution The attribution text of the tile layer.
+#' @export
+use_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL) {
+  if (is.null(attribution) & !is.null(attributes(tiles)$attribution)) {
+    attribution <- attributes(tiles)$attribution
+  }
+
   style <- get_style_file("stamen-raster-style.yml") %>%
     read_style()
   style$sources$`raster-tiles`$tiles <- tiles
@@ -35,9 +44,12 @@ use_raster_style <- function(tiles, attribution = NULL) {
   style
 }
 
+#' Get osm raster tile urls
+#' @export
 get_osm_raster_tiles <- function() {
   paste0("//", c(letters[1:3]), ".tile.openstreetmap.org/{z}/{x}/{y}.png") %>%
-    as.list()
+    as.list() %>%
+    structure(attribution = OSM_ATTRIBUTION)
 }
 
 read_style <- function(filename) {
@@ -53,7 +65,7 @@ get_style_file <- function(filename) {
 #' @inheritParams set_view_state
 #' @inheritParams mapboxer
 #' @export
-set_style <- function(map, style) {
+set_map_style <- function(map, style) {
   map$x$mapProps$style <- style
   map
 }
