@@ -18,20 +18,41 @@ use_background_style <- function(color = "#111") {
   style
 }
 
-#' Use a stamen raster map style
+#' Use stamen raster tiles as map style
+#' @param theme The theme of the tiles.
 #' @export
-use_stamen_raster_style <- function() {
-  use_raster_style()
+use_stamen_raster_style <- function(theme = "watercolor") {
+  tiles <- paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
+    as.list()
+  use_raster_style(tiles)
 }
 
 use_raster_style <- function(tiles = NULL, attribution = NULL) {
-  read_style("stamen-raster-style.yml")
+  style <- get_style_file("stamen-raster-style.yml") %>%
+    read_style()
+  if (!is.null(tiles)) {
+    style$sources$`raster-tiles`$tiles <- tiles
+  }
+
+  if (!is.null(attribution)) {
+    style$sources$`raster-tiles`$attribution <- attribution
+  }
+
+  style
+}
+
+get_osm_raster_tiles <- function() {
+  paste0("//", c(letters[1:3]), ".tile.openstreetmap.org/{z}/{x}/{y}.png") %>%
+    as.list()
 }
 
 read_style <- function(filename) {
+    yaml::read_yaml(filename)
+}
+
+get_style_file <- function(filename) {
   file.path("styles", filename) %>%
-    system.file(package = getPackageName()) %>%
-    yaml::read_yaml()
+    system.file(package = getPackageName())
 }
 
 #' Set the style of the map
