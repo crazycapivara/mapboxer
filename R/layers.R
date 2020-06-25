@@ -26,3 +26,15 @@ add_popup <- function(map, layer, popup) {
   map %>%
     invoke_method("addPopup", layer = layer, popup = popup)
 }
+
+create_layer_style <- function(id, type, source, filter, paint, layout) {
+  list(
+    id = id,
+    type = type,
+    source = source,
+    filter = filter,
+    paint = purrr::compact(paint),
+    layout = purrr::compact(layout)
+  ) %>%
+    purrr::compact()
+}
