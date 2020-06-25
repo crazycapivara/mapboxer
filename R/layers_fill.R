@@ -51,14 +51,15 @@ add_fill_layer <- function(
     "fill-sort-key" = fill_sort_key,
     "visibility" = ifelse(visibility, "visible", "none")
   )
-  style <- list(
-    id = id,
-    type = "fill",
-    source = source,
-    filter = filter,
-    paint = purrr::compact(paint),
-    layout = purrr::compact(layout)
-  )
+  #style <- list(
+  #  id = id,
+  #  type = "fill",
+  #  source = source,
+  #  filter = filter,
+  #  paint = purrr::compact(paint),
+  #  layout = purrr::compact(layout)
+  #)
+  style <- create_layer_style(id, "fill", source, filter, paint, layout)
   map %>%
     add_layer(purrr::compact(style), popup)
 }
