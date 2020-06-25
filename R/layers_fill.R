@@ -1,17 +1,16 @@
 add_fill_layer <- function(
-  map,
-  fill_antialias = TRUE,
-  fill_color = "#000000",
-  fill_opacity = 1,
-  fill_outline_color = NULL,
-  fill_pattern = NULL,
-  fill_sort_key = NULL,
-  fill_translate = NULL,
-  fill_translate_anchor = NULL,
-  visibility = TRUE,
-  popup = NULL,
-  id = "fill-layer"
-) {
+                           map,
+                           fill_antialias = TRUE,
+                           fill_color = "#000000",
+                           fill_opacity = 1,
+                           fill_outline_color = NULL,
+                           fill_pattern = NULL,
+                           fill_sort_key = NULL,
+                           fill_translate = NULL,
+                           fill_translate_anchor = NULL,
+                           visibility = TRUE,
+                           popup = NULL,
+                           id = "fill-layer") {
   paint <- list(
     "fill-antialias" = fill_antialias,
     "fill-color" = fill_color,
