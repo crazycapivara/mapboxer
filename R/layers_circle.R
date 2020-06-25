@@ -5,9 +5,9 @@
 #' @param circle_color (paint) The fill color of the circle.
 #' @param circle_opacity (paint) The opacity at which the circle will be drawn.
 #' @param circle_pitch_alignment (paint) Orientation of circle when map is pitched.
-#'   Either \code{map} or \code{viewport}.
+#'   One of "map", "viewport".
 #' @param circle_pitch_scale (paint) Controls the scaling behavior of the circle when the map is pitched.
-#'   Either \code{map} or \code{viewport}.
+#'   One of "map", "viewport".
 #' @param circle_radius (paint) The radius of the circle.
 #' @param circle_sort_key (layout) Sorts features in ascending order based on this value.
 #'   Features with a higher sort key will appear above features with a lower sort key.
@@ -18,21 +18,22 @@
 #' @param circle_translate (paint) The geometry's offset.
 #'   Values are [x, y] where negatives indicate left and up, respectively.
 #' @param circle_translate_anchor (paint) Controls the frame of reference for \code{circle_translate}.
-#'   Either \code{map} or \code{viewport}.
+#'   One of "map", "viewport".
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#circle}
+#' @example examples/circle-layer.R
 #' @export
 add_circle_layer <- function(map,
                              source = NULL,
                              filter = NULL,
-                             circle_blur = 0,
-                             circle_color = "#000000",
-                             circle_opacity = 1,
+                             circle_blur = NULL,
+                             circle_color = NULL,
+                             circle_opacity = NULL,
                              circle_pitch_alignment = NULL,
                              circle_pitch_scale = NULL,
-                             circle_radius = 5,
+                             circle_radius = NULL,
                              circle_sort_key = NULL,
-                             circle_stroke_color = "#000000",
-                             circle_stroke_opacity = 1,
+                             circle_stroke_color = NULL,
+                             circle_stroke_opacity = NULL,
                              circle_stroke_width = NULL,
                              circle_translate = NULL,
                              circle_translate_anchor = NULL,

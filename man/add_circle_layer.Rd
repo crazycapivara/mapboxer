@@ -4,11 +4,11 @@
 \alias{add_circle_layer}
 \title{Add a circle layer to the map}
 \usage{
-add_circle_layer(map, source = NULL, filter = NULL, circle_blur = 0,
-  circle_color = "#000000", circle_opacity = 1,
+add_circle_layer(map, source = NULL, filter = NULL,
+  circle_blur = NULL, circle_color = NULL, circle_opacity = NULL,
   circle_pitch_alignment = NULL, circle_pitch_scale = NULL,
-  circle_radius = 5, circle_sort_key = NULL,
-  circle_stroke_color = "#000000", circle_stroke_opacity = 1,
+  circle_radius = NULL, circle_sort_key = NULL,
+  circle_stroke_color = NULL, circle_stroke_opacity = NULL,
   circle_stroke_width = NULL, circle_translate = NULL,
   circle_translate_anchor = NULL, visibility = TRUE, popup = NULL,
   id = "circle-layer")
@@ -28,10 +28,10 @@ add_circle_layer(map, source = NULL, filter = NULL, circle_blur = 0,
 \item{circle_opacity}{(paint) The opacity at which the circle will be drawn.}
 
 \item{circle_pitch_alignment}{(paint) Orientation of circle when map is pitched.
-Either \code{map} or \code{viewport}.}
+One of "map", "viewport".}
 
 \item{circle_pitch_scale}{(paint) Controls the scaling behavior of the circle when the map is pitched.
-Either \code{map} or \code{viewport}.}
+One of "map", "viewport".}
 
 \item{circle_radius}{(paint) The radius of the circle.}
 
@@ -49,7 +49,7 @@ Strokes are placed outside of the \code{circle_radius}.}
 Values are [x, y] where negatives indicate left and up, respectively.}
 
 \item{circle_translate_anchor}{(paint) Controls the frame of reference for \code{circle_translate}.
-Either \code{map} or \code{viewport}.}
+One of "map", "viewport".}
 
 \item{visibility}{(layout) Whether the layer should be displayed.}
 
@@ -59,6 +59,20 @@ Either \code{map} or \code{viewport}.}
 }
 \description{
 Add a circle layer to the map
+}
+\examples{
+map <- quakes \%>\%
+  as_mapbox_source(lng = "long", lat = "lat") \%>\%
+  mapboxer(center = c(176.9, -24.655), zoom = 4) \%>\%
+  add_navigation_control() \%>\%
+  add_circle_layer(
+    circle_color = "blue",
+    circle_blur = 1,
+    circle_stroke_color = "red",
+    circle_stroke_width = 1,
+    popup = "{{mag}}")
+
+if (interactive()) map
 }
 \seealso{
 \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#circle}
