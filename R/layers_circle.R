@@ -59,14 +59,15 @@ add_circle_layer <- function(map,
     "circle-sort-key" = circle_sort_key,
     "visibility" = ifelse(visibility, "visible", "none")
   )
-  style <- list(
-    id = id,
-    type = "circle",
-    source = source,
-    filter = filter,
-    paint = purrr::compact(paint),
-    layout = purrr::compact(layout)
-  )
+  #style <- list(
+  #  id = id,
+  #  type = "circle",
+  #  source = source,
+  #  filter = filter,
+  #  paint = purrr::compact(paint),
+  #  layout = purrr::compact(layout)
+  #)
+  style <- create_layer_style(id, "circle", source, filter, paint, layout)
   map %>%
     add_layer(purrr::compact(style), popup)
 }
