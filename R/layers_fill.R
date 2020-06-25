@@ -11,13 +11,13 @@ add_fill_layer <- function(
   visibility = TRUE,
   popup = NULL,
   id = "fill-layer"
-  ) {
+) {
   paint <- list(
     "fill-antialias" = fill_antialias,
     "fill-color" = fill_color,
     "fill-opacity" = fill_opacity,
     "fill-outline-color" = fill_outline_color,
-    "fill-pattern"  = fill_pattern,
+    "fill-pattern" = fill_pattern,
     "fill-translate" = fill_translate,
     "fill-translate-anchor" = fill_translate_anchor
   )
