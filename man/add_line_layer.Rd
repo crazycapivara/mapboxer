@@ -20,6 +20,8 @@ add_line_layer(map, source = NULL, filter = NULL, line_blur = NULL,
 
 \item{filter}{A filter expression that is applied to the \code{source}.}
 
+\item{line_blur}{(paint) Blur applied to the line, in pixels.}
+
 \item{line_cap}{(layout) The display of line endings.
 One of "butt", "round", "square".}
 
@@ -49,6 +51,8 @@ For polygon features, a positive value results in an inset, and a negative value
 
 \item{line_pattern}{(paint) Name of image in sprite to use for drawing image lines.}
 
+\item{line_round_limit}{(layout) Used to automatically convert round joins to miter joins for shallow angles.}
+
 \item{line_sort_key}{(layout) Sorts features in ascending order based on this value.
 Features with a higher sort key will appear above features with a lower sort key.}
 
@@ -63,10 +67,6 @@ Features with a higher sort key will appear above features with a lower sort key
 \item{popup}{A \code{mustache} template string.}
 
 \item{id}{The unique id of the layer.}
-
-\item{blur}{(paint)}
-
-\item{line_round_limmit}{(layout) Used to automatically convert round joins to miter joins for shallow angles.}
 }
 \description{
 Add a line layer to the map

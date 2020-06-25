@@ -1,6 +1,6 @@
 #' Add a line layer to the map
 #' @inheritParams add_fill_layer
-#' @param blur (paint)
+#' @param line_blur (paint) Blur applied to the line, in pixels.
 #' @param line_cap (layout) The display of line endings.
 #'   One of "butt", "round", "square".
 #' @param line_color (paint) The color with which the line will be drawn.
@@ -20,7 +20,7 @@
 #'   For polygon features, a positive value results in an inset, and a negative value results in an outset.
 #' @param line_opacity (paint) The opacity at which the line will be drawn.
 #' @param line_pattern (paint) Name of image in sprite to use for drawing image lines.
-#' @param line_round_limmit (layout) Used to automatically convert round joins to miter joins for shallow angles.
+#' @param line_round_limit (layout) Used to automatically convert round joins to miter joins for shallow angles.
 #' @param line_sort_key (layout) Sorts features in ascending order based on this value.
 #'   Features with a higher sort key will appear above features with a lower sort key.
 #' @param line_translate (paint) The geometry's offset. Values are [x, y] where negatives indicate left and up, respectively.
