@@ -12,7 +12,7 @@ add_layer(map, style, popup = NULL)
 \item{style}{A named list that contains the definition of the layer.
 See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.}
 
-\item{popup}{A \code{mustache} template string.}
+\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template string.}
 }
 \description{
 Adds any kind of layer to the map.
