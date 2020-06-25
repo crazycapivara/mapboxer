@@ -9,3 +9,4 @@
 ^pkgdown$
 ^tmp$
 ^examples$
+^data-raw$
