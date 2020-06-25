@@ -1,5 +1,6 @@
 #' Add a fill layer to the map
 #' @param source A Mapbox source. Uses the source from the \link{mapboxer} object if no source is supplied.
+#' @param filter A filter expression that is applied to the \code{source}.
 #' @param fill_antialias (paint) Whether or not the fill should be antialiased.
 #' @param fill_color (paint) The color of the filled part of this layer.
 #'   This color can be specified as rgba with an alpha component and
@@ -24,6 +25,7 @@
 add_fill_layer <- function(
                            map,
                            source = NULL,
+                           filter = NULL,
                            fill_antialias = TRUE,
                            fill_color = "#000000",
                            fill_opacity = 1,
@@ -52,9 +54,10 @@ add_fill_layer <- function(
     id = id,
     type = "fill",
     source = source,
+    filter = filter,
     paint = purrr::compact(paint),
     layout = purrr::compact(layout)
   )
   map %>%
-    add_layer(style, popup)
+    add_layer(purrr::compact(style), popup)
 }

@@ -23,6 +23,7 @@
 #' @export
 add_circle_layer <- function(map,
                              source = NULL,
+                             filter = NULL,
                              circle_blur = 0,
                              circle_color = "#000000",
                              circle_opacity = 1,
@@ -61,9 +62,10 @@ add_circle_layer <- function(map,
     id = id,
     type = "circle",
     source = source,
+    filter = filter,
     paint = purrr::compact(paint),
     layout = purrr::compact(layout)
   )
   map %>%
-    add_layer(style, popup)
+    add_layer(purrr::compact(style), popup)
 }

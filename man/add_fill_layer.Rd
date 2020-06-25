@@ -4,8 +4,8 @@
 \alias{add_fill_layer}
 \title{Add a fill layer to the map}
 \usage{
-add_fill_layer(map, source = NULL, fill_antialias = TRUE,
-  fill_color = "#000000", fill_opacity = 1,
+add_fill_layer(map, source = NULL, filter = NULL,
+  fill_antialias = TRUE, fill_color = "#000000", fill_opacity = 1,
   fill_outline_color = NULL, fill_pattern = NULL,
   fill_sort_key = NULL, fill_translate = NULL,
   fill_translate_anchor = NULL, visibility = TRUE, popup = NULL,
@@ -15,6 +15,8 @@ add_fill_layer(map, source = NULL, fill_antialias = TRUE,
 \item{map}{A \link{mapboxer} object.}
 
 \item{source}{A Mapbox source. Uses the source from the \link{mapboxer} object if no source is supplied.}
+
+\item{filter}{A filter expression that is applied to the \code{source}.}
 
 \item{fill_antialias}{(paint) Whether or not the fill should be antialiased.}
 
@@ -62,7 +64,9 @@ map <- geojsonsf::geo_melbourne \%>\%
   add_fill_layer(
     fill_color = c("get", "fillColor"),
     fill_opacity = 0.6,
-    popup = "Area: {{AREASQKM}} km<sup>2</sup>"
+    popup = "Area: {{AREASQKM}} km<sup>2</sup>",
+    # AREASQKM > 5
+    filter = list(">", c("get", "AREASQKM"), 5)
   )
 
 if (interactive()) map

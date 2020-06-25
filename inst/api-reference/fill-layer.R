@@ -10,7 +10,9 @@ map <- geojsonsf::geo_melbourne %>%
   add_fill_layer(
     fill_color = c("get", "fillColor"),
     fill_opacity = 0.6,
-    popup = "Area: {{AREASQKM}} km<sup>2</sup>"
+    popup = "Area: {{AREASQKM}} km<sup>2</sup>",
+    # AREASQKM > 5
+    filter = list(">", c("get", "AREASQKM"), 5)
   )
 
 if (interactive()) map

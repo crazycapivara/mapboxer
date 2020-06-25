@@ -4,7 +4,7 @@
 \alias{add_circle_layer}
 \title{Add a circle layer to the map}
 \usage{
-add_circle_layer(map, source = NULL, circle_blur = 0,
+add_circle_layer(map, source = NULL, filter = NULL, circle_blur = 0,
   circle_color = "#000000", circle_opacity = 1,
   circle_pitch_alignment = NULL, circle_pitch_scale = NULL,
   circle_radius = 5, circle_sort_key = NULL,
@@ -17,6 +17,8 @@ add_circle_layer(map, source = NULL, circle_blur = 0,
 \item{map}{A \link{mapboxer} object.}
 
 \item{source}{A Mapbox source. Uses the source from the \link{mapboxer} object if no source is supplied.}
+
+\item{filter}{A filter expression that is applied to the \code{source}.}
 
 \item{circle_blur}{(paint) Amount to blur the circle.
 1 blurs the circle such that only the centerpoint is full opacity.}
