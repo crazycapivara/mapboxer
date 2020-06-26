@@ -1,15 +1,15 @@
 import { render } from "mustache";
 import { DEFAULT_SOURCE } from "./constants";
 
-function addControl(props) {
+function addControl(args) {
   const map = this;
-  const control = new mapboxgl[props.controlName](props.options);
-  map.addControl(control, props.pos);
+  const control = new mapboxgl[args.controlName](args.options);
+  map.addControl(control, args.pos);
 }
 
-function addSource(props) {
+function addSource(args) {
   const map = this;
-  map.on("load", () => map.addSource(props.id, props.source));
+  map.on("load", () => map.addSource(args.id, args.source));
 }
 
 function addLayer(args) {
@@ -18,7 +18,7 @@ function addLayer(args) {
   map.on("load", () => map.addLayer(args.style));
 }
 
-function addPopup(args) {
+function addPopups(args) {
   const map = this;
   map.on("load", () => {
     const layer = args.layer;
@@ -26,22 +26,33 @@ function addPopup(args) {
       const lngLat = Object.values(e.lngLat);
       const feature = e.features[0];
       const content = render(args.popup, feature.properties);
-
       new mapboxgl.Popup()
         .setLngLat(lngLat)
         .setHTML(content)
         .addTo(map);
     });
-
     map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-
     map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
   });
+}
+
+function addMarker(args) {
+  const map = this;
+  const marker = new mapboxgl.Marker()
+    .setLngLat([args.lng, args.lat]);
+  const element = marker.getElement();
+  element.style.cursor = "pointer";
+  if (args.popup) {
+    marker.setPopup(new mapboxgl.Popup().setHTML(args.popup));
+  }
+
+  map.on("load", () => marker.addTo(map));
 }
 
 export default {
   addControl,
   addSource,
   addLayer,
-  addPopup
+  addPopups,
+  addMarker
 };

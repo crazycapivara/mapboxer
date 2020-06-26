@@ -14,14 +14,14 @@ add_layer <- function(map, style, popup = NULL) {
   if (is.null(popup)) return(map)
 
   map %>%
-    add_popup(style$id, popup)
+    add_popups(style$id, popup)
 }
 
 #' Add popups for a given layer to the map
 #' @inheritParams add_layer
 #' @param layer The name of the layer.
 #' @export
-add_popup <- function(map, layer, popup) {
+add_popups <- function(map, layer, popup) {
   map %>%
-    invoke_method("addPopup", layer = layer, popup = popup)
+    invoke_method("addPopups", layer = layer, popup = popup)
 }

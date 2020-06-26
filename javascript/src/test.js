@@ -40,8 +40,12 @@ const widgetData = {
       }
     },
     {
-      methodName: "addPopup",
+      methodName: "addPopups",
       args: { layer: "circles", popup: "Name: {{name}}" }
+    },
+    {
+      methodName: "addMarker",
+      args: { lng: -122.45, lat: 37.8, popup: "Hi there!" }
     }
   ],
   mapProps: {
