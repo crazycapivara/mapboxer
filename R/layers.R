@@ -6,7 +6,7 @@
 #' @inheritParams set_view_state
 #' @param style A named list that contains the definition of the layer.
 #'   See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.
-#' @param popup A \code{mustache} template string.
+#' @param popup A \href{https://github.com/janl/mustache.js}{mustache} template string.
 #' @export
 add_layer <- function(map, style, popup = NULL) {
   map %<>%
@@ -18,7 +18,6 @@ add_layer <- function(map, style, popup = NULL) {
 }
 
 #' Add popups for a given layer to the map
-#'
 #' @inheritParams add_layer
 #' @param layer The name of the layer.
 #' @export

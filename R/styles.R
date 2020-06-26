@@ -69,3 +69,15 @@ set_map_style <- function(map, style) {
   map$x$mapProps$style <- style
   map
 }
+
+create_layer_style <- function(id, type, source, filter, paint, layout) {
+  list(
+    id = id,
+    type = type,
+    source = source,
+    filter = filter,
+    paint = purrr::compact(paint),
+    layout = purrr::compact(layout)
+  ) %>%
+    purrr::compact()
+}

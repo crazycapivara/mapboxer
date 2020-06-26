@@ -8,3 +8,5 @@
 ^docs$
 ^pkgdown$
 ^tmp$
+^examples$
+^data-raw$

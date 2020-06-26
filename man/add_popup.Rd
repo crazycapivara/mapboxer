@@ -11,7 +11,7 @@ add_popup(map, layer, popup)
 
 \item{layer}{The name of the layer.}
 
-\item{popup}{A \code{mustache} template string.}
+\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template string.}
 }
 \description{
 Add popups for a given layer to the map
