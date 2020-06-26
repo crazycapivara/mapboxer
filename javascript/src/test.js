@@ -46,6 +46,17 @@ const widgetData = {
     {
       methodName: "addMarker",
       args: { lng: -122.45, lat: 37.8, popup: "Hi there!" }
+    },
+    {
+      methodName: "addCustomControl",
+      args: {
+        controlName: "TextControl",
+        pos: "top-left",
+        options: {
+          cssText: "background: yellow; padding: 5px;",
+          text: "Circle Layer"
+        }
+      }
     }
   ],
   mapProps: {

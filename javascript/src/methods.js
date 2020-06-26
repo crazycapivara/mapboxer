@@ -1,4 +1,5 @@
 import { render } from "mustache";
+import customControls from "./custom-controls";
 import { DEFAULT_SOURCE } from "./constants";
 
 function addControl(args) {
@@ -49,10 +50,18 @@ function addMarker(args) {
   map.on("load", () => marker.addTo(map));
 }
 
+function addCustomControl(args) {
+  const map = this;
+  const control = new customControls[args.controlName](args.options);
+  map.addControl(control, args.pos);
+}
+
 export default {
   addControl,
   addSource,
   addLayer,
   addPopups,
-  addMarker
+  addMarker,
+  addCustomControl,
+  customControls
 };
