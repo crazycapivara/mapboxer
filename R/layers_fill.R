@@ -18,7 +18,7 @@
 #' @param fill_translate_anchor (paint) Controls the frame of reference for \code{fill_translate}.
 #'   One of "map", "viewport".
 #' @param visibility (layout) Whether the layer should be displayed.
-#' @inheritParams add_popup
+#' @inheritParams add_popups
 #' @param id The unique id of the layer.
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill}
 #' @example inst/api-reference/fill-layer.R

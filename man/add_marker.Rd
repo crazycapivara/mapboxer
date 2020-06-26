@@ -7,6 +7,8 @@
 add_marker(map, lat, lng, popup = NULL)
 }
 \arguments{
+\item{map}{A \link{mapboxer} object.}
+
 \item{lat}{The latitude of the marker.}
 
 \item{lng}{The longitude of the marker.}
