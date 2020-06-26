@@ -14,8 +14,8 @@ class TextControl {
   }
 
   onRemove() {
-  this._container.parentNode.removeChild(this._container);
-  this._map = undefined;
+    this._container.parentNode.removeChild(this._container);
+    this._map = undefined;
   }
 }
 
