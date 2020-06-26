@@ -18,6 +18,7 @@ function addLayer(args) {
   map.on("load", () => map.addLayer(args.style));
 }
 
+// TODO: Rename to addPopups
 function addPopup(args) {
   const map = this;
   map.on("load", () => {
@@ -26,22 +27,33 @@ function addPopup(args) {
       const lngLat = Object.values(e.lngLat);
       const feature = e.features[0];
       const content = render(args.popup, feature.properties);
-
       new mapboxgl.Popup()
         .setLngLat(lngLat)
         .setHTML(content)
         .addTo(map);
     });
-
     map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-
     map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
   });
+}
+
+function addMarker(args) {
+  const map = this;
+  const marker = new mapboxgl.Marker()
+    .setLngLat([args.lng, args.lat]);
+  const element = marker.getElement();
+  element.style.cursor = "pointer";
+  if (args.popup) {
+    marker.setPopup(new mapboxgl.Popup().setHTML(args.popup));
+  }
+
+  map.on("load", () => marker.addTo(map));
 }
 
 export default {
   addControl,
   addSource,
   addLayer,
-  addPopup
+  addPopup,
+  addMarker
 };
