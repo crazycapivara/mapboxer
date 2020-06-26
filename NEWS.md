@@ -1,13 +1,13 @@
 # mapboxer 0.1.2
 
-* Added layer shortcuts beside the generic `add_layer` func
+* Added layer shortcuts beside the generic `add_layer` func:
     - `add_fill_layer`
     - `add_circle_layer`
     - `add_line_Layer`
 
 # mapboxer 0.1.1
 
-* Added funcs to use raster tiles or a single background color as map style.
+* Added funcs to use raster tiles or a single background color as map style:
     - `use_raster_style`
     - `use_stamen_raster_style`
     - `get_osm_raster_tiles`
