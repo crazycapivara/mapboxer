@@ -1,15 +1,15 @@
 import { render } from "mustache";
 import { DEFAULT_SOURCE } from "./constants";
 
-function addControl(props) {
+function addControl(args) {
   const map = this;
-  const control = new mapboxgl[props.controlName](props.options);
-  map.addControl(control, props.pos);
+  const control = new mapboxgl[args.controlName](args.options);
+  map.addControl(control, args.pos);
 }
 
-function addSource(props) {
+function addSource(args) {
   const map = this;
-  map.on("load", () => map.addSource(props.id, props.source));
+  map.on("load", () => map.addSource(args.id, args.source));
 }
 
 function addLayer(args) {
