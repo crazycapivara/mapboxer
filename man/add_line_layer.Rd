@@ -14,8 +14,6 @@ add_line_layer(map, source = NULL, filter = NULL, line_blur = NULL,
   id = "line-layer")
 }
 \arguments{
-\item{map}{A \link{mapboxer} object.}
-
 \item{source}{A Mapbox source. Uses the source from the \link{mapboxer} object if no source is supplied.}
 
 \item{filter}{A filter expression that is applied to the \code{source}.}
@@ -63,8 +61,6 @@ Features with a higher sort key will appear above features with a lower sort key
 \item{line_width}{(paint) Stroke thickness.}
 
 \item{visibility}{(layout) Whether the layer should be displayed.}
-
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template string.}
 
 \item{id}{The unique id of the layer.}
 }

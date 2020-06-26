@@ -18,8 +18,7 @@ function addLayer(args) {
   map.on("load", () => map.addLayer(args.style));
 }
 
-// TODO: Rename to addPopups
-function addPopup(args) {
+function addPopups(args) {
   const map = this;
   map.on("load", () => {
     const layer = args.layer;
@@ -54,6 +53,6 @@ export default {
   addControl,
   addSource,
   addLayer,
-  addPopup,
+  addPopups,
   addMarker
 };

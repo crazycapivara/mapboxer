@@ -40,7 +40,7 @@ const widgetData = {
       }
     },
     {
-      methodName: "addPopup",
+      methodName: "addPopups",
       args: { layer: "circles", popup: "Name: {{name}}" }
     },
     {
