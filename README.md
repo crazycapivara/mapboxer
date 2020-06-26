@@ -24,6 +24,21 @@ Quickstart
 ``` r
 library(mapboxer)
 
+# Circles
+map <- quakes %>%
+  as_mapbox_source(lng = "long", lat = "lat") %>%
+  mapboxer(center = c(176.9, -24.655), zoom = 4) %>%
+  add_navigation_control() %>%
+  add_circle_layer(
+    circle_color = "blue",
+    circle_blur = 1,
+    circle_stroke_color = "red",
+    circle_stroke_width = 1,
+    popup = "{{mag}}")
+
+if (interactive()) map
+
+# Polygons
 map <- geojsonsf::geo_melbourne %>%
   as_mapbox_source() %>%
   mapboxer() %>%
@@ -47,4 +62,25 @@ Documentation
 
 The package is still in an early stage, so the documention is work in progress.
 
-[mapboxer-docs](https://crazycapivara.github.io/mapboxer/)
+-   [mapboxer-docs](https://crazycapivara.github.io/mapboxer/)
+-   [examples](examples)
+
+Development
+-----------
+
+All JavaScript code of the mapboxer module is located in [javascript/src](javascript/src).
+
+Install dependencies and build the library with:
+
+``` bash
+npm install
+npm run build
+```
+
+The module is written to [inst/htmlwidgets](inst/htmlwidgets).
+
+Spin up the dev server with:
+
+``` bash
+npm run start
+```
