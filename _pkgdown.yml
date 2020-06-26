@@ -10,7 +10,7 @@ reference:
 
 - title: Layers
   contents:
-    - add_layer
+    - matches("layer")
     - add_popup
 
 - title: Styles
