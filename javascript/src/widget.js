@@ -1,3 +1,5 @@
+import "../styles/mapboxer.css";
+
 import methods from "./methods";
 import { DEFAULT_SOURCE } from "./constants";
 

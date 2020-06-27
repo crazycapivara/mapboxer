@@ -1,0 +1,15 @@
+.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl {
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.mapboxer-mouse-position-ctrl {
+  width: 300px;
+  text-align: center;
+  display: none;
+}
+
+.mapboxer-mouse-position-ctrl:empty {
+  display: none;
+}
