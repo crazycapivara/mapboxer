@@ -57,6 +57,10 @@ const widgetData = {
           text: "Circle Layer"
         }
       }
+    },
+    {
+      methodName: "addCustomControl",
+      args: { controlName: "MousePositionControl" }
     }
   ],
   mapProps: {
