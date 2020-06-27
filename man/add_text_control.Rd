@@ -4,17 +4,17 @@
 \alias{add_text_control}
 \title{Add a text control to the map}
 \usage{
-add_text_control(map, text, cssText = NULL, pos = NULL)
+add_text_control(map, text, pos = NULL, css_text = NULL)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
 \item{text}{The text (HTML) that is displayed.}
 
-\item{cssText}{The \code{cssText} property of the control element.}
-
 \item{pos}{The position of the control, one of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
+
+\item{css_text}{A \code{cssText} string that will modify the style of the control element.}
 }
 \description{
 Add a text control to the map

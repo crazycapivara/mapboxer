@@ -9,7 +9,7 @@ class TextControl {
     this._container = document.createElement("div");
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl");
     this._container.style.cssText = this._options.cssText || "";
-    this._container.textContent = this._options.text || 'Hello, world';
+    this._container.innerHTML = this._options.text || "Hello mapboxer!";
     return this._container;
   }
 
@@ -29,9 +29,9 @@ class MousePositionControl {
     this._container = document.createElement("div");
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-mouse-position-ctrl");
     this._container.style.cssText = this._options.cssText || "";
-    const mustacheString = this._options.mustacheString || "{{lng}}, {{lat}}";
+    const mustacheTemplate = this._options.mustacheTemplate || "{{lng}}, {{lat}}";
     this._map.on("mousemove", e => {
-      this._container.innerHTML = render(mustacheString, e.lngLat);
+      this._container.innerHTML = render(mustacheTemplate, e.lngLat);
     });
     this._map.on("mouseout", e => {
       this._container.innerHTML = "";

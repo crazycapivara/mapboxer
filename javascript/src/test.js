@@ -63,7 +63,7 @@ const widgetData = {
       args: {
         controlName: "MousePositionControl",
         pos: "bottom-left",
-        options: { mustacheString: "<b>Lng:</b> {{lng}}, <b>Lat:</b> {{lat}}", cssText: "text-align: left;" }
+        options: { mustacheTemplate: "<b>Lng:</b> {{lng}}, <b>Lat:</b> {{lat}}", cssText: "text-align: left;" }
       }
     }
   ],

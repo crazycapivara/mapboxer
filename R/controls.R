@@ -1,7 +1,7 @@
 #' Add a control to the map
 #' @inheritParams set_view_state
 #' @param control_name The (class) name of the control.
-#' @param ... The properties of the control.
+#' @param ... The options of the control.
 #' @param pos The position of the control, one of \code{top-left}, \code{top-right},
 #'   \code{bottom-right} or \code{bottom-left}.
 #' @export
