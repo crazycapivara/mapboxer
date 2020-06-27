@@ -60,7 +60,11 @@ const widgetData = {
     },
     {
       methodName: "addCustomControl",
-      args: { controlName: "MousePositionControl" }
+      args: {
+        controlName: "MousePositionControl",
+        pos: "bottom-left",
+        options: { mustacheString: "<b>Lng:</b> {{lng}}, <b>Lat:</b> {{lat}}", cssText: "text-align: left;" }
+      }
     }
   ],
   mapProps: {
