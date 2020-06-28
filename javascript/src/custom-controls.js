@@ -60,6 +60,7 @@ class FilterControl {
     this._container = document.createElement("div");
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-filter-ctrl");
     this._container.style.cssText = this._options.cssText || "";
+    // this._container.innerText = "Filter: ";
     const input = document.createElement("input");
     Object.assign(input, { type: "text", spellcheck: false, id: "filter" });
     if (this._options.filter) {
