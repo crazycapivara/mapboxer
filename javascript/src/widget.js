@@ -3,17 +3,18 @@ import "../styles/mapboxer.css";
 import methods from "./methods";
 import { DEFAULT_SOURCE } from "./constants";
 
-global.mapboxer = {
-  methods
+const mapboxer = global.mapboxer = {
+  methods,
+  _widget: { }
 };
 
 export default function(widgetElement, width, height) {
   let map = null;
+  const _widget = mapboxer._widget[widgetElement.id] = { };
 
   function renderValue(widgetData) {
     console.log("mapboxgl", mapboxgl.version);
     console.log(widgetData);
-
     const mapStyle = widgetData.mapProps.style;
 
     // The background layer needs an empty sources object.
@@ -30,7 +31,7 @@ export default function(widgetElement, width, height) {
 
     mapboxgl.accessToken = widgetData.accessToken || null;
     widgetData.mapProps.container = widgetElement.id;
-    map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
+    map = _widget.map = new mapboxgl.Map(widgetData.mapProps);
     map.on("error", (e) => { throw e.error; });
     if (widgetData.source) {
       methods.addSource.call(map, { id: DEFAULT_SOURCE, source: widgetData.source });
