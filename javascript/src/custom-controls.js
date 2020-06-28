@@ -1,4 +1,5 @@
 import { render } from "mustache";
+
 class TextControl {
   constructor(options) {
     this._options = options || { };
@@ -49,7 +50,44 @@ class MousePositionControl {
   }
 }
 
+class FilterControl {
+  constructor(options) {
+    this._options = options || { };
+  }
+
+  onAdd(map) {
+    this._map = map;
+    this._container = document.createElement("div");
+    this._container.classList.add("mapboxgl-ctrl", "mapboxer-filter-ctrl");
+    this._container.style.cssText = this._options.cssText || "";
+    const input = document.createElement("input");
+    Object.assign(input, { type: "text", spellcheck: false, id: "filter" });
+    if (this._options.filter) {
+      input.value = JSON.stringify(this._options.filter);
+      map.on("load", () => map.setFilter(this._options.layer, this._options.filter));
+    }
+
+    input.addEventListener("keyup", e => {
+      const expressionString = input.value;
+      try {
+        const expression = JSON.parse(expressionString);
+        map.setFilter(this._options.layer, expression);
+      } catch(err) {
+        // console.log(err);
+      }
+    });
+    this._container.append(input);
+    return this._container;
+  }
+
+  onRemove() {
+    this._container.parentNode.removeChild(this._container);
+    this._map = undefined;
+  }
+}
+
 export default {
   TextControl,
-  MousePositionControl
+  MousePositionControl,
+  FilterControl
 };

@@ -65,6 +65,13 @@ const widgetData = {
         pos: "bottom-left",
         options: { mustacheTemplate: "<b>Lng:</b> {{lng}}, <b>Lat:</b> {{lat}}", cssText: "text-align: left;" }
       }
+    },
+    {
+      methodName: "addCustomControl",
+      args: {
+        controlName: "FilterControl",
+        options: { layer: "circles", filter: [">", "exits", 8000] }
+      }
     }
   ],
   mapProps: {

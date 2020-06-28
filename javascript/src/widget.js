@@ -31,6 +31,7 @@ export default function(widgetElement, width, height) {
     mapboxgl.accessToken = widgetData.accessToken || null;
     widgetData.mapProps.container = widgetElement.id;
     map = global.mapboxer.map = new mapboxgl.Map(widgetData.mapProps);
+    map.on("error", (e) => { throw e.error; });
     if (widgetData.source) {
       methods.addSource.call(map, { id: DEFAULT_SOURCE, source: widgetData.source });
     }

@@ -1,4 +1,4 @@
-.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl {
+.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl, .mapboxer-filter-ctrl {
   background: #FFFFFF;
   border-radius: 4px;
   padding: 8px;
@@ -12,4 +12,9 @@
 
 .mapboxer-mouse-position-ctrl:empty {
   display: none;
+}
+
+.mapboxer-filter-ctrl input[type='text'] {
+  font: 10pt "mono", /*'Helvetica Neue', Arial, Helvetica,*/ sans-serif;
+  padding: 5px;
 }
