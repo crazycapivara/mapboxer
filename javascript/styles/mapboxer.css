@@ -14,7 +14,16 @@
   display: none;
 }
 
+.mapboxer-filter-ctrl {
+  background: #323232;
+  color: #FFFFFF;
+}
+
 .mapboxer-filter-ctrl input[type='text'] {
-  font: 10pt "mono", /*'Helvetica Neue', Arial, Helvetica,*/ sans-serif;
+  /* font: 10pt "mono", sans-serif; */
+  font: 16px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
   padding: 5px;
+  background: #323232;
+  color: #FFFFFF;
+  border: 1px solid #46514E;
 }
