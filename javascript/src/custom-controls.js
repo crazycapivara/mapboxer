@@ -61,8 +61,11 @@ class FilterControl {
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-filter-ctrl");
     this._container.style.cssText = this._options.cssText || "";
     // this._container.innerText = "Filter: ";
-    const input = document.createElement("input");
-    Object.assign(input, { type: "text", spellcheck: false, id: "filter" });
+
+    // const input = document.createElement("input");
+    // Object.assign(input, { type: "text", spellcheck: false, id: "filter" });
+    const input = document.createElement("textarea");
+    Object.assign(input, { spellcheck: false, id: "filter", rows: 5 });
     if (this._options.filter) {
       input.value = JSON.stringify(this._options.filter);
       map.on("load", () => map.setFilter(this._options.layer, this._options.filter));

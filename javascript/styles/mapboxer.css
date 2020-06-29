@@ -1,4 +1,4 @@
-.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl, .mapboxer-filter-ctrl {
+.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl /*, .mapboxer-filter-ctrl */ {
   background: #FFFFFF;
   border-radius: 4px;
   padding: 8px;
@@ -14,16 +14,22 @@
   display: none;
 }
 
-.mapboxer-filter-ctrl {
-  background: #323232;
+.mapboxer-filter-ctrl-unused {
+  /* background: #323232; */
+  background: none;
   color: #FFFFFF;
+  /* display: flex; */
+  padding: 2px;
 }
 
-.mapboxer-filter-ctrl input[type='text'] {
+/* input[type='text'] */
+.mapboxer-filter-ctrl textarea {
   /* font: 10pt "mono", sans-serif; */
   font: 16px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
   padding: 5px;
-  background: #323232;
+  background: rgba(0, 0, 0, 0.7);
   color: #FFFFFF;
-  border: 1px solid #46514E;
+  /* border: 1px solid #46514E; */
+  resize: none;
+  vertical-align: middle;
 }
