@@ -20,3 +20,14 @@ add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL
   map %>%
     invoke_method("addCustomControl", controlName = "MousePositionControl", pos = pos, options = options)
 }
+
+#' Add a filter control to the map
+#' @inheritParams add_text_control
+#' @param layer The name/ID of the layer to which the filter is attached.
+#' @param filter The initial filter expression.
+#' @export
+add_filter_control <- function(map, layer, filter = NULL, pos = NULL) {
+  options = list(layer = layer, filter = filter)
+  map %>%
+    invoke_method("addCustomControl", controlName = "FilterControl", pos = pos, options = options)
+}

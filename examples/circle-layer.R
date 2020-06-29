@@ -7,6 +7,12 @@ map <- quakes %>%
     circle_blur = 1,
     circle_stroke_color = "red",
     circle_stroke_width = 1,
-    popup = "{{mag}}")
+    popup = "{{mag}}"
+  ) %>%
+  add_filter_control(
+    "circle-layer",
+    filter = list(">", "mag", 5),
+    pos = "bottom-left"
+  )
 
 if (interactive()) map
