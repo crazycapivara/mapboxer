@@ -11,7 +11,8 @@ reference:
 - title: Layers
   contents:
     - matches("layer")
-    - add_popup
+    - add_popups
+    - add_marker
 
 - title: Styles
   contents:

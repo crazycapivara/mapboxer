@@ -9,10 +9,34 @@ add_popups(map, layer, popup)
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{layer}{The name of the layer.}
+\item{layer}{The ID of the layer to which you want to add the popups.}
 
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template string.}
+\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
+in which the tags refer to the properties of the layer's data object.}
 }
 \description{
-Add popups for a given layer to the map
+Usually you will add the popups in the \link{add_layer} function by setting the \code{popup}
+  parameter.
+}
+\examples{
+layer_id <- "quakes"
+popup_tpl <- "
+  <b>Mag:</b> {{mag}}</br>
+  <b>Stations:</b> {{stations}}</br>
+  <b>Depth:</b> {{depth}}
+"
+
+map <- quakes \%>\%
+  as_mapbox_source(lng = "long", lat = "lat") \%>\%
+  mapboxer(center = c(176.9, -24.655), zoom = 4) \%>\%
+  add_circle_layer(
+    circle_color = "red",
+    id = layer_id
+  ) \%>\%
+  add_popups(
+    layer_id,
+    popup = popup_tpl
+  )
+
+if (interactive()) map
 }

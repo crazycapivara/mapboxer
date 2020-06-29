@@ -5,7 +5,7 @@
 \alias{add_navigation_control}
 \alias{add_scale_control}
 \alias{add_fullscreen_control}
-\title{Add a control to the map}
+\title{Add a standard control to the map}
 \usage{
 add_control(map, control_name, ..., pos = NULL)
 
@@ -26,5 +26,21 @@ add_fullscreen_control(map, pos = NULL)
 \code{bottom-right} or \code{bottom-left}.}
 }
 \description{
-Add a control to the map
+Add a standard control to the map
+}
+\examples{
+map <- mapboxer() \%>\%
+  add_navigation_control(
+    pos = "top-left",
+    showCompass = FALSE
+  ) \%>\%
+  add_fullscreen_control() \%>\%
+  add_scale_control(
+    unit = "nautical"
+  )
+
+if (interactive()) map
+}
+\seealso{
+\url{https://docs.mapbox.com/mapbox-gl-js/api/markers/} for available options for the used control.
 }

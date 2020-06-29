@@ -4,17 +4,27 @@
 \alias{add_marker}
 \title{Add a single marker to the map}
 \usage{
-add_marker(map, lat, lng, popup = NULL)
+add_marker(map, lng, lat, popup = NULL)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{lat}{The latitude of the marker.}
-
 \item{lng}{The longitude of the marker.}
+
+\item{lat}{The latitude of the marker.}
 
 \item{popup}{The popup text (HTML) that is displayed when you click on the marker.}
 }
 \description{
 Add a single marker to the map
+}
+\examples{
+lng <- -0.09
+lat <- 51.5
+
+map <- mapboxer() \%>\%
+  set_view_state(lng, lat) \%>\%
+  add_marker(lng, lat, popup = "You are here!")
+
+if (interactive()) map
 }

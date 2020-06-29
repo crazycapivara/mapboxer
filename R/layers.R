@@ -4,9 +4,11 @@
 #' The type of the layer is specified by the \code{type} property of the
 #' layer definintion.
 #' @inheritParams set_view_state
-#' @param style A named list that contains the definition of the layer.
-#'   See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.
-#' @param popup A \href{https://github.com/janl/mustache.js}{mustache} template string.
+#' @inheritParams add_popups
+#' @param style A named list that defines the style of the layer.
+#'   See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/} for available style options
+#'   for the used layer type.
+#' @seealso \link{add_popups} for an example of a mustache template used to generate the popup text.
 #' @export
 add_layer <- function(map, style, popup = NULL) {
   map %<>%
@@ -18,8 +20,14 @@ add_layer <- function(map, style, popup = NULL) {
 }
 
 #' Add popups for a given layer to the map
-#' @inheritParams add_layer
-#' @param layer The name of the layer.
+#'
+#' Usually you will add the popups in the \link{add_layer} function by setting the \code{popup}
+#'   parameter.
+#' @inheritParams set_view_state
+#' @param layer The ID of the layer to which you want to add the popups.
+#' @param popup A \href{https://github.com/janl/mustache.js}{mustache} template
+#'   in which the tags refer to the properties of the layer's data object.
+#' @example examples/popups.R
 #' @export
 add_popups <- function(map, layer, popup) {
   map %>%

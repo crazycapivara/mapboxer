@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a layer to the map — add_layer • mapboxer</title>
+<title>Add popups for a given layer to the map — add_popups • mapboxer</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +32,10 @@
 
 
 
-<meta property="og:title" content="Add a layer to the map — add_layer" />
+<meta property="og:title" content="Add popups for a given layer to the map — add_popups" />
 
-<meta property="og:description" content="Adds any kind of layer to the map.
-The type of the layer is specified by the type property of the
-layer definintion." />
+<meta property="og:description" content="Usually you will add the popups in the add_layer function by setting the popup
+  parameter." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,20 +102,19 @@ layer definintion." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add a layer to the map</h1>
+    <h1>Add popups for a given layer to the map</h1>
     
-    <div class="hidden name"><code>add_layer.Rd</code></div>
+    <div class="hidden name"><code>add_popups.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Adds any kind of layer to the map.
-The type of the layer is specified by the <code>type</code> property of the
-layer definintion.</p>
+    <p>Usually you will add the popups in the <a href='add_layer.html'>add_layer</a> function by setting the <code>popup</code>
+  parameter.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_layer</span>(<span class='no'>map</span>, <span class='no'>style</span>, <span class='kw'>popup</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>add_popups</span>(<span class='no'>map</span>, <span class='no'>layer</span>, <span class='no'>popup</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -126,10 +124,8 @@ layer definintion.</p>
       <td><p>A <a href='mapboxer.html'>mapboxer</a> object.</p></td>
     </tr>
     <tr>
-      <th>style</th>
-      <td><p>A named list that defines the style of the layer.
-See <a href='https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/'>https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/</a> for available style options
-for the used layer type.</p></td>
+      <th>layer</th>
+      <td><p>The ID of the layer to which you want to add the popups.</p></td>
     </tr>
     <tr>
       <th>popup</th>
@@ -138,19 +134,36 @@ in which the tags refer to the properties of the layer's data object.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='add_popups.html'>add_popups</a> for an example of a mustache template used to generate the popup text.</p></div>
-    
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>layer_id</span> <span class='kw'>&lt;-</span> <span class='st'>"quakes"</span>
+<span class='no'>popup_tpl</span> <span class='kw'>&lt;-</span> <span class='st'>"
+  &lt;b&gt;Mag:&lt;/b&gt; {{mag}}&lt;/br&gt;
+  &lt;b&gt;Stations:&lt;/b&gt; {{stations}}&lt;/br&gt;
+  &lt;b&gt;Depth:&lt;/b&gt; {{depth}}
+"</span>
 
+<span class='no'>map</span> <span class='kw'>&lt;-</span> <span class='no'>quakes</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='as_mapbox_source.html'>as_mapbox_source</a></span>(<span class='kw'>lng</span> <span class='kw'>=</span> <span class='st'>"long"</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='st'>"lat"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='mapboxer.html'>mapboxer</a></span>(<span class='kw'>center</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>176.9</span>, -<span class='fl'>24.655</span>), <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_circle_layer.html'>add_circle_layer</a></span>(
+    <span class='kw'>circle_color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+    <span class='kw'>id</span> <span class='kw'>=</span> <span class='no'>layer_id</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_popups</span>(
+    <span class='no'>layer_id</span>,
+    <span class='kw'>popup</span> <span class='kw'>=</span> <span class='no'>popup_tpl</span>
+  )
+
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) <span class='no'>map</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

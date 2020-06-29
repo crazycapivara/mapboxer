@@ -9,13 +9,18 @@ add_layer(map, style, popup = NULL)
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{style}{A named list that contains the definition of the layer.
-See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/}.}
+\item{style}{A named list that defines the style of the layer.
+See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/} for available style options
+for the used layer type.}
 
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template string.}
+\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
+in which the tags refer to the properties of the layer's data object.}
 }
 \description{
 Adds any kind of layer to the map.
 The type of the layer is specified by the \code{type} property of the
 layer definintion.
+}
+\seealso{
+\link{add_popups} for an example of a mustache template used to generate the popup text.
 }

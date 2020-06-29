@@ -64,7 +64,8 @@ Features with a higher sort key will appear above features with a lower sort key
 
 \item{visibility}{(layout) Whether the layer should be displayed.}
 
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template string.}
+\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
+in which the tags refer to the properties of the layer's data object.}
 
 \item{id}{The unique id of the layer.}
 }
