@@ -44,5 +44,12 @@ export default function(widgetElement, width, height) {
     // not implemented yet
   }
 
+  if (HTMLWidgets.shinyMode) {
+    console.log("Adding proxy")
+    Shiny.addCustomMessageHandler('mapboxer', function(obj) {
+      console.log("proxyObj", obj);
+    });
+  }
+
   return { renderValue, resize };
 }
