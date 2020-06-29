@@ -1,0 +1,18 @@
+library(shiny)
+library(mapboxer)
+
+view <- fluidPage(
+  h1("mapboxer"),
+  mapboxerOutput("map")
+)
+
+server <- function(input, output) {
+  output$map <- renderMapboxer({
+    quakes %>%
+      as_mapbox_source(lng = "long", lat = "lat") %>%
+      mapboxer(center = c(176.9, -24.655), zoom = 4) %>%
+      add_circle_layer(circle_color = "red", popup = "{{mag}}")
+  })
+}
+
+if (interactive()) shinyApp(view, server)
