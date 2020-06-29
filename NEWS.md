@@ -1,3 +1,10 @@
+# mapboxer 0.2.0
+
+* Added custom controls:
+    - `add_text_control`: Add text boxes to the map
+    - `add_mouse_position_control` Show coordinates on `mouseover`
+    - `add_filter_control`: Filter layer data on the fly
+
 # mapboxer 0.1.2
 
 * Added layer shortcuts beside the generic `add_layer` func:
