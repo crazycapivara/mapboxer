@@ -57,6 +57,15 @@ function addCustomControl(args) {
   map.addControl(control, args.pos);
 }
 
+function setFilter(args) {
+  const map = this;
+  if (map.loaded()) {
+    map.setFilter(args.layer, args.filter);
+  } else {
+    map.on("load", () => map.setFilter(args.layer, args.filter));
+  }
+}
+
 export default {
   addControl,
   addSource,
@@ -64,5 +73,6 @@ export default {
   addPopups,
   addMarker,
   addCustomControl,
-  customControls
+  customControls,
+  setFilter
 };

@@ -48,6 +48,7 @@ export default function(widgetElement, width, height) {
     console.log("Adding proxy")
     Shiny.addCustomMessageHandler('mapboxer', function(obj) {
       console.log("proxyObj", obj);
+      obj.widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
     });
   }
 
