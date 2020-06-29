@@ -20,7 +20,7 @@ add_fullscreen_control(map, pos = NULL)
 
 \item{control_name}{The (class) name of the control.}
 
-\item{...}{The properties of the control.}
+\item{...}{The options of the control.}
 
 \item{pos}{The position of the control, one of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}

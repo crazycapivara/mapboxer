@@ -46,6 +46,32 @@ const widgetData = {
     {
       methodName: "addMarker",
       args: { lng: -122.45, lat: 37.8, popup: "Hi there!" }
+    },
+    {
+      methodName: "addCustomControl",
+      args: {
+        controlName: "TextControl",
+        pos: "top-left",
+        options: {
+          cssText: "background: yellow; padding: 5px;",
+          text: "Circle Layer"
+        }
+      }
+    },
+    {
+      methodName: "addCustomControl",
+      args: {
+        controlName: "MousePositionControl",
+        pos: "bottom-left",
+        options: { mustacheTemplate: "<b>Lng:</b> {{lng}}, <b>Lat:</b> {{lat}}", cssText: "text-align: left;" }
+      }
+    },
+    {
+      methodName: "addCustomControl",
+      args: {
+        controlName: "FilterControl",
+        options: { layer: "circles", filter: [">", "exits", 8000] }
+      }
     }
   ],
   mapProps: {
