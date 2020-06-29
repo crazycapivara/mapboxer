@@ -2,7 +2,7 @@
 % Please edit documentation in R/markers.R
 \name{add_marker}
 \alias{add_marker}
-\title{At a single marker to the map}
+\title{Add a single marker to the map}
 \usage{
 add_marker(map, lat, lng, popup = NULL)
 }
@@ -16,5 +16,5 @@ add_marker(map, lat, lng, popup = NULL)
 \item{popup}{The popup text (HTML) that is displayed when you click on the marker.}
 }
 \description{
-At a single marker to the map
+Add a single marker to the map
 }

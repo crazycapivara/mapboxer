@@ -1,4 +1,4 @@
-#' At a single marker to the map
+#' Add a single marker to the map
 #' @inheritParams set_view_state
 #' @param lng The longitude of the marker.
 #' @param lat The latitude of the marker.
