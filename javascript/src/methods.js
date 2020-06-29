@@ -1,5 +1,6 @@
 import { render } from "mustache";
-import customControls from "./custom-controls";
+// import customControls from "./custom-controls";
+import * as customControls from "./custom-controls";
 import { DEFAULT_SOURCE } from "./constants";
 
 function addControl(args) {
