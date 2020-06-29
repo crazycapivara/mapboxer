@@ -21,17 +21,20 @@ knitr::opts_chunk$set(
 The __mapboxer__ package makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/),
 an open source JavaScript library that uses WebGL to render interactive maps,
 available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
+You only need a Mapbox Access Token if you want to use (map) styles from Mapbox.
+By default __mapboxer__ uses [Carto styles](https://github.com/CartoDB/basemap-styles) for basemaps.
+It is also possible to use raster tiles or a background color as map style.
 
 ## Installation
 
 Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("crazycapivara/mapboxer")
+# install.packages("remotes")
+remotes::install_github("crazycapivara/mapboxer")
 ```
 
-## Quickstart
+## Usage
 
 ```{r examples}
 library(mapboxer)
@@ -71,10 +74,8 @@ if (interactive()) map
 
 ## Documentation
 
-The package is still in an early stage, so the documention is work in progress.
-
-- [mapboxer-docs](https://crazycapivara.github.io/mapboxer/)
-- [examples](examples)
+- [API reference](https://crazycapivara.github.io/mapboxer/reference/)
+- [Examples](examples)
 
 ## Development
 

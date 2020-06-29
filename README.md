@@ -6,7 +6,7 @@ mapboxer
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mapboxer)](https://CRAN.R-project.org/package=mapboxer) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/mapboxer.svg?branch=master)](https://travis-ci.org/crazycapivara/mapboxer) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
 
-The **mapboxer** package makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source JavaScript library that uses WebGL to render interactive maps, available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
+The **mapboxer** package makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source JavaScript library that uses WebGL to render interactive maps, available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package. You only need a Mapbox Access Token if you want to use (map) styles from Mapbox. By default **mapboxer** uses [Carto styles](https://github.com/CartoDB/basemap-styles) for basemaps. It is also possible to use raster tiles or a background color as map style.
 
 Installation
 ------------
@@ -14,12 +14,12 @@ Installation
 Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("crazycapivara/mapboxer")
+# install.packages("remotes")
+remotes::install_github("crazycapivara/mapboxer")
 ```
 
-Quickstart
-----------
+Usage
+-----
 
 ``` r
 library(mapboxer)
@@ -60,10 +60,8 @@ if (interactive()) map
 Documentation
 -------------
 
-The package is still in an early stage, so the documention is work in progress.
-
--   [mapboxer-docs](https://crazycapivara.github.io/mapboxer/)
--   [examples](examples)
+-   [API reference](https://crazycapivara.github.io/mapboxer/reference/)
+-   [Examples](examples)
 
 Development
 -----------
