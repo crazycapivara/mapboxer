@@ -91,6 +91,11 @@ function setPaintProperty(args) {
   map.setPaintProperty(args.layer, args.property, args.value);
 }
 
+function setLayoutProperty(args) {
+  const map = this;
+  map.setLayoutProperty(args.layer, args.property, args.value);
+}
+
 export default {
   addControl,
   addSource,
@@ -100,5 +105,6 @@ export default {
   addCustomControl,
   customControls,
   setFilter,
-  setPaintProperty
+  setPaintProperty,
+  setLayoutProperty
 };

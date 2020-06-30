@@ -4,7 +4,7 @@ library(mapboxer)
 view <- fluidPage(
   h1("mapboxer"),
   sliderInput("slider", "mag larger than:", min = 1, max = 6, step = 1, value = 4),
-  # actionButton("go", "go"),
+  actionButton("go", "hide layer"),
   mapboxerOutput("map")
 )
 
@@ -24,6 +24,12 @@ server <- function(input, output) {
       set_filter("quakes", list(">", "mag", input$slider)) %>%
       # add_marker(row$long, row$lat) %>%
       send_update(hi = "folks")
+  })
+
+  observeEvent(input$go, {
+    mapboxer_proxy("map") %>%
+      set_layout_property("quakes", "visibility", FALSE) %>%
+      send_update()
   })
 }
 
