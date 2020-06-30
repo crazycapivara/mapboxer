@@ -7,6 +7,8 @@
 set_data(map, data, source_id = NULL)
 }
 \arguments{
+\item{map}{A \link{mapboxer} object.}
+
 \item{data}{A data frame that contains longitudes and latitudes in separate columns
 or an \code{sf}-object.}
 

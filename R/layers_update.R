@@ -14,6 +14,7 @@ set_paint_property <- function(map, layer_id, property, value) {
 }
 
 #' @describeIn update_layer_properties Update a layout property of a layer.
+#' @export
 set_layout_property <- function(map, layer_id, property, value) {
   if (property == "visibility" & is.logical(value)) {
     value = ifelse(value, "visible", "none")
@@ -24,6 +25,7 @@ set_layout_property <- function(map, layer_id, property, value) {
 }
 
 #' Update the data of a Mapbox source
+#' @inheritParams set_view_state
 #' @inheritParams as_mapbox_source
 #' @param source_id The ID of the source whose data should be updated.
 #' @export
