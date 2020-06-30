@@ -1,3 +1,11 @@
+# mapboxer 0.3.0
+
+* Added `mapboxer_proxy` to update map in Shiny apps:
+    - `set_filter`
+    - `set_paint_property`
+    - `set_layout_property`
+    - `set_data`
+
 # mapboxer 0.2.0
 
 * Added custom controls:
