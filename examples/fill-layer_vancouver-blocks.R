@@ -2,7 +2,7 @@ data_url <- paste0(
   "https://raw.githubusercontent.com/uber-common/deck.gl-data/",
   "master/examples/geojson/vancouver-blocks.json"
 )
-blocks <- st_read(data_url)
+blocks <- sf::st_read(data_url)
 names(blocks)
 
 blocks %>%
