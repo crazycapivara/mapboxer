@@ -86,6 +86,11 @@ function setFilter(args) {
   */
 }
 
+function setPaintProperty(args) {
+  const map = this;
+  map.setPaintProperty(args.layer, args.property, args.value);
+}
+
 export default {
   addControl,
   addSource,
@@ -94,5 +99,6 @@ export default {
   addMarker,
   addCustomControl,
   customControls,
-  setFilter
+  setFilter,
+  setPaintProperty
 };

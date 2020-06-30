@@ -72,6 +72,10 @@ const widgetData = {
         controlName: "FilterControl",
         options: { layer: "circles", filter: [">", "exits", 8000] }
       }
+    },
+    {
+      methodName: "setPaintProperty",
+      args: { layer: "circles", property: "circle-color", value: "pink" }
     }
     /*,
     {

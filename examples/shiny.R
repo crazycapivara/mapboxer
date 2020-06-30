@@ -20,8 +20,9 @@ server <- function(input, output) {
   observeEvent(input$slider, {
     row <- quakes[sample(1:nrow(quakes), 1), ]
     mapboxer_proxy("map") %>%
+      set_paint_property("quakes", "circle_radius", input$slider) %>%
       set_filter("quakes", list(">", "mag", input$slider)) %>%
-      add_marker(row$long, row$lat) %>%
+      # add_marker(row$long, row$lat) %>%
       send_update(hi = "folks")
   })
 }
