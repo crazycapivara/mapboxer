@@ -16,7 +16,8 @@ export default class FilterControl {
     Object.assign(input, { spellcheck: false, id: "filter", rows: 5 });
     if (this._options.filter) {
       input.value = JSON.stringify(this._options.filter);
-      map.on("load", () => map.setFilter(this._options.layer, this._options.filter));
+      map.setFilter(this._options.layer, this._options.filter);
+      // map.on("load", () => map.setFilter(this._options.layer, this._options.filter));
     }
 
     input.addEventListener("keyup", e => {

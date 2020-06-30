@@ -72,7 +72,21 @@ const widgetData = {
         controlName: "FilterControl",
         options: { layer: "circles", filter: [">", "exits", 8000] }
       }
+    },
+    {
+      methodName: "setPaintProperty",
+      args: { layer: "circles", property: "circle-color", value: "pink" }
+    }/*,
+    {
+      methodName: "setData",
+      args: { source: "points", data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson' }
+    }*/
+    /*,
+    {
+      methodName: "setFilter",
+      args: { layer: "circles", filter: ["==", "code", "LF"] }
     }
+    */
   ],
   mapProps: {
     center: [ -122.45, 37.8 ],

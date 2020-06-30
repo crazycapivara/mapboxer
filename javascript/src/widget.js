@@ -34,14 +34,39 @@ export default function(widgetElement, width, height) {
     map = _widget.map = new mapboxgl.Map(widgetData.mapProps);
     map.on("error", (e) => { throw e.error; });
     if (widgetData.source) {
-      methods.addSource.call(map, { id: DEFAULT_SOURCE, source: widgetData.source });
+      map.on("load", () => methods.addSource.call(map, { id: DEFAULT_SOURCE, source: widgetData.source }));
     }
 
-    widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+    map.on("load", () => widgetData.calls.forEach(({ methodName, args }) => {
+      methods[methodName].call(map, args);
+    }));
+    /*
+    widgetData.calls.forEach(({ methodName, args }) => {
+      map.on("load", () => methods[methodName].call(map, args));
+    });
+    */
+    /*
+    if (map.loaded()) {
+      widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+    } else {
+      map.on("load", () => widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args)));
+    }
+    */
+
+
+
   }
 
   function resize(width, height) {
     // not implemented yet
+  }
+
+  if (HTMLWidgets.shinyMode) {
+    console.log("Adding proxy")
+    Shiny.addCustomMessageHandler('mapboxer', function(obj) {
+      console.log("proxyObj", obj);
+      obj.widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+    });
   }
 
   return { renderValue, resize };
