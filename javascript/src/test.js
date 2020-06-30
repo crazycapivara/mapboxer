@@ -72,11 +72,13 @@ const widgetData = {
         controlName: "FilterControl",
         options: { layer: "circles", filter: [">", "exits", 8000] }
       }
-    },
+    }
+    /*,
     {
       methodName: "setFilter",
       args: { layer: "circles", filter: ["==", "code", "LF"] }
     }
+    */
   ],
   mapProps: {
     center: [ -122.45, 37.8 ],
