@@ -76,7 +76,11 @@ const widgetData = {
     {
       methodName: "setPaintProperty",
       args: { layer: "circles", property: "circle-color", value: "pink" }
-    }
+    }/*,
+    {
+      methodName: "setData",
+      args: { source: "points", data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson' }
+    }*/
     /*,
     {
       methodName: "setFilter",

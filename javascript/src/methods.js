@@ -96,6 +96,12 @@ function setLayoutProperty(args) {
   map.setLayoutProperty(args.layer, args.property, args.value);
 }
 
+function setData(args) {
+  const map = this;
+  const source = args.source || DEFAULT_SOURCE;
+  map.getSource(source).setData(args.data);
+}
+
 export default {
   addControl,
   addSource,
@@ -106,5 +112,6 @@ export default {
   customControls,
   setFilter,
   setPaintProperty,
-  setLayoutProperty
+  setLayoutProperty,
+  setData
 };

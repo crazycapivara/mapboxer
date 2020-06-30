@@ -11,3 +11,8 @@ set_layout_property <- function(map, layer, property, value) {
   map %>%
     invoke_method("setLayoutProperty", layer = layer, property = property, value = value)
 }
+
+set_data <- function(map, data, source = NULL) {
+  map %>%
+    invoke_method("setData", source = source, data = data)
+}

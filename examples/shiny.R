@@ -18,10 +18,12 @@ server <- function(input, output) {
   })
 
   observeEvent(input$slider, {
-    row <- quakes[sample(1:nrow(quakes), 1), ]
+    #row <- quakes[sample(1:nrow(quakes), 1), ]
+    data <- geojsonsf::df_geojson(dplyr::sample_n(quakes, 100), lon = "long", lat = "lat")
     mapboxer_proxy("map") %>%
       set_paint_property("quakes", "circle_radius", input$slider) %>%
-      set_filter("quakes", list(">", "mag", input$slider)) %>%
+      set_data(data) %>%
+      #set_filter("quakes", list(">", "mag", input$slider)) %>%
       # add_marker(row$long, row$lat) %>%
       send_update(hi = "folks")
   })
