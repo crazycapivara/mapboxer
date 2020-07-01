@@ -31,7 +31,7 @@ mapboxer_proxy <- function(shiny_id, session = shiny::getDefaultReactiveDomain()
   )
 }
 
-#' Update a mapboxer object in a Shiny App
+#' Update a mapboxer object in a Shiny app
 #' @param proxy_obj A \code{\link{mapboxer_proxy}} object.
 #' @param ... unused
 #' @export

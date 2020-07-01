@@ -19,10 +19,10 @@ mapbox_source <- function(type, ...) {
   structure(list(type = type, ...), class = "mapbox_source")
 }
 
-#' Convert a data object to a Mapbox geojson source
+#' Convert a data object to a Mapbox GeoJSON source
 #' @param data A data frame that contains longitudes and latitudes in separate columns
 #'   or an \code{sf}-object.
-#' @inheritDotParams mapbox_source
+#' @inheritParams mapbox_source
 #' @export
 as_mapbox_source <- function(data, ...) {
   UseMethod("as_mapbox_source")

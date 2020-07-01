@@ -1,6 +1,6 @@
 #' Create a mapboxer widget
 #'
-#' @param source A \link{mapbox_source} that is added to the map with the ID \code{mapboxer}.
+#' @param source A \link{mapbox_source} that is added to the map with the ID \code{MAPBOXER}.
 #' @param style The map's Mapbox style.
 #' @param ... The properties of the map, see \url{https://docs.mapbox.com/mapbox-gl-js/api/map/}.
 #' @param width The width of the widget.

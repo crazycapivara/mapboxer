@@ -1,3 +1,7 @@
+# mapboxer 0.3.1
+
+* Added support for `mapbox_source` objects as `data` parameter in `set_data`.
+
 # mapboxer 0.3.0
 
 * Added `mapboxer_proxy` to update map in Shiny apps:
