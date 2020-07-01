@@ -2,14 +2,14 @@
 % Please edit documentation in R/layers.R
 \name{add_popups}
 \alias{add_popups}
-\title{Add popups for a given layer to the map}
+\title{Add popups to a layer}
 \usage{
-add_popups(map, layer, popup)
+add_popups(map, layer_id, popup)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{layer}{The ID of the layer to which you want to add the popups.}
+\item{layer_id}{The ID of the layer to which you want to add the popups.}
 
 \item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
 in which the tags refer to the properties of the layer's data object.}

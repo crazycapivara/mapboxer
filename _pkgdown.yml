@@ -1,28 +1,35 @@
 destination: docs
 reference:
-- title: mapboxer Instance
+- title: Mapboxer Instance
   contents:
   - matches("mapboxer")
 
 - title: Sources
   contents:
-    - matches("source")
+    - ends_with("_source")
 
 - title: Layers
   contents:
-    - matches("layer")
+    - ends_with("_layer")
     - add_popups
     - add_marker
 
 - title: Styles
   contents:
-    - matches("style")
+    - ends_with("_style")
     - get_osm_raster_tiles
 
 - title: Controls
   contents:
-    - matches("control")
+    - ends_with("_control")
 
-- title: Misc
+- title: Updates
+  desc: >
+    These function are usually called with a `mapboxer_proxy` object inside a __Shiny__ app
+    to update the widget that is already rendered.
   contents:
-    - set_view_state
+    #- set_data
+    #- set_filter
+    #- set_layer_properties
+    - starts_with("set_")
+    - send_update

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert a data object to a Mapbox geojson source — as_mapbox_source • mapboxer</title>
+<title>Convert a data object to a Mapbox GeoJSON source — as_mapbox_source • mapboxer</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Convert a data object to a Mapbox geojson source — as_mapbox_source" />
+<meta property="og:title" content="Convert a data object to a Mapbox GeoJSON source — as_mapbox_source" />
 
-<meta property="og:description" content="Convert a data object to a Mapbox geojson source" />
+<meta property="og:description" content="Convert a data object to a Mapbox GeoJSON source" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -101,14 +101,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert a data object to a Mapbox geojson source</h1>
+    <h1>Convert a data object to a Mapbox GeoJSON source</h1>
     
     <div class="hidden name"><code>as_mapbox_source.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Convert a data object to a Mapbox geojson source</p>
+    <p>Convert a data object to a Mapbox GeoJSON source</p>
     
     </div>
 
@@ -134,10 +134,9 @@ or an <code>sf</code>-object.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code>mapbox_source</code></p><dl class='dl-horizontal'>
-  <dt>type</dt><dd><p>The type of the source, e. g. <code>geojson</code>.</p></dd>
-
-</dl></td>
+      <td><p>The properties of the source.
+See <a href='https://docs.mapbox.com/mapbox-gl-js/style-spec/sources'>https://docs.mapbox.com/mapbox-gl-js/style-spec/sources</a> for available options
+for the given source type.</p></td>
     </tr>
     <tr>
       <th>lng</th>

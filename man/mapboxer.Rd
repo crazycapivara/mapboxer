@@ -9,7 +9,7 @@ mapboxer(source = NULL, style = use_carto_style(), ..., width = NULL,
   token = Sys.getenv("MAPBOX_API_TOKEN"))
 }
 \arguments{
-\item{source}{A \link{mapbox_source} that is added to the map with the ID \code{mapboxer}.}
+\item{source}{A \link{mapbox_source} that is added to the map with the ID \code{MAPBOXER}.}
 
 \item{style}{The map's Mapbox style.}
 

@@ -2,18 +2,34 @@
 % Please edit documentation in R/layers_update.R
 \name{set_data}
 \alias{set_data}
+\alias{set_data.character}
+\alias{set_data.json}
+\alias{set_data.mapbox_source}
 \title{Update the data of a Mapbox source}
 \usage{
 set_data(map, data, source_id = NULL)
+
+\method{set_data}{character}(map, data, source_id = NULL)
+
+\method{set_data}{json}(map, data, source_id = NULL)
+
+\method{set_data}{mapbox_source}(map, data, source_id = NULL)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{data}{A data frame that contains longitudes and latitudes in separate columns
-or an \code{sf}-object.}
+\item{data}{A \code{GeoJSON} object, an url pointing to an external \code{GeoJSON} document
+or a \link{mapbox_source} of type \code{GeoJSON}.}
 
 \item{source_id}{The ID of the source whose data should be updated.}
 }
 \description{
 Update the data of a Mapbox source
+}
+\seealso{
+\itemize{
+  \item \link{as_mapbox_source}
+  \item \link[geojsonsf]{df_geojson}
+  \item \link[geojsonsf]{sf_geojson}
+}
 }

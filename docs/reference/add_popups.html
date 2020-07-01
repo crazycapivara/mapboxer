@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add popups for a given layer to the map — add_popups • mapboxer</title>
+<title>Add popups to a layer — add_popups • mapboxer</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
 
 
-<meta property="og:title" content="Add popups for a given layer to the map — add_popups" />
+<meta property="og:title" content="Add popups to a layer — add_popups" />
 
 <meta property="og:description" content="Usually you will add the popups in the add_layer function by setting the popup
   parameter." />
@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add popups for a given layer to the map</h1>
+    <h1>Add popups to a layer</h1>
     
     <div class="hidden name"><code>add_popups.Rd</code></div>
     </div>
@@ -114,7 +114,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_popups</span>(<span class='no'>map</span>, <span class='no'>layer</span>, <span class='no'>popup</span>)</pre>
+    <pre class="usage"><span class='fu'>add_popups</span>(<span class='no'>map</span>, <span class='no'>layer_id</span>, <span class='no'>popup</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -124,7 +124,7 @@
       <td><p>A <a href='mapboxer.html'>mapboxer</a> object.</p></td>
     </tr>
     <tr>
-      <th>layer</th>
+      <th>layer_id</th>
       <td><p>The ID of the layer to which you want to add the popups.</p></td>
     </tr>
     <tr>

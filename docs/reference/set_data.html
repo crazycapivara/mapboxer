@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a single marker to the map — add_marker • mapboxer</title>
+<title>Update the data of a Mapbox source — set_data • mapboxer</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Add a single marker to the map — add_marker" />
+<meta property="og:title" content="Update the data of a Mapbox source — set_data" />
 
-<meta property="og:description" content="Add a single marker to the map" />
+<meta property="og:description" content="Update the data of a Mapbox source" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,18 +101,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add a single marker to the map</h1>
+    <h1>Update the data of a Mapbox source</h1>
     
-    <div class="hidden name"><code>add_marker.Rd</code></div>
+    <div class="hidden name"><code>set_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add a single marker to the map</p>
+    <p>Update the data of a Mapbox source</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_marker</span>(<span class='no'>map</span>, <span class='no'>lng</span>, <span class='no'>lat</span>, <span class='kw'>popup</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for character</span>
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for json</span>
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for mapbox_source</span>
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -122,37 +131,35 @@
       <td><p>A <a href='mapboxer.html'>mapboxer</a> object.</p></td>
     </tr>
     <tr>
-      <th>lng</th>
-      <td><p>The longitude of the marker.</p></td>
+      <th>data</th>
+      <td><p>A <code>GeoJSON</code> object, an url pointing to an external <code>GeoJSON</code> document
+or a <a href='mapbox_source.html'>mapbox_source</a> of type <code>GeoJSON</code>.</p></td>
     </tr>
     <tr>
-      <th>lat</th>
-      <td><p>The latitude of the marker.</p></td>
-    </tr>
-    <tr>
-      <th>popup</th>
-      <td><p>The popup text (HTML) that is displayed when you click on the marker.</p></td>
+      <th>source_id</th>
+      <td><p>The ID of the source whose data should be updated.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>lng</span> <span class='kw'>&lt;-</span> -<span class='fl'>0.09</span>
-<span class='no'>lat</span> <span class='kw'>&lt;-</span> <span class='fl'>51.5</span>
+    <div class='dont-index'>
+<ul>
+<li><p><a href='as_mapbox_source.html'>as_mapbox_source</a></p></li>
+<li><p><a href='https://rdrr.io/pkg/geojsonsf/man/df_geojson.html'>df_geojson</a></p></li>
+<li><p><a href='https://rdrr.io/pkg/geojsonsf/man/sf_geojson.html'>sf_geojson</a></p></li>
+</ul>
+</div>
+    
 
-<span class='no'>map</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mapboxer.html'>mapboxer</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set_view_state.html'>set_view_state</a></span>(<span class='no'>lng</span>, <span class='no'>lat</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>add_marker</span>(<span class='no'>lng</span>, <span class='no'>lat</span>, <span class='kw'>popup</span> <span class='kw'>=</span> <span class='st'>"You are here!"</span>)
-
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) <span class='no'>map</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>
