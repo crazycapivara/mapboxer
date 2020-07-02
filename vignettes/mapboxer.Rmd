@@ -1,0 +1,97 @@
+---
+title: "Get started with mapboxer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{mapboxer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The goal of mapboxer is to make it easy to create interactive maps using [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api) within R. Visualizations can be used at the R console, embedded in R Markdown documents or Shiny apps.
+
+This guide covers the basic usage of the main components that are needed to create a visualization:
+
+* [Map](https://docs.mapbox.com/mapbox-gl-js/api/map/): The map is the main component of your visualization to which you then add other components like layers, controls or sources. Maps are created with `mapboxer()`.
+
+* [Sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/): Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with `as_mapbox_source()`.  
+
+* [Layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/): A layer's style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With `add_layer()` you can add any type of layer to the map but in most cases it is easier to use one of the shorcuts like `add_circle_layer()`.  
+
+* [Controls](https://docs.mapbox.com/mapbox-gl-js/api/markers/): Controls are use to interact with the map. Besides the standard controls like `NavigationControl` included in Mapbox GL JS, mapboxer provides additional controls. For example, `add_filter_control()` can be used to filter your data on the fly without having to set up a Shiny app.
+
+* [Expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/): Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.
+
+* __Shiny Bindings__: With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `send_update()` to update the already rendered widget.
+
+## Quickstart
+
+### Load the library
+
+```{r setup}
+library(mapboxer)
+```
+
+### Set up a map
+
+```{r}
+map <- mapboxer(
+  center = c(176.9, -24.655),
+  zoom = 4
+)
+```
+
+### Add a layer
+
+```{r}
+map <- mapboxer(
+  center = c(176.9, -24.655),
+  zoom = 4
+) %>%
+  add_circle_layer(
+    source = as_mapbox_source(quakes, lng = "long", lat = "lat"),
+    circle_color = "red",
+    circle_radius = 5,
+    # Use mustache templates to add popups to a layer
+    popup = "Magnitude: {{mag}}"
+  )
+```
+
+### Display the map
+
+```r
+map
+```
+
+## Map
+
+To update the `map` object returned by `mapboxer()` it is recommended to use the widely used
+piping style provided by [magrittr](https://magrittr.tidyverse.org/):
+
+```r
+map <- mapboxer(...) %>%
+  add_layer(...) %>%
+  add_navigation_control(...)
+```
+
+## Sources
+
+See also: [sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/)
+
+## Layers
+
+See also: [layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
+
+## Controls
+
+See also: [controls](https://docs.mapbox.com/mapbox-gl-js/api/markers/)
+
+## Shiny Bindings
+
+...
