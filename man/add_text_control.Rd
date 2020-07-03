@@ -11,7 +11,7 @@ add_text_control(map, text, pos = NULL, css_text = NULL)
 
 \item{text}{The text (HTML) that is displayed.}
 
-\item{pos}{The position of the control, one of \code{top-left}, \code{top-right},
+\item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
 
 \item{css_text}{A \code{cssText} string that will modify the style of the control element.}

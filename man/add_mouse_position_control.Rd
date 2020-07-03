@@ -11,9 +11,9 @@ add_mouse_position_control(map, mustache_template = NULL, pos = NULL,
 \item{map}{A \link{mapboxer} object.}
 
 \item{mustache_template}{A \href{https://github.com/janl/mustache.js}{mustache} template
-that contains the mustache tags\code{lng} and \code{lat}.}
+that contains the mustache tags \code{lng} and \code{lat}.}
 
-\item{pos}{The position of the control, one of \code{top-left}, \code{top-right},
+\item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
 
 \item{css_text}{A \code{cssText} string that will modify the style of the control element.}
