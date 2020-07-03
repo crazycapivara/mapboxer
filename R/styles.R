@@ -23,9 +23,10 @@ use_background_style <- function(color = "#111") {
 #' @param theme The theme of the tiles.
 #' @export
 use_stamen_raster_style <- function(theme = "watercolor") {
-  tiles <- paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
-    as.list()
-  use_raster_style(tiles, STAMEN_ATTRIBUTION)
+  paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
+    as.list() %>%
+    structure(attribution = STAMEN_ATTRIBUTION) %>%
+    use_raster_style()
 }
 
 #' Use raster tiles as map style
