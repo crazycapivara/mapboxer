@@ -184,6 +184,69 @@ mapboxer() %>%
   )
 ```
 
+## Expressions
+
+The value of any layout property, paint property (data-driven-styling) or filter may be specified as an expression. Expressions in Mapbox GL JS use a Lisp-like [syntax](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/#syntax) represented as JSON arrays:
+
+```javascript
+[expression_name, argument_0, argument_1, ...]
+```
+
+Therefore, in R you must use the `list` structure:
+
+```r
+list(expression_name, argument_0, argument_1, ...)
+```
+
+A simple expression is to use a data property to style your data:
+
+```r
+quakes_map <- quakes %>%
+  dplyr::mutate(
+    color = ifelse(mag > 5, "red", "blue")
+  ) %>%
+  as_mapbox_source(lng = "long", lat = "lat") %>%
+  mapboxer(
+    center = c(176.9, -24.655),
+    zoom = 4
+  )
+  
+quakes_map %>%
+  add_circle_layer(
+    # Expression to get the color from the data's color property
+    circle_color = list("get", "color")
+  )
+```
+
+You can get same result for the `circle_color` without modifying the data but using
+expressions only:
+
+```r
+quakes_map %>%
+  add_circle_layer(
+    circle_color = list(
+      "case",
+      # 'red' if 'mag > 5'
+      list(">", list("get", "mag"), 5), "red",
+      # Defaults to 'blue'
+      "blue"
+    )
+  )
+```
+
+A filter could look like this:
+
+```r
+quakes_map %>%
+  add_circle_layer(
+    circle_color = list("get", "color"),
+    # Expression to display only data where 'mag > 5'
+    filter = list(">", "mag", 5)
+  )
+```
+
+See also `add_filter_control()` to modify filter expressions on the fly to update your map without the need of a Shiny app, [Get started with expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/) for a tutorial and the [Expressions Style Specification](https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/) for details.
+
 ## Shiny Bindings
 
 ...
