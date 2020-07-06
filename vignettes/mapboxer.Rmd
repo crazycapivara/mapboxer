@@ -153,6 +153,14 @@ mapboxer(
   )
 ```
 
+## Popups
+
+Usually popups are added to a layer with the `popup` parameter of the `add_*_layer()` functions. Optionally you can also use `add_popup()`. The popup text (HTML) is specified by a [mustache](https://github.com/janl/mustache.js) template in which the tags refer to the properties of the layer's data object. If your data contains the properties `name` and `population`, it could look like this:
+
+```r
+popup_template <- "Name: {{name}}</br>Population: {{population}}"
+```
+
 ## Controls
 
 Controls are used to interact with the user. They are displayed as overlays on top of the map. Options of the standard controls described in the [Markers and Controls API Reference](https://docs.mapbox.com/mapbox-gl-js/api/markers/) are provided with the
