@@ -155,7 +155,26 @@ mapboxer(
 
 ## Controls
 
-See also: [controls](https://docs.mapbox.com/mapbox-gl-js/api/markers/)
+Controls are used to interact with the user. They are displayed as overlays on top of the map. Options of the standard controls described in the [Markers and Controls API Reference](https://docs.mapbox.com/mapbox-gl-js/api/markers/) are provided with the
+`...` parameter. The position is set with the `pos` parameter, one of `top-left`, `top-right`, `bottom-right`, `bottom-left`:
+
+```r
+mapboxer() %>%
+  add_navigation_control(
+    pos = "top-left",
+    # Option passed to the 'NavigationControl'
+    showCompass = FALSE
+) %>%
+  add_scale_control(
+    pos = "bottom-left",
+    # Option passed to the 'ScaleControl'
+    unit = "nautical"
+) %>%
+  add_text_control(
+    pos = "top-right",
+    text = "mapboxer"
+  )
+```
 
 ## Shiny Bindings
 
