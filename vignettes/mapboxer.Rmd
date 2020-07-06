@@ -71,8 +71,7 @@ map
 
 ## Map
 
-With `mapboxer()` you create a `map` object, which is the main component of your vizualization.
-The `style` parameter sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a
+With `mapboxer()` you create a `map` object. This is the main component of your vizualization. To add components like layers or controls or to modify the object you use the `add_*` and `set_*` functions. The parameters passed to `mapboxer()` itself are used to configure the initial setup of your map. The `style` parameter sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a
 background color as basemap. Therefore, you can use the helpers `use_raster_style()` or `use_background_style()`:
 
 ```r
@@ -106,11 +105,53 @@ As you can see above mapboxer is designed to use the widely used piping style pr
 
 ## Sources
 
-See also: [sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/)
+Sources state which data the map should display. To show the data on the map you need
+to bind a source to a layer which contains the styling details like color or width. 
+This makes it possible the style the same source in different ways.
+The easiest way to create a source from an R data object is to use `as_mapbox_source()`.
+Supported structures are [sf](https://r-spatial.github.io/sf/index.html)-objects and data frames that contain longitudes and latitudes:
+
+```r
+quakes_sf <- quakes %>%
+  sf::st_as_sf(coords = c("long", "lat"))
+
+quakes_source_from_sf <- quakes_sf %>%
+  as_mapbox_source()
+
+quakes_source_from_df <- quakes %>%
+  as_mapbox_source(lat = "lat", long = "long")
+```
+
+With the `...` parameter you can pass further options to the source:
+
+```r
+quakes_cluster <- quakes %>%
+  as_mapbox_source(
+    lat = "lat",
+    lng = "long",
+    cluster = TRUE,
+    clusterMaxZoom = 14,
+    clusterRadius = 50
+  )
+```
+
+See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/) for available options for the used source type. Source are either passed to the `add_*_layer` functions or as first parameter to `mapboxer()`.
 
 ## Layers
 
-See also: [layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
+Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function `add_layer()`, the type of the layer is specified by the `type` property. See the [Layers API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/) for available types. In most cases it is convenient to use one of `the add_*_layer()` functions:
+
+```r
+mapboxer(
+  center = c(176.9, -24.655),
+  zoom = 4
+) %>%
+  add_circle_layer(
+    source = as_mapbox_source(quakes, lng = "long", lat = "lat"),
+    circle_color = "red",
+    circle_radius = 5
+  )
+```
 
 ## Controls
 
