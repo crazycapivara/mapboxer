@@ -28,50 +28,35 @@ This guide covers the basic usage of the main components that are needed to crea
 
 * [Expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/): Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.
 
-* __Shiny Bindings__: With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `send_update()` to update the already rendered widget.
+* [Shiny Bindings](https://shiny.rstudio.com/): With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `send_update()` to update the already rendered widget.
 
 ## Quickstart
 
-### Load the library
-
-```{r setup}
+```{r quickstart, eval = FALSE}
+# Load the library
 library(mapboxer)
-```
 
-### Set up a map
-
-```{r}
-map <- mapboxer(
-  center = c(176.9, -24.655),
-  zoom = 4
-)
-```
-
-### Add a layer
-
-```{r}
-map <- mapboxer(
-  center = c(176.9, -24.655),
-  zoom = 4
-) %>%
+# Create a source
+quakes %>%
+  as_mapbox_source(lng = "long", lat = "lat") %>%
+  # Setup a map
+  mapboxer(
+    center = c(176.9, -24.655),
+    zoom = 4
+  ) %>%
+  # Add a layer styling the data of the source
   add_circle_layer(
-    source = as_mapbox_source(quakes, lng = "long", lat = "lat"),
+    source = ,
     circle_color = "red",
     circle_radius = 5,
-    # Use mustache templates to add popups to a layer
+    # Use a mustache template to add popups to the layer
     popup = "Magnitude: {{mag}}"
   )
 ```
 
-### Display the map
-
-```r
-map
-```
-
 ## Map
 
-With `mapboxer()` you create a `map` object. This is the main component of your vizualization. To add components like layers or controls or to modify the object you use the `add_*` and `set_*` functions. The parameters passed to `mapboxer()` itself are used to configure the initial setup of your map. The `style` parameter sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a
+With `mapboxer()` you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the `add_*` and `set_*` functions. The parameters passed to `mapboxer()` itself are used to configure the initial setup of your map. The `style` parameter sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a
 background color as basemap. Therefore, you can use the helpers `use_raster_style()` or `use_background_style()`:
 
 ```r
@@ -135,7 +120,7 @@ quakes_cluster <- quakes %>%
   )
 ```
 
-See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/) for available options for the used source type. Source are either passed to the `add_*_layer` functions or as first parameter to `mapboxer()`.
+See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/) for available options for the used source type. Sources are either passed to the `add_*_layer` functions or as first parameter to `mapboxer()`.
 
 ## Layers
 
@@ -153,9 +138,9 @@ mapboxer(
   )
 ```
 
-## Popups
+### Popups
 
-Usually popups are added to a layer with the `popup` parameter of the `add_*_layer()` functions. Optionally you can also use `add_popup()`. The popup text (HTML) is specified by a [mustache](https://github.com/janl/mustache.js) template in which the tags refer to the properties of the layer's data object. If your data contains the properties `name` and `population`, it could look like this:
+Usually popups are added to a layer with the `popup` parameter of the `add_*_layer()` functions. Optionally you can also use `add_popups()`. The popup text (HTML) is specified by a [mustache](https://github.com/janl/mustache.js) template in which the tags refer to the properties of the layer's data object. If your data contains the properties `name` and `population`, it could look like this:
 
 ```r
 popup_template <- "Name: {{name}}</br>Population: {{population}}"
@@ -218,7 +203,7 @@ quakes_map %>%
   )
 ```
 
-You can get same result for the `circle_color` without modifying the data but using
+You can get the same result for the `circle_color` without modifying the data but using
 expressions only:
 
 ```r
@@ -249,4 +234,54 @@ See also `add_filter_control()` to modify filter expressions on the fly to updat
 
 ## Shiny Bindings
 
-...
+Use `mapboxerOutput()` and `renderMapboxer()` to integrate mapboxer in a [Shiny](https://shiny.rstudio.com/) app:
+
+```{r, eval = FALSE}
+library(shiny)
+library(mapboxer)
+
+view <- fluidPage(
+  h1("mapboxer"),
+  mapboxerOutput("map")
+)
+
+backend <- function(input, output) {
+  output$map <- renderMapboxer({
+    mapboxer(center = c(9.5, 51.3), zoom = 10) %>%
+      add_navigation_control() %>%
+      add_marker(lng = 9.5, lat = 51.3, popup = "mapboxer")
+  })
+}
+
+if (interactive()) shinyApp(view, backend)
+```
+
+With `mapboxer_proxy()` and `send_mapboxer_update()` you can update your already rendered map:
+
+```{r, eval = FALSE}
+view <- basicPage(
+  sliderInput("slider", "mag larger than:",
+              min = 3, max = 6, step = 1, value = 4),
+  mapboxerOutput("map")
+)
+
+backend <- function(input, output) {
+  output$map <- renderMapboxer({
+    mapboxer(center = c(176.9, -24.655), zoom = 4) %>%
+      add_circle_layer(
+        source = as_mapbox_source(quakes, lng = "long", lat = "lat"),
+        circle_color = "red",
+        popup = "{{mag}}",
+        id = "quakes"
+      )
+  })
+
+  observeEvent(input$slider, {
+    mapboxer_proxy("map") %>%
+      set_filter("quakes", list(">", "mag", input$slider)) %>%
+      send_mapboxer_update()
+  })
+}
+
+if (interactive()) shinyApp(view, backend)
+```
