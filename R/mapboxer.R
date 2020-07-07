@@ -36,7 +36,6 @@ mapboxer <- function(source = NULL, style = use_carto_style(), ...,
 #'
 #' Output and render functions for using mapboxer within Shiny
 #' applications and interactive Rmd documents.
-#'
 #' @param outputId output variable to read from
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
@@ -45,7 +44,6 @@ mapboxer <- function(source = NULL, style = use_carto_style(), ...,
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
-#'
 #' @name mapboxer-shiny
 #' @export
 mapboxerOutput <- function(outputId, width = "100%", height = "400px") {
