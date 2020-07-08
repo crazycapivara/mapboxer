@@ -2,17 +2,17 @@
 % Please edit documentation in R/sources.R
 \name{add_source}
 \alias{add_source}
-\title{Add a data source to the map}
+\title{Add a Mapbox source to the map}
 \usage{
 add_source(map, source, id = "mapboxer")
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{source}{A Mapbox data source.}
+\item{source}{A Mapbox source.}
 
 \item{id}{The unique id of the data source.}
 }
 \description{
-Add a data source to the map
+Add a Mapbox source to the map
 }

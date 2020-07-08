@@ -2,7 +2,7 @@
 % Please edit documentation in R/mapboxer-proxy.R
 \name{send_mapboxer_update}
 \alias{send_mapboxer_update}
-\title{Update a mapboxer object in a Shiny app}
+\title{Update a mapboxer proxy object in a Shiny app}
 \usage{
 send_mapboxer_update(proxy_obj, ...)
 }
@@ -12,5 +12,5 @@ send_mapboxer_update(proxy_obj, ...)
 \item{...}{unused}
 }
 \description{
-Update a mapboxer object in a Shiny app
+Update a mapboxer proxy object in a Shiny app
 }

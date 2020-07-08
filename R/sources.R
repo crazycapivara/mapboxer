@@ -1,7 +1,6 @@
-#' Add a data source to the map
-#'
+#' Add a Mapbox source to the map
 #' @inheritParams set_view_state
-#' @param source A Mapbox data source.
+#' @param source A Mapbox source.
 #' @param id The unique id of the data source.
 #' @export
 add_source <- function(map, source, id = "mapboxer") {
@@ -9,7 +8,7 @@ add_source <- function(map, source, id = "mapboxer") {
     invoke_method("addSource", id = id, source = source)
 }
 
-#' Create a Mapbox data source
+#' Create a Mapbox source
 #' @param type The type of the source, e. g. \code{geojson}.
 #' @param ... The properties of the source.
 #'   See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available options
