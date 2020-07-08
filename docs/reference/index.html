@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -74,6 +74,9 @@
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/mapboxer.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -112,7 +115,7 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-mapboxer-instance" class="hasAnchor"><a href="#section-mapboxer-instance" class="anchor"></a>Mapboxer Instance</h2>
+          <h2 id="section-map" class="hasAnchor"><a href="#section-map" class="anchor"></a>Map</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -134,6 +137,18 @@
           <p><code><a href="mapboxer_proxy.html">mapboxer_proxy()</a></code> </p>
         </td>
         <td><p>Create a mapboxer proxy object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="send_mapboxer_update.html">send_mapboxer_update()</a></code> </p>
+        </td>
+        <td><p>Update a mapboxer proxy object in a Shiny app</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_view_state.html">set_view_state()</a></code> </p>
+        </td>
+        <td><p>Set the view state of the map</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -147,7 +162,7 @@
         <td>
           <p><code><a href="add_source.html">add_source()</a></code> </p>
         </td>
-        <td><p>Add a data source to the map</p></td>
+        <td><p>Add a Mapbox source to the map</p></td>
       </tr><tr>
         
         <td>
@@ -159,7 +174,7 @@
         <td>
           <p><code><a href="mapbox_source.html">mapbox_source()</a></code> </p>
         </td>
-        <td><p>Create a Mapbox data source</p></td>
+        <td><p>Create a Mapbox source</p></td>
       </tr><tr>
         
         <td>
@@ -201,6 +216,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="set_filter.html">set_filter()</a></code> </p>
+        </td>
+        <td><p>Update the filter of a layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_layer_properties.html">set_paint_property()</a></code> <code><a href="set_layer_properties.html">set_layout_property()</a></code> </p>
+        </td>
+        <td><p>Update layer properties</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="add_popups.html">add_popups()</a></code> </p>
         </td>
         <td><p>Add popups to a layer</p></td>
@@ -235,7 +262,7 @@
         <td>
           <p><code><a href="use_carto_style.html">use_carto_style()</a></code> </p>
         </td>
-        <td><p>Use a Carto map style</p></td>
+        <td><p>Use Carto vector tiles as map style</p></td>
       </tr><tr>
         
         <td>
@@ -247,13 +274,13 @@
         <td>
           <p><code><a href="use_stamen_raster_style.html">use_stamen_raster_style()</a></code> </p>
         </td>
-        <td><p>Use stamen raster tiles as map style</p></td>
+        <td><p>Use Stamen raster tiles as map style</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="get_osm_raster_tiles.html">get_osm_raster_tiles()</a></code> </p>
         </td>
-        <td><p>Get osm raster tile urls</p></td>
+        <td><p>Get OSM raster tile urls</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -287,50 +314,6 @@
         </td>
         <td><p>Add a text control to the map</p></td>
       </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-updates" class="hasAnchor"><a href="#section-updates" class="anchor"></a>Updates</h2>
-          <p class="section-desc"><p>These function are usually called with a <code>mapboxer_proxy</code> object inside a <strong>Shiny</strong> app to update the widget that is already rendered.</p></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="set_data.html">set_data()</a></code> </p>
-        </td>
-        <td><p>Update the data of a Mapbox source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_filter.html">set_filter()</a></code> </p>
-        </td>
-        <td><p>Update the filter of a layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_layer_properties.html">set_paint_property()</a></code> <code><a href="set_layer_properties.html">set_layout_property()</a></code> </p>
-        </td>
-        <td><p>Update layer properties</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_map_style.html">set_map_style()</a></code> </p>
-        </td>
-        <td><p>Set the style of the map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_view_state.html">set_view_state()</a></code> </p>
-        </td>
-        <td><p>Set the view state of the map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="send_update.html">send_update()</a></code> </p>
-        </td>
-        <td><p>Update a mapboxer object in a Shiny app</p></td>
-      </tr>
     </tbody>
     </table>
   </div>
@@ -338,12 +321,11 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-mapboxer-instance">Mapboxer Instance</a></li>
+      <li><a href="#section-map">Map</a></li>
       <li><a href="#section-sources">Sources</a></li>
       <li><a href="#section-layers">Layers</a></li>
       <li><a href="#section-styles">Styles</a></li>
       <li><a href="#section-controls">Controls</a></li>
-      <li><a href="#section-updates">Updates</a></li>
     </ul>
   </div>
 </div>

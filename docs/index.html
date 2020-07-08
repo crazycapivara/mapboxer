@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -44,6 +44,9 @@
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="articles/mapboxer.html">Get started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -69,7 +72,7 @@
 <a href="#mapboxer" class="anchor"></a>mapboxer</h1></div>
 <!-- badges: start -->
 
-<p>The <strong>mapboxer</strong> package makes <a href="https://docs.mapbox.com/mapbox-gl-js/api/">Mapbox GL JS</a>, an open source JavaScript library that uses WebGL to render interactive maps, available within R via the <a href="https://www.htmlwidgets.org/">htmlwidgets</a> package. You only need a Mapbox Access Token if you want to use (map) styles from Mapbox. By default <strong>mapboxer</strong> uses <a href="https://github.com/CartoDB/basemap-styles">Carto styles</a> for basemaps. It is also possible to use raster tiles or a background color as map style.</p>
+<p>The <strong>mapboxer</strong> package makes <a href="https://docs.mapbox.com/mapbox-gl-js/api/">Mapbox GL JS</a>, an open source JavaScript library that uses WebGL to render interactive maps, available within R via the <a href="https://www.htmlwidgets.org/">htmlwidgets</a> package. You only need a Mapbox access token if you want to use (map) styles from Mapbox. By default <strong>mapboxer</strong> uses <a href="https://github.com/CartoDB/basemap-styles">Carto vector styles</a> for basemaps and it is also possible to use raster tiles or a background color.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -82,7 +85,6 @@ remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/r
 <a href="#usage" class="anchor"></a>Usage</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mapboxer)
 
-<span class="co"># Circles</span>
 map &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"long"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/mapboxer.html">mapboxer</a></span>(<span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>), <span class="dt">zoom =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span>
@@ -92,24 +94,7 @@ map &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
     <span class="dt">circle_blur =</span> <span class="dv">1</span>,
     <span class="dt">circle_stroke_color =</span> <span class="st">"red"</span>,
     <span class="dt">circle_stroke_width =</span> <span class="dv">1</span>,
-    <span class="dt">popup =</span> <span class="st">"{{mag}}"</span>)
-
-<span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) map
-
-<span class="co"># Polygons</span>
-map &lt;-<span class="st"> </span>geojsonsf<span class="op">::</span>geo_melbourne <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/as_mapbox_source.html">as_mapbox_source</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/mapboxer.html">mapboxer</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/set_view_state.html">set_view_state</a></span>(
-    <span class="dt">lng =</span>  <span class="fl">144.9624</span>,
-    <span class="dt">lat =</span> <span class="op">-</span><span class="fl">37.8105</span>,
-    <span class="dt">zoom =</span> <span class="dv">10</span>,
-    <span class="dt">pitch =</span> <span class="dv">35</span>
-  ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/add_fill_layer.html">add_fill_layer</a></span>(
-    <span class="dt">fill_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"fillColor"</span>),
-    <span class="dt">fill_opacity =</span> <span class="fl">0.6</span>,
-    <span class="dt">popup =</span> <span class="st">"Area: {{AREASQKM}} km&lt;sup&gt;2&lt;/sup&gt;"</span>
+    <span class="dt">popup =</span> <span class="st">"Magnitude: {{mag}}"</span>
   )
 
 <span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) map</code></pre></div>
@@ -119,17 +104,17 @@ map &lt;-<span class="st"> </span>geojsonsf<span class="op">::</span>geo_melbour
 <a href="#documentation" class="anchor"></a>Documentation</h2>
 <ul>
 <li><a href="https://crazycapivara.github.io/mapboxer/reference/">API reference</a></li>
-<li><a href="examples">Examples</a></li>
+<li><a href="https://github.com/crazycapivara/mapboxer/tree/master/examples">Examples</a></li>
 </ul>
 </div>
 <div id="development" class="section level2">
 <h2 class="hasAnchor">
 <a href="#development" class="anchor"></a>Development</h2>
-<p>All JavaScript code of the mapboxer module is located in <a href="javascript/src" class="uri">javascript/src</a>.</p>
+<p>All JavaScript code of mapboxer is located in <code>javascript/src</code>.</p>
 <p>Install dependencies and build the library with:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">npm</span> install
 <span class="ex">npm</span> run build</code></pre></div>
-<p>The module is written to <a href="inst/htmlwidgets" class="uri">inst/htmlwidgets</a>.</p>
+<p>The module is written to <code>inst/htmlwidgets</code>.</p>
 <p>Spin up the dev server with:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">npm</span> run start</code></pre></div>
 </div>
