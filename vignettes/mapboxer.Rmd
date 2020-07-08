@@ -1,0 +1,286 @@
+---
+title: "Get started with mapboxer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{mapboxer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The goal of mapboxer is to make it easy to create interactive maps using [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api) within R. Visualizations can be used at the R console, embedded in R Markdown documents or Shiny apps.
+
+This guide covers the basic usage of the components that are needed to create a visualization:
+
+* [Map](https://docs.mapbox.com/mapbox-gl-js/api/map/): The map is the main component of your visualization to which you then add other components like layers, controls or sources. Maps are created with `mapboxer()`.
+
+* [Sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/): Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with `as_mapbox_source()`.  
+
+* [Layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/): A layer's style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With `add_layer()` you can add any type of layer to the map but in most cases it is easier to use one of the shorcuts like `add_circle_layer()`.  
+
+* [Controls](https://docs.mapbox.com/mapbox-gl-js/api/markers/): Controls are used to interact with the map. Besides the standard controls like `NavigationControl` included in Mapbox GL JS, mapboxer provides additional controls. For example, `add_filter_control()` can be used to filter your data on the fly without having to set up a Shiny app.
+
+* [Expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/): Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.
+
+* [Shiny Bindings](https://shiny.rstudio.com/): With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `send_mapboxer_update()` to update the already rendered widget.
+
+## Quickstart
+
+```{r quickstart, eval = FALSE}
+# Load the library
+library(mapboxer)
+
+# Create a source
+quakes %>%
+  as_mapbox_source(lng = "long", lat = "lat") %>%
+  # Setup a map
+  mapboxer(
+    center = c(176.9, -24.655),
+    zoom = 4
+  ) %>%
+  # Add a layer styling the data of the source
+  add_circle_layer(
+    source = ,
+    circle_color = "red",
+    circle_radius = 5,
+    # Use a mustache template to add popups to the layer
+    popup = "Magnitude: {{mag}}"
+  )
+```
+
+## Map
+
+With `mapboxer()` you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the `add_*` and `set_*` functions. The parameters passed to `mapboxer()` itself are used to configure the initial setup of your map. The `style` parameter sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a
+background color as basemap. Therefore, you can use the helpers `use_raster_style()` or `use_background_style()`:
+
+```r
+mapboxer(style = use_raster_style())
+```
+
+The `...` parameter allows you to pass any option to the map described in the [Map API Reference](https://docs.mapbox.com/mapbox-gl-js/api/map/):
+
+```r
+mapboxer(
+  center = c(176.9, -24.655),
+  zoom = 4
+)
+```
+
+With the optional `source` parameter you can add a default source to the map that will be used by the layers if no source is provided. Therefore, it is easy to integrate `mapboxer()` into your workflow:
+
+```r
+quakes %>%
+  dplyr::filter(mag > 5) %>%
+  as_mapbox_source(lng = "long", lat = "lat") %>%
+  mapboxer(
+    center = c(176.9, -24.655),
+    zoom = 4 
+  ) %>%
+  add_circle_layer(circle_color = "red")
+```
+
+As you can see above mapboxer is designed to use the widely used piping style provided by [magrittr](https://magrittr.tidyverse.org/).
+
+## Sources
+
+Sources state which data the map should display. To show the data on the map you need
+to bind a source to a layer which contains the styling details like color or width. 
+This makes it possible to style the same source in different ways.
+The easiest way to create a source from an R data object is to use `as_mapbox_source()`.
+Supported structures are [sf](https://r-spatial.github.io/sf/index.html)-objects and data frames that contain longitudes and latitudes:
+
+```r
+quakes_sf <- quakes %>%
+  sf::st_as_sf(coords = c("long", "lat"))
+
+quakes_source_from_sf <- quakes_sf %>%
+  as_mapbox_source()
+
+quakes_source_from_df <- quakes %>%
+  as_mapbox_source(lat = "lat", long = "long")
+```
+
+With the `...` parameter you can pass further options to the source:
+
+```r
+quakes_cluster <- quakes %>%
+  as_mapbox_source(
+    lat = "lat",
+    lng = "long",
+    cluster = TRUE,
+    clusterMaxZoom = 14,
+    clusterRadius = 50
+  )
+```
+
+See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/) for available options for the used source type. Sources are either passed to the `add_*_layer` functions or as first parameter to `mapboxer()`.
+
+## Layers
+
+Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function `add_layer()`, the type of the layer is specified by the `type` property. See the [Layers API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/) for available types. In most cases it is convenient to use one of `the add_*_layer()` functions:
+
+```r
+mapboxer(
+  center = c(176.9, -24.655),
+  zoom = 4
+) %>%
+  add_circle_layer(
+    source = as_mapbox_source(quakes, lng = "long", lat = "lat"),
+    circle_color = "red",
+    circle_radius = 5
+  )
+```
+
+### Popups
+
+Usually popups are added to a layer with the `popup` parameter of the `add_*_layer()` functions. Optionally you can also use `add_popups()`. The popup text (HTML) is specified by a [mustache](https://github.com/janl/mustache.js) template in which the tags refer to the properties of the layer's data object. If your data contains the properties `name` and `population`, it could look like this:
+
+```r
+popup_template <- "Name: {{name}}</br>Population: {{population}}"
+```
+
+## Controls
+
+Controls are used to interact with the user. They are displayed as overlays on top of the map. Options of the standard controls described in the [Markers and Controls API Reference](https://docs.mapbox.com/mapbox-gl-js/api/markers/) are provided with the
+`...` parameter. The position is set with the `pos` parameter, one of `top-left`, `top-right`, `bottom-right`, `bottom-left`:
+
+```r
+mapboxer() %>%
+  add_navigation_control(
+    pos = "top-left",
+    # Option passed to the 'NavigationControl'
+    showCompass = FALSE
+) %>%
+  add_scale_control(
+    pos = "bottom-left",
+    # Option passed to the 'ScaleControl'
+    unit = "nautical"
+) %>%
+  add_text_control(
+    pos = "top-right",
+    text = "mapboxer"
+  )
+```
+
+## Expressions
+
+The value of any layout property, paint property (data-driven-styling) or filter may be specified as an expression. Expressions in Mapbox GL JS use a Lisp-like [syntax](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/#syntax) represented as JSON arrays:
+
+```javascript
+[expression_name, argument_0, argument_1, ...]
+```
+
+Therefore, in R you must use the `list` structure:
+
+```r
+list(expression_name, argument_0, argument_1, ...)
+```
+
+A simple expression is to use a data property to style your data:
+
+```r
+quakes_map <- quakes %>%
+  dplyr::mutate(
+    color = ifelse(mag > 5, "red", "blue")
+  ) %>%
+  as_mapbox_source(lng = "long", lat = "lat") %>%
+  mapboxer(
+    center = c(176.9, -24.655),
+    zoom = 4
+  )
+  
+quakes_map %>%
+  add_circle_layer(
+    # Expression to get the color from the data's color property
+    circle_color = list("get", "color")
+  )
+```
+
+You can get the same result for the `circle_color` without modifying the data but using
+expressions only:
+
+```r
+quakes_map %>%
+  add_circle_layer(
+    circle_color = list(
+      "case",
+      # 'red' if 'mag > 5'
+      list(">", list("get", "mag"), 5), "red",
+      # Defaults to 'blue'
+      "blue"
+    )
+  )
+```
+
+A filter could look like this:
+
+```r
+quakes_map %>%
+  add_circle_layer(
+    circle_color = list("get", "color"),
+    # Expression to display only data where 'mag > 5'
+    filter = list(">", "mag", 5)
+  )
+```
+
+See also `add_filter_control()` to modify filter expressions on the fly to update your map without the need of a Shiny app, [Get started with expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/) for a tutorial and the [Expressions Style Specification](https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/) for details.
+
+## Shiny Bindings
+
+Use `mapboxerOutput()` and `renderMapboxer()` to integrate mapboxer in a [Shiny](https://shiny.rstudio.com/) app:
+
+```{r, eval = FALSE}
+library(shiny)
+library(mapboxer)
+
+view <- fluidPage(
+  h1("mapboxer"),
+  mapboxerOutput("map")
+)
+
+backend <- function(input, output) {
+  output$map <- renderMapboxer({
+    mapboxer(center = c(9.5, 51.3), zoom = 10) %>%
+      add_navigation_control() %>%
+      add_marker(lng = 9.5, lat = 51.3, popup = "mapboxer")
+  })
+}
+
+if (interactive()) shinyApp(view, backend)
+```
+
+With `mapboxer_proxy()` and `send_mapboxer_update()` you can update your already rendered map:
+
+```{r, eval = FALSE}
+view <- basicPage(
+  sliderInput("slider", "mag larger than:",
+              min = 3, max = 6, step = 1, value = 4),
+  mapboxerOutput("map")
+)
+
+backend <- function(input, output) {
+  output$map <- renderMapboxer({
+    mapboxer(center = c(176.9, -24.655), zoom = 4) %>%
+      add_circle_layer(
+        source = as_mapbox_source(quakes, lng = "long", lat = "lat"),
+        circle_color = "red",
+        popup = "{{mag}}",
+        id = "quakes"
+      )
+  })
+
+  observeEvent(input$slider, {
+    mapboxer_proxy("map") %>%
+      set_filter("quakes", list(">", "mag", input$slider)) %>%
+      send_mapboxer_update()
+  })
+}
+
+if (interactive()) shinyApp(view, backend)
+```

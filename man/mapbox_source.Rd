@@ -2,7 +2,7 @@
 % Please edit documentation in R/sources.R
 \name{mapbox_source}
 \alias{mapbox_source}
-\title{Create a Mapbox data source}
+\title{Create a Mapbox source}
 \usage{
 mapbox_source(type, ...)
 }
@@ -14,5 +14,5 @@ See \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/sources} for available 
 for the given source type.}
 }
 \description{
-Create a Mapbox data source
+Create a Mapbox source
 }

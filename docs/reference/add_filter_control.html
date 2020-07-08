@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -77,6 +77,9 @@
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/mapboxer.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -112,7 +115,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_filter_control</span>(<span class='no'>map</span>, <span class='no'>layer</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>add_filter_control</span>(<span class='no'>map</span>, <span class='no'>layer_id</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -122,8 +125,8 @@
       <td><p>A <a href='mapboxer.html'>mapboxer</a> object.</p></td>
     </tr>
     <tr>
-      <th>layer</th>
-      <td><p>The name/ID of the layer to which the filter is attached.</p></td>
+      <th>layer_id</th>
+      <td><p>The ID of the layer to which the filter is attached.</p></td>
     </tr>
     <tr>
       <th>filter</th>
@@ -131,7 +134,7 @@
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>The position of the control, one of <code>top-left</code>, <code>top-right</code>,
+      <td><p>The position of the control. One of <code>top-left</code>, <code>top-right</code>,
 <code>bottom-right</code> or <code>bottom-left</code>.</p></td>
     </tr>
     </table>

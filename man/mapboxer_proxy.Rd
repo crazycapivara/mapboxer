@@ -15,3 +15,6 @@ mapboxer_proxy(shiny_id, session = shiny::getDefaultReactiveDomain())
 Create a \code{\link{mapboxer}}-like object that can be used to update a mapboxer object
 that has already been rendered in a Shiny app.
 }
+\seealso{
+\link{send_mapboxer_update}
+}

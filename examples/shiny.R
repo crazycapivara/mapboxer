@@ -4,7 +4,7 @@ library(mapboxer)
 view <- fluidPage(
   h1("mapboxer"),
   sliderInput("slider", "mag larger than:", min = 1, max = 6, step = 1, value = 4),
-  actionButton("go", "hide layer"),
+  checkboxInput("hide", "Hide Layer"),
   mapboxerOutput("map")
 )
 
@@ -24,17 +24,17 @@ server <- function(input, output) {
     data <- as_mapbox_source(dplyr::sample_n(quakes, 100), lng = "long", lat = "lat")
     # data <- "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
     mapboxer_proxy("map") %>%
-      set_paint_property("quakes", "circle_radius", input$slider) %>%
-      set_data(data) %>%
-      #set_filter("quakes", list(">", "mag", input$slider)) %>%
+      #set_paint_property("quakes", "circle_radius", input$slider) %>%
+      #set_data(data) %>%
+      set_filter("quakes", list(">", "mag", input$slider)) %>%
       # add_marker(row$long, row$lat) %>%
-      send_update(hi = "folks")
+      send_mapboxer_update(hi = "folks")
   })
 
-  observeEvent(input$go, {
+  observeEvent(input$hide, {
     mapboxer_proxy("map") %>%
-      set_layout_property("quakes", "visibility", FALSE) %>%
-      send_update()
+      set_layout_property("quakes", "visibility", !input$hide) %>%
+      send_mapboxer_update()
   })
 }
 
