@@ -25,3 +25,5 @@ Suggests:
     shiny,
     dplyr
 VignetteBuilder: knitr
+URL: https://github.com/crazycapivara/mapboxer
+BugReports: https://github.com/crazycapivara/mapboxer/issues
