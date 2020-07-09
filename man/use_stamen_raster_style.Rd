@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{use_stamen_raster_style}
 \alias{use_stamen_raster_style}
-\title{Use stamen raster tiles as map style}
+\title{Use Stamen raster tiles as map style}
 \usage{
 use_stamen_raster_style(theme = "watercolor")
 }
@@ -10,5 +10,5 @@ use_stamen_raster_style(theme = "watercolor")
 \item{theme}{The theme of the tiles.}
 }
 \description{
-Use stamen raster tiles as map style
+Use Stamen raster tiles as map style
 }

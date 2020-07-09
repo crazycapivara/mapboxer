@@ -1,4 +1,4 @@
-#' Use a Carto map style
+#' Use Carto vector tiles as map style
 #' @param theme The theme of the style, \code{dark-matter}, \code{positron} or \code{voyager}.
 #' @export
 use_carto_style <- function(theme = "dark-matter") {
@@ -19,13 +19,14 @@ use_background_style <- function(color = "#111") {
   style
 }
 
-#' Use stamen raster tiles as map style
+#' Use Stamen raster tiles as map style
 #' @param theme The theme of the tiles.
 #' @export
 use_stamen_raster_style <- function(theme = "watercolor") {
-  tiles <- paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
-    as.list()
-  use_raster_style(tiles, STAMEN_ATTRIBUTION)
+  paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
+    as.list() %>%
+    structure(attribution = STAMEN_ATTRIBUTION) %>%
+    use_raster_style()
 }
 
 #' Use raster tiles as map style
@@ -44,7 +45,7 @@ use_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL)
   style
 }
 
-#' Get osm raster tile urls
+#' Get OSM raster tile urls
 #' @export
 get_osm_raster_tiles <- function() {
   paste0("//", c(letters[1:3]), ".tile.openstreetmap.org/{z}/{x}/{y}.png") %>%

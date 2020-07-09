@@ -1,8 +1,10 @@
 destination: docs
 reference:
-- title: Mapboxer Instance
+- title: Map
   contents:
   - matches("mapboxer")
+  - send_mapboxer_update
+  - set_view_state
 
 - title: Sources
   contents:
@@ -11,6 +13,8 @@ reference:
 - title: Layers
   contents:
     - ends_with("_layer")
+    - set_filter
+    - set_layer_properties
     - add_popups
     - add_marker
 
@@ -23,13 +27,12 @@ reference:
   contents:
     - ends_with("_control")
 
-- title: Updates
-  desc: >
-    These function are usually called with a `mapboxer_proxy` object inside a __Shiny__ app
-    to update the widget that is already rendered.
-  contents:
+#- title: Updates
+#  desc: >
+#    These function are usually called with a `mapboxer_proxy` object inside a __Shiny__ app
+#    to update the widget that is already rendered.
+#  contents:
     #- set_data
     #- set_filter
     #- set_layer_properties
-    - starts_with("set_")
-    - send_update
+#    - starts_with("set_")

@@ -12,7 +12,7 @@ add_text_control <- function(map, text, pos = NULL, css_text = NULL) {
 #' Add a mouse position control to the map
 #' @inheritParams add_text_control
 #' @param mustache_template A \href{https://github.com/janl/mustache.js}{mustache} template
-#'   that contains the mustache tags\code{lng} and \code{lat}.
+#'   that contains the mustache tags \code{lng} and \code{lat}.
 #' @example examples/mouse-position-control.R
 #' @export
 add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL, css_text = NULL) {
@@ -23,11 +23,11 @@ add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL
 
 #' Add a filter control to the map
 #' @inheritParams add_text_control
-#' @param layer The name/ID of the layer to which the filter is attached.
+#' @param layer_id The ID of the layer to which the filter is attached.
 #' @param filter The initial filter expression.
 #' @export
-add_filter_control <- function(map, layer, filter = NULL, pos = NULL) {
-  options = list(layer = layer, filter = filter)
+add_filter_control <- function(map, layer_id, filter = NULL, pos = NULL) {
+  options = list(layer = layer_id, filter = filter)
   map %>%
     invoke_method("addCustomControl", controlName = "FilterControl", pos = pos, options = options)
 }

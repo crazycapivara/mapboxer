@@ -4,16 +4,16 @@
 \alias{add_filter_control}
 \title{Add a filter control to the map}
 \usage{
-add_filter_control(map, layer, filter = NULL, pos = NULL)
+add_filter_control(map, layer_id, filter = NULL, pos = NULL)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{layer}{The name/ID of the layer to which the filter is attached.}
+\item{layer_id}{The ID of the layer to which the filter is attached.}
 
 \item{filter}{The initial filter expression.}
 
-\item{pos}{The position of the control, one of \code{top-left}, \code{top-right},
+\item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
 }
 \description{
