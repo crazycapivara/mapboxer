@@ -46,7 +46,6 @@ quakes %>%
   ) %>%
   # Add a layer styling the data of the source
   add_circle_layer(
-    source = ,
     circle_color = "red",
     circle_radius = 5,
     # Use a mustache template to add popups to the layer
