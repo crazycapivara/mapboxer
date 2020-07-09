@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -105,23 +105,32 @@
       
     </div>
 
+    <div id="mapboxer-0-3-2" class="section level1">
+<h1 class="page-header">
+<a href="#mapboxer-0-3-2" class="anchor"></a>mapboxer 0.3.2</h1>
+<ul>
+<li>Added <em>Getting started</em> vignette.</li>
+<li>Renamed <code><a href="../reference/send_update.html">send_update()</a></code> to <code>send_mapboxer_update()</code>.</li>
+<li>Added support for data frames and <code>sf</code>-objects in <code><a href="../reference/set_data.html">set_data()</a></code>.</li>
+</ul>
+</div>
     <div id="mapboxer-0-3-1" class="section level1">
 <h1 class="page-header">
 <a href="#mapboxer-0-3-1" class="anchor"></a>mapboxer 0.3.1</h1>
 <ul>
-<li>Added support for <code>mapbox_source</code> objects as <code>data</code> parameter in <code>set_data</code>.</li>
+<li>Added support for <code>mapbox_source</code> objects as <code>data</code> parameter in <code><a href="../reference/set_data.html">set_data()</a></code>.</li>
 </ul>
 </div>
     <div id="mapboxer-0-3-0" class="section level1">
 <h1 class="page-header">
 <a href="#mapboxer-0-3-0" class="anchor"></a>mapboxer 0.3.0</h1>
 <ul>
-<li>Added <code>mapboxer_proxy</code> to update map in Shiny apps:
+<li>Added <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> to update map in Shiny apps:
 <ul>
-<li><code>set_filter</code></li>
-<li><code>set_paint_property</code></li>
-<li><code>set_layout_property</code></li>
-<li><code>set_data</code></li>
+<li><code><a href="../reference/set_filter.html">set_filter()</a></code></li>
+<li><code><a href="../reference/set_layer_properties.html">set_paint_property()</a></code></li>
+<li><code><a href="../reference/set_layer_properties.html">set_layout_property()</a></code></li>
+<li><code><a href="../reference/set_data.html">set_data()</a></code></li>
 </ul>
 </li>
 </ul>
@@ -133,12 +142,12 @@
 <li>Added custom controls:
 <ul>
 <li>
-<code>add_text_control</code>: Add text boxes to the map</li>
+<code><a href="../reference/add_text_control.html">add_text_control()</a></code>: Add text boxes to the map</li>
 <li>
-<code>add_mouse_position_control</code> Show coordinates on <code>mouseover</code>
+<code><a href="../reference/add_mouse_position_control.html">add_mouse_position_control()</a></code> Show coordinates on <code>mouseover</code>
 </li>
 <li>
-<code>add_filter_control</code>: Filter layer data on the fly</li>
+<code><a href="../reference/add_filter_control.html">add_filter_control()</a></code>: Filter layer data on the fly</li>
 </ul>
 </li>
 </ul>
@@ -147,11 +156,11 @@
 <h1 class="page-header">
 <a href="#mapboxer-0-1-2" class="anchor"></a>mapboxer 0.1.2</h1>
 <ul>
-<li>Added layer shortcuts beside the generic <code>add_layer</code> func:
+<li>Added layer shortcuts beside the generic <code><a href="../reference/add_layer.html">add_layer()</a></code> func:
 <ul>
-<li><code>add_fill_layer</code></li>
-<li><code>add_circle_layer</code></li>
-<li><code>add_line_Layer</code></li>
+<li><code><a href="../reference/add_fill_layer.html">add_fill_layer()</a></code></li>
+<li><code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code></li>
+<li><code>add_line_Layer()</code></li>
 </ul>
 </li>
 </ul>
@@ -162,9 +171,9 @@
 <ul>
 <li>Added funcs to use raster tiles or a single background color as map style:
 <ul>
-<li><code>use_raster_style</code></li>
-<li><code>use_stamen_raster_style</code></li>
-<li><code>get_osm_raster_tiles</code></li>
+<li><code><a href="../reference/use_raster_style.html">use_raster_style()</a></code></li>
+<li><code><a href="../reference/use_stamen_raster_style.html">use_stamen_raster_style()</a></code></li>
+<li><code><a href="../reference/get_osm_raster_tiles.html">get_osm_raster_tiles()</a></code></li>
 </ul>
 </li>
 </ul>
@@ -182,6 +191,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#mapboxer-0-3-2">0.3.2</a></li>
         <li><a href="#mapboxer-0-3-1">0.3.1</a></li>
         <li><a href="#mapboxer-0-3-0">0.3.0</a></li>
         <li><a href="#mapboxer-0-2-0">0.2.0</a></li>

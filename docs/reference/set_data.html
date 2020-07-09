@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -115,16 +115,23 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for json</span>
-<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lng</span> <span class='kw'>=</span> <span class='st'>"lng"</span>,
+  <span class='kw'>lat</span> <span class='kw'>=</span> <span class='st'>"lat"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for sf</span>
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='no'>source_id</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for mapbox_source</span>
-<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>set_data</span>(<span class='no'>map</span>, <span class='no'>data</span>, <span class='kw'>source_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,12 +142,24 @@
     </tr>
     <tr>
       <th>data</th>
-      <td><p>A <code>GeoJSON</code> object, an url pointing to an external <code>GeoJSON</code> document
-or a <a href='mapbox_source.html'>mapbox_source</a> of type <code>GeoJSON</code>.</p></td>
+      <td><p>A <code>GeoJSON</code> object, an url pointing to an external <code>GeoJSON</code> document,
+a data frame that contains longitudes and latitudes in separate columns, an sf-object or a <a href='mapbox_source.html'>mapbox_source</a> of type <code>GeoJSON</code>.</p></td>
     </tr>
     <tr>
       <th>source_id</th>
       <td><p>The ID of the source whose data should be updated.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>unused</p></td>
+    </tr>
+    <tr>
+      <th>lng</th>
+      <td><p>The longitude of the  geographical center point of the map.</p></td>
+    </tr>
+    <tr>
+      <th>lat</th>
+      <td><p>The latitude of the geographical center point of the map.</p></td>
     </tr>
     </table>
     
@@ -155,6 +174,35 @@ or a <a href='mapbox_source.html'>mapbox_source</a> of type <code>GeoJSON</code>
 </div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mapboxer</span>)
+
+<span class='no'>view</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"mapboxer"</span>),
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"sample"</span>, <span class='st'>"sample"</span>),
+  <span class='fu'><a href='mapboxer-shiny.html'>mapboxerOutput</a></span>(<span class='st'>"map"</span>)
+)
+
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+  <span class='no'>output</span>$<span class='no'>map</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mapboxer-shiny.html'>renderMapboxer</a></span>({
+    <span class='no'>quakes</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='as_mapbox_source.html'>as_mapbox_source</a></span>(<span class='kw'>lng</span> <span class='kw'>=</span> <span class='st'>"long"</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='st'>"lat"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='mapboxer.html'>mapboxer</a></span>(<span class='kw'>center</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>176.9</span>, -<span class='fl'>24.655</span>), <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_circle_layer.html'>add_circle_layer</a></span>(
+        <span class='kw'>circle_color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+        <span class='kw'>popup</span> <span class='kw'>=</span> <span class='st'>"{{mag}}"</span>
+      )
+  })
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>sample</span>, {
+    <span class='fu'><a href='mapboxer_proxy.html'>mapboxer_proxy</a></span>(<span class='st'>"map"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>set_data</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample_n</a></span>(<span class='no'>quakes</span>, <span class='fl'>100</span>), <span class='kw'>lng</span> <span class='kw'>=</span> <span class='st'>"long"</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='st'>"lat"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/mapboxer/man/send_mapboxer_update.html'>send_mapboxer_update</a></span>()
+  })
+}
+
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>view</span>, <span class='no'>server</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,7 +210,9 @@ or a <a href='mapbox_source.html'>mapbox_source</a> of type <code>GeoJSON</code>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
