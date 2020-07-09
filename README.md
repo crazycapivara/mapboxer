@@ -42,7 +42,8 @@ if (interactive()) map
 Documentation
 -------------
 
--   [API reference](https://crazycapivara.github.io/mapboxer/reference/)
+-   [Get Started](https://crazycapivara.github.io/mapboxer/articles/mapboxer.html)
+-   [API Reference](https://crazycapivara.github.io/mapboxer/reference/)
 -   [Examples](https://github.com/crazycapivara/mapboxer/tree/master/examples)
 
 Development
