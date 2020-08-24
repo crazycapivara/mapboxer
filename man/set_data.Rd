@@ -6,7 +6,6 @@
 \alias{set_data.json}
 \alias{set_data.data.frame}
 \alias{set_data.sf}
-\alias{set_data.mapbox_source}
 \title{Update the data of a Mapbox source}
 \usage{
 set_data(map, data, source_id = NULL, ...)
@@ -19,11 +18,9 @@ set_data(map, data, source_id = NULL, ...)
   lat = "lat", ...)
 
 \method{set_data}{sf}(map, data, source_id, ...)
-
-\method{set_data}{mapbox_source}(map, data, source_id = NULL, ...)
 }
 \arguments{
-\item{map}{A \link{mapboxer} object.}
+\item{map}{A \link{mapboxer_proxy} object.}
 
 \item{data}{A \code{GeoJSON} object, an url pointing to an external \code{GeoJSON} document,
 a data frame that contains longitudes and latitudes in separate columns, an sf-object or a \link{mapbox_source} of type \code{GeoJSON}.}
@@ -32,42 +29,12 @@ a data frame that contains longitudes and latitudes in separate columns, an sf-o
 
 \item{...}{unused}
 
-\item{lng}{The longitude of the  geographical center point of the map.}
+\item{lng}{The name of the column containing the longitudes.}
 
-\item{lat}{The latitude of the geographical center point of the map.}
+\item{lat}{The name of the column containing the latitudes.}
 }
 \description{
 Update the data of a Mapbox source
-}
-\examples{
-library(shiny)
-library(mapboxer)
-
-view <- fluidPage(
-  h1("mapboxer"),
-  actionButton("sample", "sample"),
-  mapboxerOutput("map")
-)
-
-server <- function(input, output) {
-  output$map <- renderMapboxer({
-    quakes \%>\%
-      as_mapbox_source(lng = "long", lat = "lat") \%>\%
-      mapboxer(center = c(176.9, -24.655), zoom = 4) \%>\%
-      add_circle_layer(
-        circle_color = "red",
-        popup = "{{mag}}"
-      )
-  })
-
-  observeEvent(input$sample, {
-    mapboxer_proxy("map") \%>\%
-      set_data(dplyr::sample_n(quakes, 100), lng = "long", lat = "lat") \%>\%
-      send_mapboxer_update()
-  })
-}
-
-if (interactive()) shinyApp(view, server)
 }
 \seealso{
 \itemize{
