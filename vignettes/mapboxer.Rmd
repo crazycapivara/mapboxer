@@ -102,7 +102,7 @@ quakes_source_from_sf <- quakes_sf %>%
   as_mapbox_source()
 
 quakes_source_from_df <- quakes %>%
-  as_mapbox_source(lat = "lat", long = "long")
+  as_mapbox_source(lat = "lat", lng = "long")
 ```
 
 With the `...` parameter you can pass further options to the source:
