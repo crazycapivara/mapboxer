@@ -16,11 +16,13 @@ knitr::opts_chunk$set(
 
 The goal of mapboxer is to make it easy to create interactive maps using [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api) within R. Visualizations can be used at the R console, embedded in R Markdown documents or Shiny apps.
 
-This guide covers the basic usage of the components that are needed to create a visualization:
+This guide covers the basic usage.
+
+## Overview
 
 * [Map](https://docs.mapbox.com/mapbox-gl-js/api/map/): The map is the main component of your visualization to which you then add other components like layers, controls or sources. Maps are created with `mapboxer()`.
 
-* [Sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/): Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with `as_mapbox_source()`.  
+* [Sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/): Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with `as_mapbox_source()`.
 
 * [Layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/): A layer's style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With `add_layer()` you can add any type of layer to the map but in most cases it is easier to use one of the shorcuts like `add_circle_layer()`.  
 
@@ -122,7 +124,7 @@ See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/
 
 ## Layers
 
-Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function `add_layer()`, the type of the layer is specified by the `type` property. See the [Layers API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/) for available types. In most cases it is convenient to use one of `the add_*_layer()` functions:
+Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function `add_layer()`, the type of the layer is specified by the `type` property. See the [Layers API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/) for available types. In most cases it is convenient to use one of the `add_*_layer()` functions:
 
 ```r
 mapboxer(

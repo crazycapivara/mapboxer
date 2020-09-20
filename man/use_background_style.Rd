@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{use_background_style}
 \alias{use_background_style}
-\title{Use a single color as map style}
+\title{Use a background color as map style}
 \usage{
 use_background_style(color = "#111")
 }
@@ -10,5 +10,5 @@ use_background_style(color = "#111")
 \item{color}{The color of the background.}
 }
 \description{
-Use a single color as map style
+Use a background color as map style
 }
