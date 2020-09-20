@@ -25,7 +25,7 @@ set_layout_property <- function(map, layer_id, property, value) {
 }
 
 #' Update the data of a Mapbox source
-#' @inheritParams set_view_state
+#' @param map A \link{mapboxer_proxy} object.
 #' @param data A \code{GeoJSON} object, an url pointing to an external \code{GeoJSON} document,
 #'   a data frame that contains longitudes and latitudes in separate columns, an sf-object or a \link{mapbox_source} of type \code{GeoJSON}.
 #' @param source_id The ID of the source whose data should be updated.
@@ -36,7 +36,6 @@ set_layout_property <- function(map, layer_id, property, value) {
 #'   \item \link[geojsonsf]{df_geojson}
 #'   \item \link[geojsonsf]{sf_geojson}
 #' }
-#' @example examples/shiny-set-data.R
 #' @export
 set_data <- function(map, data, source_id = NULL, ...) {
   UseMethod("set_data", data)
@@ -55,6 +54,7 @@ set_data.character <- set_data_
 #' @name set_data
 set_data.json <- set_data_
 
+#' @inheritParams as_mapbox_source
 #' @export
 #' @name set_data
 set_data.data.frame <- function(map, data, source_id = NULL, lng = "lng", lat = "lat", ...) {
@@ -67,10 +67,4 @@ set_data.data.frame <- function(map, data, source_id = NULL, lng = "lng", lat = 
 set_data.sf <- function(map, data, source_id, ...) {
   map %>%
     set_data_(geojsonsf::sf_geojson(data), source_id)
-}
-
-#' @export
-#' @name set_data
-set_data.mapbox_source <- function(map, data, source_id = NULL, ...) {
-  set_data_(map, data$data, source_id)
 }

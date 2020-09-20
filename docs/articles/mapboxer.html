@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9000</span>
       </span>
     </div>
 
@@ -84,15 +84,19 @@
     
     
 <p>The goal of mapboxer is to make it easy to create interactive maps using <a href="https://docs.mapbox.com/mapbox-gl-js/api">Mapbox GL JS</a> within R. Visualizations can be used at the R console, embedded in R Markdown documents or Shiny apps.</p>
-<p>This guide covers the basic usage of the components that are needed to create a visualization:</p>
+<p>This guide covers the basic usage.</p>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
 <ul>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map</a>: The map is the main component of your visualization to which you then add other components like layers, controls or sources. Maps are created with <code><a href="../reference/mapboxer.html">mapboxer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/">Sources</a>: Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with <code><a href="../reference/as_mapbox_source.html">as_mapbox_source()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shorcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/markers/">Controls</a>: Controls are used to interact with the map. Besides the standard controls like <code>NavigationControl</code> included in Mapbox GL JS, mapboxer provides additional controls. For example, <code><a href="../reference/add_filter_control.html">add_filter_control()</a></code> can be used to filter your data on the fly without having to set up a Shiny app.</p></li>
 <li><p><a href="https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/">Expressions</a>: Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.</p></li>
-<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="https://rdrr.io/pkg/mapboxer/man/send_mapboxer_update.html">send_mapboxer_update()</a></code> to update the already rendered widget.</p></li>
+<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/send_mapboxer_update.html">send_mapboxer_update()</a></code> to update the already rendered widget.</p></li>
 </ul>
+</div>
 <div id="quickstart" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quickstart" class="anchor"></a>Quickstart</h2>
@@ -147,7 +151,7 @@ quakes_source_from_sf &lt;-<span class="st"> </span>quakes_sf <span class="op">%
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>()
 
 quakes_source_from_df &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lat =</span> <span class="st">"lat"</span>, <span class="dt">long =</span> <span class="st">"long"</span>)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lat =</span> <span class="st">"lat"</span>, <span class="dt">lng =</span> <span class="st">"long"</span>)</code></pre></div>
 <p>With the <code>...</code> parameter you can pass further options to the source:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes_cluster &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(
@@ -162,7 +166,7 @@ quakes_source_from_df &lt;-<span class="st"> </span>quakes <span class="op">%&gt
 <div id="layers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#layers" class="anchor"></a>Layers</h2>
-<p>Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function <code><a href="../reference/add_layer.html">add_layer()</a></code>, the type of the layer is specified by the <code>type</code> property. See the <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers API Reference</a> for available types. In most cases it is convenient to use one of <code>the add_*_layer()</code> functions:</p>
+<p>Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function <code><a href="../reference/add_layer.html">add_layer()</a></code>, the type of the layer is specified by the <code>type</code> property. See the <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers API Reference</a> for available types. In most cases it is convenient to use one of the <code>add_*_layer()</code> functions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
   <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>),
   <span class="dt">zoom =</span> <span class="dv">4</span>
@@ -249,8 +253,8 @@ quakes_map <span class="op">%&gt;%</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mapboxer)
 
-view &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(
-  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">h1</a></span>(<span class="st">"mapboxer"</span>),
+view &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a></span>(
+  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/builder.html">h1</a></span>(<span class="st">"mapboxer"</span>),
   <span class="kw"><a href="../reference/mapboxer-shiny.html">mapboxerOutput</a></span>(<span class="st">"map"</span>)
 )
 
@@ -262,10 +266,10 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
   })
 }
 
-<span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
-<p>With <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="https://rdrr.io/pkg/mapboxer/man/send_mapboxer_update.html">send_mapboxer_update()</a></code> you can update your already rendered map:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">view &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/bootstrapPage.html">basicPage</a></span>(
-  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(<span class="st">"slider"</span>, <span class="st">"mag larger than:"</span>,
+<span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
+<p>With <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/send_mapboxer_update.html">send_mapboxer_update()</a></code> you can update your already rendered map:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">view &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/bootstrapPage.html">basicPage</a></span>(
+  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"slider"</span>, <span class="st">"mag larger than:"</span>,
               <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">6</span>, <span class="dt">step =</span> <span class="dv">1</span>, <span class="dt">value =</span> <span class="dv">4</span>),
   <span class="kw"><a href="../reference/mapboxer-shiny.html">mapboxerOutput</a></span>(<span class="st">"map"</span>)
 )
@@ -281,14 +285,14 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
       )
   })
 
-  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span>(input<span class="op">$</span>slider, {
+  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">observeEvent</a></span>(input<span class="op">$</span>slider, {
     <span class="kw"><a href="../reference/mapboxer_proxy.html">mapboxer_proxy</a></span>(<span class="st">"map"</span>) <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw"><a href="../reference/set_filter.html">set_filter</a></span>(<span class="st">"quakes"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"&gt;"</span>, <span class="st">"mag"</span>, input<span class="op">$</span>slider)) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw"><a href="https://rdrr.io/pkg/mapboxer/man/send_mapboxer_update.html">send_mapboxer_update</a></span>()
+<span class="st">      </span><span class="kw"><a href="../reference/send_mapboxer_update.html">send_mapboxer_update</a></span>()
   })
 }
 
-<span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
+<span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
 </div>
   </div>
 
@@ -297,7 +301,8 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#quickstart">Quickstart</a></li>
+<li><a href="#overview">Overview</a></li>
+      <li><a href="#quickstart">Quickstart</a></li>
       <li><a href="#map">Map</a></li>
       <li><a href="#sources">Sources</a></li>
       <li><a href="#layers">Layers</a></li>

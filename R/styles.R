@@ -9,7 +9,7 @@ use_carto_style <- function(theme = "dark-matter") {
   sprintf("https://basemaps.cartocdn.com/gl/%s-gl-style/style.json", theme)
 }
 
-#' Use a single color as map style
+#' Use a background color as map style
 #' @param color The color of the background.
 #' @export
 use_background_style <- function(color = "#111") {
