@@ -9,6 +9,7 @@ reference:
 - title: Sources
   contents:
     - ends_with("_source")
+    - set_data
 
 - title: Layers
   contents:
