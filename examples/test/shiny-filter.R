@@ -21,7 +21,7 @@ backend <- function(input, output) {
   observeEvent(input$slider, {
     mapboxer_proxy("map") %>%
       set_filter("quakes", list(">", "mag", input$slider)) %>%
-      send_mapboxer_update()
+      update_mapboxer()
   })
 }
 
