@@ -26,7 +26,7 @@ backend <- function(input, output) {
     mapboxer_proxy("map") %>%
       set_paint_property(layer_id, "circle_color", input$circle_color) %>%
       set_paint_property(layer_id, "circle_radius", input$circle_radius) %>%
-      send_mapboxer_update()
+      update_mapboxer()
   })
 }
 

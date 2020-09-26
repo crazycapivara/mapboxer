@@ -6,7 +6,7 @@ MAPBOXER_PROXY_CLASS <- "mapboxer_proxy"
 #' that has already been rendered in a Shiny app.
 #' @param shiny_id The output ID of the mapboxer object that should be updated.
 #' @param session The current Shiny session object. Usually the default value can be used.
-#' @seealso \link{send_mapboxer_update}
+#' @seealso \link{update_mapboxer}
 #' @export
 mapboxer_proxy <- function(shiny_id, session = shiny::getDefaultReactiveDomain()) {
   if (is.null(session)) {
@@ -36,7 +36,7 @@ mapboxer_proxy <- function(shiny_id, session = shiny::getDefaultReactiveDomain()
 #' @param proxy_obj A \code{\link{mapboxer_proxy}} object.
 #' @param ... unused
 #' @export
-send_mapboxer_update <- function(proxy_obj, ...) {
+update_mapboxer <- function(proxy_obj, ...) {
   if (!inherits(proxy_obj, MAPBOXER_PROXY_CLASS)) {
     stop("This function must be used with a '", MAPBOXER_PROXY_CLASS, "' object.")
   }

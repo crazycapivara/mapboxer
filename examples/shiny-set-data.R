@@ -21,7 +21,7 @@ server <- function(input, output) {
   observeEvent(input$sample, {
     mapboxer_proxy("map") %>%
       set_data(dplyr::sample_n(quakes, 100), lng = "long", lat = "lat") %>%
-      send_mapboxer_update()
+      update_mapboxer()
   })
 }
 
