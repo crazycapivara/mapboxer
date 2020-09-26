@@ -19,7 +19,7 @@ add_filter_control(map, layer_id, filter = NULL, pos = NULL,
 
 \item{rows}{The number of rows of the textarea input.}
 
-\item{cols}{The number of cols of the textarea input.}
+\item{cols}{The number of columns of the textarea input.}
 }
 \description{
 Add a filter control to the map

@@ -28,7 +28,7 @@ add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL
 #' @param layer_id The ID of the layer to which the filter is attached.
 #' @param filter The initial filter expression.
 #' @param rows The number of rows of the textarea input.
-#' @param cols The number of cols of the textarea input.
+#' @param cols The number of columns of the textarea input.
 #' @export
 add_filter_control <- function(map, layer_id, filter = NULL, pos = NULL, rows = 1, cols = 20) {
   options = list(
