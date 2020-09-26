@@ -4,9 +4,11 @@
 #' @param css_text A \code{cssText} string that will modify the style of the control element.
 #' @export
 add_text_control <- function(map, text, pos = NULL, css_text = NULL) {
-  options <- list(text = text, cssText = css_text)
-  map %>%
-    invoke_method("addCustomControl", controlName = "TextControl", pos = pos, options = options)
+  options <- list(
+    text = text,
+    cssText = css_text
+  )
+  invoke_method(map, "addCustomControl", controlName = "TextControl", pos = pos, options = options)
 }
 
 #' Add a mouse position control to the map
