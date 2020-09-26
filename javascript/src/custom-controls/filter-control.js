@@ -13,7 +13,7 @@ export default class FilterControl {
     // const input = document.createElement("input");
     // Object.assign(input, { type: "text", spellcheck: false, id: "filter" });
     const input = document.createElement("textarea");
-    Object.assign(input, { spellcheck: false, id: "filter", rows: 5 });
+    Object.assign(input, { spellcheck: false, id: "filter" }, this._options.textareaAttributes);
     if (this._options.filter) {
       input.value = JSON.stringify(this._options.filter);
       map.setFilter(this._options.layer, this._options.filter);

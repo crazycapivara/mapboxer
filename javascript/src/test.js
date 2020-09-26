@@ -70,7 +70,11 @@ const widgetData = {
       methodName: "addCustomControl",
       args: {
         controlName: "FilterControl",
-        options: { layer: "circles", filter: [">", "exits", 8000] }
+        options: {
+          layer: "circles",
+          filter: [">", "exits", 8000],
+          textareaAttributes: { rows: 1, cols: 20 }
+        }
       }
     },
     {

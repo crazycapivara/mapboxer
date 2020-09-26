@@ -14,7 +14,11 @@ class(data)
 source <- as_mapbox_source(data)
 class(source$data)
 
-mapboxer() %>%
+map <- mapboxer() %>%
   set_view_state(lng =  144.9624, lat = -37.8105) %>%
   add_source(source, "melbourne") %>%
-  add_layer(fill_style, popup = "Area: {{AREASQKM}} km<sup>2</sup>") #%>% add_marker(lng =  144.9624, lat = -37.8105, popup = "center")
+  add_layer(fill_style, popup = "Area: {{AREASQKM}} km<sup>2</sup>") %>%
+  add_filter_control(layer_id = "melbourne", filter = list("<", "AREASQKM", 2), rows = 2)
+  #%>% add_marker(lng =  144.9624, lat = -37.8105, popup = "center")
+
+if (interactive()) map

@@ -16,18 +16,25 @@ add_text_control <- function(map, text, pos = NULL, css_text = NULL) {
 #' @example examples/mouse-position-control.R
 #' @export
 add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL, css_text = NULL) {
-  options <- list(mustacheTemplate = mustache_template, cssText = css_text)
-  map %>%
-    invoke_method("addCustomControl", controlName = "MousePositionControl", pos = pos, options = options)
+  options <- list(
+    mustacheTemplate = mustache_template,
+    cssText = css_text
+  )
+  invoke_method(map, "addCustomControl", controlName = "MousePositionControl", pos = pos, options = options)
 }
 
 #' Add a filter control to the map
 #' @inheritParams add_text_control
 #' @param layer_id The ID of the layer to which the filter is attached.
 #' @param filter The initial filter expression.
+#' @param rows The number of rows of the textarea input.
+#' @param cols The number of cols of the textarea input.
 #' @export
-add_filter_control <- function(map, layer_id, filter = NULL, pos = NULL) {
-  options = list(layer = layer_id, filter = filter)
-  map %>%
-    invoke_method("addCustomControl", controlName = "FilterControl", pos = pos, options = options)
+add_filter_control <- function(map, layer_id, filter = NULL, pos = NULL, rows = 1, cols = 20) {
+  options = list(
+    layer = layer_id,
+    filter = filter,
+    textareaAttributes = list(rows = rows, cols = cols)
+  )
+  invoke_method(map, "addCustomControl", controlName = "FilterControl", pos = pos, options = options)
 }
