@@ -33,7 +33,7 @@ add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL
 #' @param cols The number of columns of the textarea input.
 #' @export
 add_filter_control <- function(map, layer_id, filter = NULL, pos = NULL, rows = 1, cols = 20) {
-  options = list(
+  options <- list(
     layer = layer_id,
     filter = filter,
     textareaAttributes = list(rows = rows, cols = cols)
