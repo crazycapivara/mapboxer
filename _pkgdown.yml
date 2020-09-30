@@ -3,7 +3,7 @@ reference:
 - title: Map
   contents:
   - matches("mapboxer")
-  - send_mapboxer_update
+  - fit_bounds
   - set_view_state
 
 - title: Sources
