@@ -102,6 +102,11 @@ function setData(args) {
   map.getSource(source).setData(args.data);
 }
 
+function fitBounds(args) {
+  const map = this;
+  map.fitBounds(args.bounds, args.options || { });
+}
+
 export default {
   addControl,
   addSource,
@@ -113,5 +118,6 @@ export default {
   setFilter,
   setPaintProperty,
   setLayoutProperty,
-  setData
+  setData,
+  fitBounds
 };

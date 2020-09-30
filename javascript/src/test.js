@@ -78,6 +78,15 @@ const widgetData = {
       }
     },
     {
+      methodName: "fitBounds",
+      args: {
+        bounds: [
+          [ -122.36030693054174, 37.83390198998819 ],
+          [ -122.53969306945785, 37.76608244285002 ]
+        ]
+      }
+    },
+    {
       methodName: "setPaintProperty",
       args: { layer: "circles", property: "circle-color", value: "pink" }
     }/*,
