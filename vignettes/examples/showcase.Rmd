@@ -2,6 +2,10 @@
 title: Showcase
 ---
 
+The examples below show Motor Vehicle Collisions in NYC.
+
+## Unclustered
+
 ```{r}
 library(mapboxer)
 
@@ -30,6 +34,51 @@ map <- as_mapbox_source(mvc) %>%
     LAYER_ID,
     filter = list(">=", "injured", 0),
     pos = "top-left"
+  )
+
+map
+```
+
+Use the textbox on the map to filter your data.
+
+## Clustered
+
+A clustered source has a `point_count` property that can be used in expressions and popups.
+
+```{r}
+map <- as_mapbox_source(
+  mvc,
+  cluster = TRUE,
+  clusterMaxZoom = 11,
+  clusterRadius = 50
+) %>%
+  mapboxer(
+    center = c(-73.9165, 40.7114),
+    zoom = 10,
+    minZoom = 9
+  ) %>%
+  add_navigation_control() %>%
+  add_circle_layer(
+    id = "clustered",
+    circle_color = "blue",
+    circle_radius = list(
+      "step",
+      list("get", "point_count"),
+      10, 40,
+      15, 60,
+      20, 80,
+      25, 100,
+      30
+    ),
+    popup = "{{point_count}}",
+    filter = list("has", "point_count")
+  ) %>%
+  add_circle_layer(
+    id = "unclustered",
+    filter = list("!", list("has", "point_count")),
+    circle_color = "red",
+    circle_radius = 5,
+    popup = "{{date}} {{time}}"
   )
 
 map
