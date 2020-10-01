@@ -1,0 +1,36 @@
+---
+title: Showcase
+---
+
+```{r}
+library(mapboxer)
+
+LAYER_ID <- "crashes"
+
+mvc <- motor_vehicle_collisions_nyc
+mvc$color <- cut(
+  mvc$injured,
+  breaks = c(0, 1, 2, Inf),
+  labels = c("yellow", "orange", "red"),
+  right = FALSE
+) %>% as.character()
+
+map <- as_mapbox_source(mvc) %>%
+  mapboxer(
+    center = c(-73.9165, 40.7114),
+    zoom = 10
+  ) %>%
+  add_navigation_control() %>%
+  add_circle_layer(
+    id = LAYER_ID,
+    circle_color = list("get", "color"),
+    popup = "<p>{{date}} {{time}}</p><p>Number of injured persons: {{injured}}</p>"
+  ) %>%
+  add_filter_control(
+    LAYER_ID,
+    filter = list(">=", "injured", 0),
+    pos = "top-left"
+  )
+
+map
+```
