@@ -30,7 +30,7 @@ This guide covers the basic usage.
 
 * [Expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/): Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.
 
-* [Shiny Bindings](https://shiny.rstudio.com/): With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `send_mapboxer_update()` to update the already rendered widget.
+* [Shiny Bindings](https://shiny.rstudio.com/): With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `update_mapboxer()` to update an already rendered widget.
 
 ## Quickstart
 
@@ -256,7 +256,7 @@ backend <- function(input, output) {
 if (interactive()) shinyApp(view, backend)
 ```
 
-With `mapboxer_proxy()` and `send_mapboxer_update()` you can update your already rendered map:
+With `mapboxer_proxy()` and `update_mapboxer()` you can update your already rendered map:
 
 ```{r, eval = FALSE}
 view <- basicPage(
@@ -279,7 +279,7 @@ backend <- function(input, output) {
   observeEvent(input$slider, {
     mapboxer_proxy("map") %>%
       set_filter("quakes", list(">", "mag", input$slider)) %>%
-      send_mapboxer_update()
+      update_mapboxer()
   })
 }
 
