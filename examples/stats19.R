@@ -7,7 +7,7 @@ bbox <- sf::st_bbox(uk_police_boundaries) %>% unname()
 mapboxer(
   #zoom = 5,
   #center = c(-0.08391001, 51.68996)
-  #bounds = bbox,
+  bounds = bbox,
   fitBoundsOptions = list(padding = 20)
   ) %>%
   add_navigation_control() %>%
@@ -17,4 +17,4 @@ mapboxer(
     fill_outline_color = "white",
     popup = "{{pfa16nm}}",
     fill_opacity = 0.4
-  ) %>% fit_bounds(bbox, padding = 100)
+  ) #%>% fit_bounds(bbox, padding = 100)
