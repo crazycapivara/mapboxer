@@ -8,6 +8,7 @@ Description: Makes 'Mapbox GL JS' <https://docs.mapbox.com/mapbox-gl-js/api/>,
   an open source JavaScript library that uses WebGL to render interactive maps,
   available within R via the 'htmlwidgets' package.
 License: MIT + file LICENSE
+Depends: R (>= 2.10)
 Imports:
   magrittr,
   htmlwidgets,

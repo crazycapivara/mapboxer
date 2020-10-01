@@ -39,6 +39,11 @@ x <- tibble::as_tibble(df_motor_vehicle_collisions) %>%
   dplyr::select(date, time = crash_time, lng, lat, injured, killed) %>%
   na.omit()
 
+saveRDS(x[x$date > '2020-09-18', ], "data-raw/motor_vehicle_collisions.rds")
+
+motor_vehicle_collisions_nyc <- x[x$date > '2020-09-18', ] %>% as.data.frame()
+usethis::use_data(motor_vehicle_collisions_nyc)
+
 as_mapbox_source(x[x$date > '2020-09-18', ]) %>%
   mapboxer(center = c(median(x$lng), median(x$lat)), zoom = 10) %>%
   add_circle_layer(circle_color = "red", popup = "{{date}} {{time}}") %>%
