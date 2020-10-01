@@ -1,7 +1,9 @@
+# https://docs.mapbox.com/mapbox-gl-js/example/cluster/
+
 data_url <- "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
 earthquakes <- sf::st_read(data_url)
 
-earthquakes %>%
+map <- earthquakes %>%
   as_mapbox_source(
     cluster = TRUE,
     clusterMaxZoom = 14,
@@ -27,4 +29,22 @@ earthquakes %>%
     ),
     filter = c("has", "point_count"),
     popup = "{{point_count_abbreviated}}"
-  ) #%>% add_layer()
+  )
+
+map
+
+### Add a text layer
+
+text_style <- list(
+  "id" = "cluster-count",
+  "type" = "symbol",
+  "source" = "MAPBOXER",
+  "filter" = c("has", "point_count"),
+  "layout" = list(
+    "text-field" = "{point_count_abbreviated}",
+    "text-size" = 12
+  )
+)
+
+map %>%
+  add_layer(text_style)
