@@ -30,16 +30,20 @@ Usage
 ``` r
 library(mapboxer)
 
-map <- quakes %>%
-  as_mapbox_source(lng = "long", lat = "lat") %>%
-  mapboxer(center = c(176.9, -24.655), zoom = 4) %>%
+map <- motor_vehicle_collisions_nyc %>%
+  dplyr::mutate(color = ifelse(injured == 0, "yellow", "red")) %>%
+  as_mapbox_source() %>%
+  mapboxer(
+    center = c(-73.9165, 40.7114),
+    zoom = 10
+  ) %>%
   add_navigation_control() %>%
   add_circle_layer(
-    circle_color = "blue",
+    circle_color = list("get", "color"),
     circle_blur = 1,
     circle_stroke_color = "red",
     circle_stroke_width = 1,
-    popup = "Magnitude: {{mag}}"
+    popup = "<p>{{date}} {{time}}</p><p>Number of injured persons: {{injured}}</p>"
   )
 
 if (interactive()) map
