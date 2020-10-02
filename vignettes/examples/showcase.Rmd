@@ -27,7 +27,7 @@ map <- as_mapbox_source(mvc) %>%
   add_navigation_control() %>%
   add_circle_layer(
     id = LAYER_ID,
-    circle_color = list("get", "color"),
+    circle_color = c("get", "color"),
     popup = "<p>{{date}} {{time}}</p><p>Number of injured persons: {{injured}}</p>"
   ) %>%
   add_filter_control(
@@ -43,7 +43,7 @@ Use the textbox on the map to filter your data.
 
 ## Clustered
 
-A clustered source has a `point_count` property that can be used in expressions and popups.
+Point features can be clustered into groups by setting `cluster = TRUE` in your source definition. Clustered points have the additional properties `point_count` and `point_count_abbreviated` that can be used in expressions and popups. See [Mapbox Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson) for more details.
 
 ```{r}
 map <- as_mapbox_source(
@@ -62,8 +62,7 @@ map <- as_mapbox_source(
     id = "clustered",
     circle_color = "blue",
     circle_radius = list(
-      "step",
-      list("get", "point_count"),
+      "step", c("get", "point_count"),
       10, 40,
       15, 60,
       20, 80,
@@ -71,11 +70,11 @@ map <- as_mapbox_source(
       30
     ),
     popup = "{{point_count}}",
-    filter = list("has", "point_count")
+    filter = c("has", "point_count")
   ) %>%
   add_circle_layer(
     id = "unclustered",
-    filter = list("!", list("has", "point_count")),
+    filter = list("!", c("has", "point_count")),
     circle_color = "red",
     circle_radius = 5,
     popup = "{{date}} {{time}}"
