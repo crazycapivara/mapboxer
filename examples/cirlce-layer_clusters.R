@@ -33,12 +33,15 @@ map <- earthquakes %>%
 
 map
 
-### Add a text layer
+### Add a text layer by using the generic 'add_layer' function.
+### In this case you need to create a style object where properties
+### correspond to the Mapbox Style Specifications for the given layer type.
+### A text layer is of type 'symbol'.
+### If you do not pass a source, the default source added to the mapboxer object is used.
 
 text_style <- list(
   "id" = "cluster-count",
   "type" = "symbol",
-  "source" = "MAPBOXER",
   "filter" = c("has", "point_count"),
   "layout" = list(
     "text-field" = "{point_count_abbreviated}",
