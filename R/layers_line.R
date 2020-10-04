@@ -50,8 +50,7 @@ add_line_layer <- function(map,
                            line_width = NULL,
                            visibility = NULL,
                            popup = NULL,
-                           id = "line-layer"
-                           ) {
+                           id = "line-layer") {
   paint <- list(
     "line-blur" = line_blur,
     "line-color" = line_color,

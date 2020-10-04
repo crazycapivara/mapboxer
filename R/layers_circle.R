@@ -39,9 +39,8 @@ add_circle_layer <- function(map,
                              circle_translate_anchor = NULL,
                              visibility = TRUE,
                              popup = NULL,
-                             id = "circle-layer"
-                             ) {
-  paint = list(
+                             id = "circle-layer") {
+  paint <- list(
     "circle-blur" = circle_blur,
     "circle-color" = circle_color,
     "circle-opacity" = circle_opacity,
