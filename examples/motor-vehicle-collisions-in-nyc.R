@@ -10,8 +10,7 @@ as_mapbox_source(motor_vehicle_collisions_nyc) %>%
   add_circle_layer(
     id = LAYER_ID,
     circle_color = list(
-      "match",
-      list("get", "injured"),
+      "match", c("get", "injured"),
       0, "yellow",
       1, "orange",
       "red"
