@@ -21,7 +21,7 @@
 #' @inheritParams add_popups
 #' @param id The unique id of the layer.
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill}
-#' @example inst/api-reference/fill-layer.R
+#' @example examples/api-reference/fill-layer.R
 #' @export
 add_fill_layer <- function(
                            map,

@@ -27,7 +27,7 @@
 #' @param line_translate_anchor (paint) Controls the frame of reference for \code{line_translate}.
 #' @param line_width (paint) Stroke thickness.
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#line}
-#' @example inst/api-reference/line-layer.R
+#' @example examples/api-reference/line-layer.R
 #' @export
 add_line_layer <- function(map,
                            source = NULL,
