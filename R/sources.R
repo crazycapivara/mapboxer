@@ -4,8 +4,7 @@
 #' @param id The unique id of the data source.
 #' @export
 add_source <- function(map, source, id = "mapboxer") {
-  map %>%
-    invoke_method("addSource", id = id, source = source)
+  invoke_method(map, "addSource", id = id, source = source)
 }
 
 #' Create a Mapbox source
@@ -40,13 +39,13 @@ as_mapbox_source.json <- mapbox_geojson_source
 #' @export
 #' @name as_mapbox_source
 as_mapbox_source.data.frame <- function(data, lng = "lng", lat = "lat", ...) {
-  geojsonsf::df_geojson(data, lng, lat) %>%
+  geojsonsf::df_geojson(data, lng, lat, simplify = FALSE) %>%
     mapbox_geojson_source(...)
 }
 
 #' @export
 #' @name as_mapbox_source
 as_mapbox_source.sf <- function(data, ...) {
-  geojsonsf::sf_geojson(data) %>%
+  geojsonsf::sf_geojson(data, simplify = FALSE) %>%
     mapbox_geojson_source(...)
 }
