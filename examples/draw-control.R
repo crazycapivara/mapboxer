@@ -10,3 +10,6 @@ mapboxer(
       trash = TRUE
     )
   )
+
+mapboxer() %>%
+  add_draw_control()

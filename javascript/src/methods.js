@@ -110,8 +110,12 @@ function fitBounds(args) {
 // Plugins
 function addDrawControl(args) {
   const map = this;
-  const control = new MapboxDraw(args.options);
-  map.addControl(control, args.pos);
+  const draw = new MapboxDraw(args.options);
+  map.addControl(draw, args.pos);
+  map.on("draw.create", e => {
+    console.log(e.features);
+    console.log(draw.getAll());
+  });
 }
 
 export default {
