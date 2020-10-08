@@ -107,6 +107,13 @@ function fitBounds(args) {
   map.fitBounds(args.bounds, args.options || { });
 }
 
+// Plugins
+function addDrawControl(args) {
+  const map = this;
+  const control = new MapboxDraw(args.options);
+  map.addControl(control, args.pos);
+}
+
 export default {
   addControl,
   addSource,
@@ -119,5 +126,6 @@ export default {
   setPaintProperty,
   setLayoutProperty,
   setData,
-  fitBounds
+  fitBounds,
+  addDrawControl
 };

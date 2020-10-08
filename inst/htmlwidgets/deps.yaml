@@ -6,3 +6,11 @@ mapbox-gl:
   stylesheet: "mapbox-gl.css"
   all_files: false
   package: "mapboxer"
+mapbox-gl-draw:
+  name: "mapbox-gl-draw"
+  version: "1.2.0"
+  src:
+    href: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/"
+  script: "mapbox-gl-draw.js"
+  stylesheet: "mapbox-gl-draw.css"
+  all_files: false
