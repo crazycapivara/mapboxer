@@ -112,6 +112,7 @@ function addDrawControl(args) {
   const map = this;
   const draw = new MapboxDraw(args.options);
   map.addControl(draw, args.pos);
+  if (args.data) draw.add(args.data);
   map.on("draw.create", e => {
     console.log(e.features);
     console.log(draw.getAll());
