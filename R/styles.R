@@ -12,7 +12,7 @@ basemap_carto_style <- function(theme = "dark-matter") {
 #' Use a background color as map style
 #' @param color The color of the background.
 #' @export
-use_background_style <- function(color = "#111") {
+basemap_background_style <- function(color = "#111") {
   style <- get_style_file("background-style.yml") %>%
     read_style()
   style$layers[[1]]$paint$`background-color` <- color

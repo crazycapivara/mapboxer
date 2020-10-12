@@ -12,7 +12,7 @@ server <- function(input, output) {
   output$map <- renderMapboxer({
     quakes %>%
       as_mapbox_source(lng = "long", lat = "lat") %>%
-      mapboxer(center = c(176.9, -24.655), zoom = 4, style = use_background_style()) %>%
+      mapboxer(center = c(176.9, -24.655), zoom = 4, style = basemap_background_style()) %>%
       add_circle_layer(circle_color = "red", popup = "{{mag}}", id = "quakes") %>%
       add_mouse_position_control("Lng: {{lng}}, Lat: {{lat}}") %>%
       add_navigation_control(pos = "top-left")
