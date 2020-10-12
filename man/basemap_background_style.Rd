@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{basemap_background_style}
 \alias{basemap_background_style}
-\title{Use a background color as map style}
+\title{Create a background style}
 \usage{
 basemap_background_style(color = "#111")
 }
@@ -10,5 +10,5 @@ basemap_background_style(color = "#111")
 \item{color}{The color of the background.}
 }
 \description{
-Use a background color as map style
+Create a background style
 }

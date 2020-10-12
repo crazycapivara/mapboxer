@@ -2,10 +2,10 @@
 % Please edit documentation in R/styles.R
 \name{get_osm_raster_tiles}
 \alias{get_osm_raster_tiles}
-\title{Get OSM raster tile urls}
+\title{Get OSM raster tile URLs}
 \usage{
 get_osm_raster_tiles()
 }
 \description{
-Get OSM raster tile urls
+Get OSM raster tile URLs
 }

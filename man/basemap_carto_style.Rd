@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{basemap_carto_style}
 \alias{basemap_carto_style}
-\title{Use Carto vector tiles as map style}
+\title{Get Carto vector style URL}
 \usage{
 basemap_carto_style(theme = "dark-matter")
 }
@@ -10,5 +10,5 @@ basemap_carto_style(theme = "dark-matter")
 \item{theme}{The theme of the style, \code{dark-matter}, \code{positron} or \code{voyager}.}
 }
 \description{
-Use Carto vector tiles as map style
+Get Carto vector style URL
 }

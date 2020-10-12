@@ -1,4 +1,4 @@
-#' Use Carto vector tiles as map style
+#' Get Carto vector style URL
 #' @param theme The theme of the style, \code{dark-matter}, \code{positron} or \code{voyager}.
 #' @export
 basemap_carto_style <- function(theme = "dark-matter") {
@@ -9,7 +9,7 @@ basemap_carto_style <- function(theme = "dark-matter") {
   sprintf("https://basemaps.cartocdn.com/gl/%s-gl-style/style.json", theme)
 }
 
-#' Use a background color as map style
+#' Create a background style
 #' @param color The color of the background.
 #' @export
 basemap_background_style <- function(color = "#111") {
@@ -19,7 +19,7 @@ basemap_background_style <- function(color = "#111") {
   style
 }
 
-#' Use raster tiles as map style
+#' Create a raster style
 #' @param tiles A list of tile urls.
 #' @param attribution The attribution text of the tile layer.
 #' @export
@@ -35,14 +35,14 @@ basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = N
   style
 }
 
-#' Get OSM raster tile urls
+#' Get OSM raster tile URLs
 #' @export
 get_osm_raster_tiles <- function() {
   urls <- sprintf("//%s.tile.openstreetmap.org/{z}/{x}/{y}.png", c(letters[1:3]))
   structure(as.list(urls), attribution = OSM_ATTRIBUTION)
 }
 
-#' Get Stamen raster tile urls
+#' Get Stamen raster tile URLs
 #' @param theme The theme of the tiles.
 #' @export
 get_stamen_raster_tiles <- function(theme = "watercolor") {

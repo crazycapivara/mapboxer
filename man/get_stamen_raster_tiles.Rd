@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{get_stamen_raster_tiles}
 \alias{get_stamen_raster_tiles}
-\title{Get Stamen raster tile urls}
+\title{Get Stamen raster tile URLs}
 \usage{
 get_stamen_raster_tiles(theme = "watercolor")
 }
@@ -10,5 +10,5 @@ get_stamen_raster_tiles(theme = "watercolor")
 \item{theme}{The theme of the tiles.}
 }
 \description{
-Get Stamen raster tile urls
+Get Stamen raster tile URLs
 }

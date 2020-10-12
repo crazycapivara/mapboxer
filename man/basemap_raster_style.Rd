@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{basemap_raster_style}
 \alias{basemap_raster_style}
-\title{Use raster tiles as map style}
+\title{Create a raster style}
 \usage{
 basemap_raster_style(tiles = get_osm_raster_tiles(),
   attribution = NULL)
@@ -13,5 +13,5 @@ basemap_raster_style(tiles = get_osm_raster_tiles(),
 \item{attribution}{The attribution text of the tile layer.}
 }
 \description{
-Use raster tiles as map style
+Create a raster style
 }
