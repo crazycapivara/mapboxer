@@ -19,16 +19,6 @@ basemap_background_style <- function(color = "#111") {
   style
 }
 
-#' Use Stamen raster tiles as map style
-#' @param theme The theme of the tiles.
-#' @export
-use_stamen_raster_style <- function(theme = "watercolor") {
-  paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
-    as.list() %>%
-    structure(attribution = STAMEN_ATTRIBUTION) %>%
-    basemap_raster_style()
-}
-
 #' Use raster tiles as map style
 #' @param tiles A list of tile urls.
 #' @param attribution The attribution text of the tile layer.
@@ -48,9 +38,16 @@ basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = N
 #' Get OSM raster tile urls
 #' @export
 get_osm_raster_tiles <- function() {
-  paste0("//", c(letters[1:3]), ".tile.openstreetmap.org/{z}/{x}/{y}.png") %>%
-    as.list() %>%
-    structure(attribution = OSM_ATTRIBUTION)
+  urls <- sprintf("//%s.tile.openstreetmap.org/{z}/{x}/{y}.png", c(letters[1:3]))
+  structure(as.list(urls), attribution = OSM_ATTRIBUTION)
+}
+
+#' Get Stamen raster tile urls
+#' @param theme The theme of the tiles.
+#' @export
+get_stamen_raster_tiles <- function(theme = "watercolor") {
+  urls <- sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:3], theme)
+  structure(as.list(urls), attribution = STAMEN_ATTRIBUTION)
 }
 
 read_style <- function(filename) {
