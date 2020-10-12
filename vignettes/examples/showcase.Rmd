@@ -4,7 +4,7 @@ title: Showcase
 
 The examples below show Motor Vehicle Collisions in NYC.
 
-## Unclustered
+## Point Layer
 
 ```{r}
 library(mapboxer)
@@ -28,7 +28,7 @@ map <- as_mapbox_source(mvc) %>%
   add_circle_layer(
     id = LAYER_ID,
     circle_color = c("get", "color"),
-    popup = "<p>{{date}} {{time}}</p><p>Number of injured persons: {{injured}}</p>"
+    popup = "<p>{{date}} {{time}}</p><p>Number of persons injured: {{injured}}</p>"
   ) %>%
   add_filter_control(
     LAYER_ID,
@@ -41,7 +41,7 @@ map
 
 Use the textbox on the map to filter your data.
 
-## Clustered
+## Clustered Point Layer
 
 Point features can be clustered into groups by setting `cluster = TRUE` in your source definition. Clustered points have the additional properties `point_count` and `point_count_abbreviated` that can be used in expressions and popups. See [Mapbox Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson) for more details.
 
@@ -63,11 +63,11 @@ map <- as_mapbox_source(
     circle_color = "blue",
     circle_radius = list(
       "step", c("get", "point_count"),
-      10, 40,
-      15, 60,
-      20, 80,
-      25, 100,
-      30
+      10, 40, # 10px if point count < 40
+      15, 60, # 15px if point count >= 40 and < 60
+      20, 80, # 20px if point count >= 60 and < 80
+      25, 100, # 25px if point count >= 80 and < 100
+      30 # 30px if point count >= 100
     ),
     popup = "{{point_count}}",
     filter = c("has", "point_count")
