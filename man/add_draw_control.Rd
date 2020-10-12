@@ -4,7 +4,7 @@
 \alias{add_draw_control}
 \title{Add a draw control to the map}
 \usage{
-add_draw_control(map, ..., pos = NULL)
+add_draw_control(map, ..., pos = NULL, data = NULL)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
@@ -13,6 +13,8 @@ add_draw_control(map, ..., pos = NULL)
 
 \item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
+
+\item{data}{(experimental) A \code{GeoJSON} object.}
 }
 \description{
 Add a draw control to the map

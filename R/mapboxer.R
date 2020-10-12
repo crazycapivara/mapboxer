@@ -8,7 +8,7 @@
 #' @param element_id The unique ID of the widget.
 #' @param token A Mapbox API access token. Only needed if you want to use styles from Mapbox.
 #' @export
-mapboxer <- function(source = NULL, style = use_carto_style(), ...,
+mapboxer <- function(source = NULL, style = basemap_carto_style(), ...,
                      width = NULL, height = NULL, element_id = NULL,
                      token = Sys.getenv("MAPBOX_API_TOKEN")) {
   widget_data <- list(
