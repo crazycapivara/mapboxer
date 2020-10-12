@@ -7,7 +7,11 @@ map <- earthquakes %>%
   as_mapbox_source(
     cluster = TRUE,
     clusterMaxZoom = 14,
-    clusterRadius = 50
+    clusterRadius = 50,
+    clusterProperties = list(
+      minMag = list("min", c("get", "mag")),
+      maxMag = list("max", c("get", "mag"))
+    )
   ) %>%
   mapboxer(
     center = c(-103.59179687498357, 40.66995747013945),
@@ -28,7 +32,13 @@ map <- earthquakes %>%
       40
     ),
     filter = c("has", "point_count"),
-    popup = "{{point_count_abbreviated}}"
+    popup = "min mag: {{minMag}}, max mag: {{maxMag}}"
+  ) %>%
+  add_circle_layer(
+    id = "unclustered",
+    filter = list("!", c("has", "point_count")),
+    circle_color = "red",
+    popup = "{{mag}}"
   )
 
 map
