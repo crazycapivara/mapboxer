@@ -2,7 +2,7 @@ LAYER_ID <- "crashes"
 START_VALUE <- 4
 
 view <- basicPage(
-  sliderInput("slider", "Number of injured persons:",
+  sliderInput("slider", "Number of persons injured",
               min = 0, max = 7, step = 1, value = START_VALUE),
   mapboxerOutput("map")
 )
@@ -16,7 +16,7 @@ backend <- function(input, output) {
       add_circle_layer(
         source = as_mapbox_source(motor_vehicle_collisions_nyc),
         circle_color = "red",
-        popup = "{{injured}}",
+        popup = "Number of persons injured: {{injured}}",
         filter = list("==", "injured", START_VALUE),
         id = LAYER_ID
       )
