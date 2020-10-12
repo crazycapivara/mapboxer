@@ -106,7 +106,7 @@
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/markers/">Controls</a>: Controls are used to interact with the map. Besides the standard controls like <code>NavigationControl</code> included in Mapbox GL JS, mapboxer provides additional controls. For example, <code><a href="../reference/add_filter_control.html">add_filter_control()</a></code> can be used to filter your data on the fly without having to set up a Shiny app.</p></li>
 <li><p><a href="https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/">Expressions</a>: Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.</p></li>
-<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code>update_mapboxer()</code> to update an already rendered widget.</p></li>
+<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> to update an already rendered widget.</p></li>
 </ul>
 </div>
 <div id="quickstart" class="section level2">
@@ -134,8 +134,8 @@ motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <div id="map" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map" class="anchor"></a>Map</h2>
-<p>With <code><a href="../reference/mapboxer.html">mapboxer()</a></code> you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the <code>add_*</code> and <code>set_*</code> functions. The parameters passed to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> itself are used to configure the initial setup of your map. The <code>style</code> parameter sets the style of the basemap. By default mapboxer uses a <a href="https://github.com/CartoDB/basemap-styles">Carto vector style</a>. It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers <code><a href="../reference/use_raster_style.html">use_raster_style()</a></code> or <code><a href="../reference/use_background_style.html">use_background_style()</a></code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> <span class="kw"><a href="../reference/use_raster_style.html">use_raster_style</a></span>())</code></pre></div>
+<p>With <code><a href="../reference/mapboxer.html">mapboxer()</a></code> you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the <code>add_*</code> and <code>set_*</code> functions. The parameters passed to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> itself are used to configure the initial setup of your map. The <code>style</code> parameter sets the style of the basemap. By default mapboxer uses a <a href="https://github.com/CartoDB/basemap-styles">Carto vector style</a>. It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers <code>basemap_raster_style()</code> or <code>basemap_background_style()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> <span class="kw">basemap_raster_style</span>())</code></pre></div>
 <p>The <code>...</code> parameter allows you to pass any option to the map described in the <a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map API Reference</a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
   <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
@@ -281,7 +281,7 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
 }
 
 <span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
-<p>With <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code>update_mapboxer()</code> you can update your already rendered map:</p>
+<p>With <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> you can update your already rendered map:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LAYER_ID &lt;-<span class="st"> "crashes"</span>
 START_VALUE &lt;-<span class="st"> </span><span class="dv">4</span>
 
@@ -309,7 +309,7 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
   <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">observeEvent</a></span>(input<span class="op">$</span>slider, {
     <span class="kw"><a href="../reference/mapboxer_proxy.html">mapboxer_proxy</a></span>(<span class="st">"map"</span>) <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw"><a href="../reference/set_filter.html">set_filter</a></span>(LAYER_ID, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"=="</span>, <span class="st">"injured"</span>, input<span class="op">$</span>slider)) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">update_mapboxer</span>()
+<span class="st">      </span><span class="kw"><a href="../reference/update_mapboxer.html">update_mapboxer</a></span>()
   })
 }
 
