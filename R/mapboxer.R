@@ -45,6 +45,7 @@ mapboxer <- function(source = NULL, style = basemap_carto_style(), ...,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #' @name mapboxer-shiny
+#' @example examples/api-reference/shiny.R
 #' @export
 mapboxerOutput <- function(outputId, width = "100%", height = "400px") {
   htmlwidgets::shinyWidgetOutput(outputId, "mapboxer", width, height, package = "mapboxer")

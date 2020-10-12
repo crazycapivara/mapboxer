@@ -22,7 +22,8 @@ LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    shiny
 VignetteBuilder: knitr
 URL: https://github.com/crazycapivara/mapboxer
 BugReports: https://github.com/crazycapivara/mapboxer/issues
