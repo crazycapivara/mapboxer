@@ -1,39 +1,51 @@
 library(shiny)
 library(mapboxer)
 
-view <- fluidPage(
+LAYER_ID <- "mvc"
+
+view <- basicPage(
   h1("mapboxer"),
-  sliderInput("slider", "mag larger than:", min = 4, max = 6, step = 1, value = 4),
-  checkboxInput("hide", "Hide Layer"),
+  sliderInput(
+    "slider",
+    "Number of persons injured",
+    min = 0,
+    max = max(motor_vehicle_collisions_nyc$injured),
+    step = 1,
+    value = 0
+  ),
+  checkboxInput("hide", "Hide layer"),
   mapboxerOutput("map")
 )
 
 server <- function(input, output) {
   output$map <- renderMapboxer({
-    quakes %>%
-      as_mapbox_source(lng = "long", lat = "lat") %>%
-      mapboxer(center = c(176.9, -24.655), zoom = 4, style = basemap_background_style()) %>%
-      add_circle_layer(circle_color = "red", popup = "{{mag}}", id = "quakes") %>%
-      add_mouse_position_control("Lng: {{lng}}, Lat: {{lat}}") %>%
+      as_mapbox_source(motor_vehicle_collisions_nyc) %>%
+      mapboxer(
+        center = c(-73.9165, 40.7114),
+        zoom = 10,
+        style = basemap_raster_style(get_stamen_raster_tiles())
+      ) %>%
+      add_circle_layer(
+        circle_color = "black",
+        popup = "{{injured}}",
+        id = LAYER_ID
+      ) %>%
+      add_mouse_position_control(
+        "Lng: {{lng}}</br>Lat: {{lat}}",
+        css_text = "text-align: left; width: 180px;"
+      ) %>%
       add_navigation_control(pos = "top-left")
   })
 
   observeEvent(input$slider, {
-    #row <- quakes[sample(1:nrow(quakes), 1), ]
-    #data <- geojsonsf::df_geojson(dplyr::sample_n(quakes, 100), lon = "long", lat = "lat")
-    data <- as_mapbox_source(dplyr::sample_n(quakes, 100), lng = "long", lat = "lat")
-    # data <- "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
     mapboxer_proxy("map") %>%
-      #set_paint_property("quakes", "circle_radius", input$slider) %>%
-      #set_data(data) %>%
-      set_filter("quakes", list(">", "mag", input$slider)) %>%
-      # add_marker(row$long, row$lat) %>%
-      update_mapboxer(hi = "folks")
+      set_filter(LAYER_ID, list("==", "injured", input$slider)) %>%
+      update_mapboxer()
   })
 
   observeEvent(input$hide, {
     mapboxer_proxy("map") %>%
-      set_layout_property("quakes", "visibility", !input$hide) %>%
+      set_layout_property(LAYER_ID, "visibility", !input$hide) %>%
       update_mapboxer()
   })
 }
