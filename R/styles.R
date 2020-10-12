@@ -26,14 +26,14 @@ use_stamen_raster_style <- function(theme = "watercolor") {
   paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
     as.list() %>%
     structure(attribution = STAMEN_ATTRIBUTION) %>%
-    use_raster_style()
+    basemap_raster_style()
 }
 
 #' Use raster tiles as map style
 #' @param tiles A list of tile urls.
 #' @param attribution The attribution text of the tile layer.
 #' @export
-use_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL) {
+basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL) {
   if (is.null(attribution) & !is.null(attributes(tiles)$attribution)) {
     attribution <- attributes(tiles)$attribution
   }
