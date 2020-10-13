@@ -15,7 +15,7 @@ add_text_control <- function(map, text, pos = NULL, css_text = NULL) {
 #' @inheritParams add_text_control
 #' @param mustache_template A \href{https://github.com/janl/mustache.js}{mustache} template
 #'   that contains the mustache tags \code{lng} and \code{lat}.
-#' @example examples/mouse-position-control.R
+#' @example examples/api-reference/mouse-position-control.R
 #' @export
 add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL, css_text = NULL) {
   options <- list(
