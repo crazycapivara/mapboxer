@@ -11,13 +11,18 @@
 mapboxer <- function(source = NULL, style = basemap_carto_style(), ...,
                      width = NULL, height = NULL, element_id = NULL,
                      token = Sys.getenv("MAPBOX_API_TOKEN")) {
+  map_props <- list(
+    style = style,
+    ...
+  )
+  if (inherits(map_props$bounds, "bbox")) {
+    map_props$bounds %<>% unname()
+  }
+
   widget_data <- list(
     source = source,
     calls = list(),
-    mapProps = list(
-      style = style,
-      ...
-    ),
+    mapProps = map_props,
     accessToken = token
   )
 

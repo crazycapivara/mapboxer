@@ -22,7 +22,7 @@ plot(sf::st_geometry(grid_sf), add = TRUE, col = grid_sf$color)
 
 as_mapbox_source(grid_sf) %>%
   mapboxer(
-    bounds = unname(sf::st_bbox(grid_sf)),
+    bounds = sf::st_bbox(grid_sf),
     fitBoundsOptions = list(padding = 20)
   ) %>%
   add_navigation_control() %>%
