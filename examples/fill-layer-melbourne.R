@@ -1,3 +1,5 @@
+# Example using the generic 'add_layer' function
+
 fill_style <- list(
   id = "melbourne",
   type = "fill",
@@ -19,6 +21,5 @@ map <- mapboxer() %>%
   add_source(source, "melbourne") %>%
   add_layer(fill_style, popup = "Area: {{AREASQKM}} km<sup>2</sup>") %>%
   add_filter_control(layer_id = "melbourne", filter = list("<", "AREASQKM", 2), rows = 2)
-  #%>% add_marker(lng =  144.9624, lat = -37.8105, popup = "center")
 
 if (interactive()) map
