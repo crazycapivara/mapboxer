@@ -38,16 +38,16 @@ basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = N
 #' Get OSM raster tile URLs
 #' @export
 get_osm_raster_tiles <- function() {
-  urls <- sprintf("//%s.tile.openstreetmap.org/{z}/{x}/{y}.png", c(letters[1:3]))
-  structure(as.list(urls), attribution = OSM_ATTRIBUTION)
+  sprintf("//%s.tile.openstreetmap.org/{z}/{x}/{y}.png", c(letters[1:3])) %>%
+    structure(attribution = OSM_ATTRIBUTION)
 }
 
 #' Get Stamen raster tile URLs
 #' @param theme The theme of the tiles.
 #' @export
 get_stamen_raster_tiles <- function(theme = "watercolor") {
-  urls <- sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:3], theme)
-  structure(as.list(urls), attribution = STAMEN_ATTRIBUTION)
+  sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:3], theme) %>%
+    structure(attribution = STAMEN_ATTRIBUTION)
 }
 
 read_style <- function(filename) {
