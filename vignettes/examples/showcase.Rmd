@@ -72,7 +72,7 @@ map <- as_mapbox_source(
       25, 100, # 25px if point count >= 80 and < 100
       30 # 30px if point count >= 100
     ),
-    popup = "Number of crashes: {{point_count}}, Number of persons injured: {{sumInjured}}",
+    popup = "Number of crashes: {{point_count}}</br>Number of persons injured: {{sumInjured}}",
     filter = c("has", "point_count")
   ) %>%
   add_circle_layer(
@@ -80,7 +80,7 @@ map <- as_mapbox_source(
     filter = list("!", c("has", "point_count")),
     circle_color = "red",
     circle_radius = 5,
-    popup = "{{date}} {{time}}"
+    popup = "{{date}} {{time}}</br>Number of persons injured: {{injured}}"
   )
 
 map
@@ -100,15 +100,14 @@ sf::sf_use_s2(TRUE)
 grid_sf <- sf::st_make_grid(mvc_sf, square = TRUE)[mvc_sf] %>%
   sf::st_sf()
 
-grid_sf <- dplyr::mutate(
-  grid_sf,
+grid_sf %<>% dplyr::mutate(
   count = lengths(sf::st_intersects(grid_sf, mvc_sf)),
   color = scales::col_quantile("Blues", count)(count)
 )
 
 map <- as_mapbox_source(grid_sf) %>%
   mapboxer(
-    bounds = unname(sf::st_bbox(grid_sf)),
+    bounds = sf::st_bbox(grid_sf),
     fitBoundsOptions = list(padding = 20)
   ) %>%
   add_navigation_control() %>%
