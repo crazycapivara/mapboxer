@@ -18,9 +18,10 @@ build_style_url_list <- function(provider) {
   urls
 }
 
-#' Get basemap providers
+#' Get list of basemaps
+#' @example examples/api-reference/basemaps.R
 #' @export
-get_basemap_providers <- function() {
+get_basemaps <- function() {
  list(
    Carto = build_style_url_list(PROVIDERS$Carto),
    Mapbox = build_style_url_list(PROVIDERS$Mapbox)
