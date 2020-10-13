@@ -9,7 +9,7 @@ as_mapbox_source(
   clusterRadius = 50
 ) %>%
   mapboxer(
-    bounds = unname(sf::st_bbox(mvc)),
+    bounds = sf::st_bbox(mvc),
     element_id = "crashes",
     minZoom = 9
   ) %>%
@@ -26,7 +26,7 @@ as_mapbox_source(
       25, 100,
       30
     ),
-    popup = "{{point_count}}",
+    popup = "Number of crashes: {{point_count}}",
     filter = list("has", "point_count")
   ) %>%
   add_circle_layer(

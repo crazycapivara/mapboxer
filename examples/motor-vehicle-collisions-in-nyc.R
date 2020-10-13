@@ -16,7 +16,7 @@ as_mapbox_source(motor_vehicle_collisions_nyc) %>%
       "red"
     ),
     circle_radius = list("+", c("get", "injured"), 2),
-    popup = "<p>{{date}} {{time}}</p><p>Number of injured persons: {{injured}}</p>"
+    popup = "<p>{{date}} {{time}}</p><p>Number of persons injured: {{injured}}</p>"
   ) %>%
   add_filter_control(
     LAYER_ID,
