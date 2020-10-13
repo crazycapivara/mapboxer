@@ -27,7 +27,7 @@ add_layer <- function(map, style, popup = NULL) {
 #' @param layer_id The ID of the layer to which you want to add the popups.
 #' @param popup A \href{https://github.com/janl/mustache.js}{mustache} template
 #'   in which the tags refer to the properties of the layer's data object.
-#' @example examples/popups.R
+#' @example examples/api-reference/popups.R
 #' @export
 add_popups <- function(map, layer_id, popup) {
   map %>%
