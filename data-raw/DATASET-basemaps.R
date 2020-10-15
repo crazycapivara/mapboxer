@@ -18,9 +18,5 @@ build_urls <- function(provider) {
   urls
 }
 
-#' Get list of basemaps
-#' @example examples/api-reference/basemaps.R
-#' @export
-get_basemaps <- function() {
-  lapply(PROVIDERS, build_urls)
-}
+basemaps <- lapply(PROVIDERS, build_urls)
+usethis::use_data(basemaps)
