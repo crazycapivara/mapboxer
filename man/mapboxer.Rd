@@ -4,7 +4,7 @@
 \alias{mapboxer}
 \title{Create a mapboxer widget}
 \usage{
-mapboxer(source = NULL, style = get_basemaps()$Carto$dark_matter, ...,
+mapboxer(source = NULL, style = basemaps$Carto$dark_matter, ...,
   width = NULL, height = NULL, element_id = NULL,
   token = Sys.getenv("MAPBOX_API_TOKEN"))
 }

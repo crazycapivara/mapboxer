@@ -11,3 +11,6 @@
 #' }
 #' @source \url{https://opendata.cityofnewyork.us/}
 "motor_vehicle_collisions_nyc"
+
+#' A list of basemaps styles
+"basemaps"
