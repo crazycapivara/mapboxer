@@ -26,11 +26,33 @@ basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = N
     attribution <- attributes(tiles)$attribution
   }
 
-  style <- get_style_file("stamen-raster-style.yml") %>%
-    read_style()
-  style$sources$`raster-tiles`$tiles <- tiles
-  style$sources$`raster-tiles`$attribution <- attribution
-  style
+  #style <- get_style_file("stamen-raster-style.yml") %>%
+  #  read_style()
+  #style$sources$`raster-tiles`$tiles <- tiles
+  #style$sources$`raster-tiles`$attribution <- attribution
+  #style
+  raster_source <- list(
+    type = "raster",
+    tiles = tiles,
+    tileSize = 256,
+    attribution = attribution
+  )
+
+  raster_layer <- list(
+    id = "simple-tiles",
+    type = "raster",
+    source = "raster-tiles",
+    minzoom = 0,
+    maxzoom = 22
+  )
+
+  list(
+    version = 8,
+    sources = list(
+      "raster-tiles" = raster_source
+    ),
+    layers = list(raster_layer)
+  )
 }
 
 #' Get OSM raster tile URLs
