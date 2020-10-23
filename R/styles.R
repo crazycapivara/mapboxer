@@ -13,7 +13,7 @@ basemap_background_style <- function(color = "#111") {
 #' @param attribution The attribution text of the tile layer.
 #' @export
 basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL) {
-  if (is.null(attribution) & !is.null(attributes(tiles)$attribution)) {
+  if (utils_has_attr(tiles, "attribution")) {
     attribution <- attributes(tiles)$attribution
   }
 
