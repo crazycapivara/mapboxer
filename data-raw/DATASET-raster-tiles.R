@@ -1,3 +1,5 @@
+### STAMEN
+
 url_stamen <- "https://stamen-tiles.a.ssl.fastly.net/{{theme}}/{z}/{x}/{y}.png"
 themes_stamen_toner <- c(
   "toner",
@@ -22,3 +24,14 @@ raster_tiles_stamen <- lapply(themes_stamen_toner, function(theme) {
 
 mapboxer(zoom = 4, style = basemap_raster_style(raster_tiles_stamen[[10]])) %>%
   add_navigation_control()
+
+### OSM
+
+osm_raster_tiles <- sapply(letters[1:3], function(subdomain) {
+  whisker::whisker.render(
+    "//{{subdomain}}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    list(subdomain = subdomain)
+  )
+}) %>%
+  unname() %>%
+  structure(attribution = OSM_ATTRIBUTION)
