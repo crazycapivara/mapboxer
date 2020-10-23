@@ -1,11 +1,20 @@
 #' Create a background style
 #' @param color The color of the background.
+#' @param opacity The opacity of the background.
 #' @export
-basemap_background_style <- function(color = "#111") {
-  style <- get_style_file("background-style.yml") %>%
-    read_style()
-  style$layers[[1]]$paint$`background-color` <- color
-  style
+basemap_background_style <- function(color = "#111", opacity = 1) {
+  background_layer <- list(
+    id = "background",
+    type = "background",
+    paint = list(
+      "background-color" = color,
+      "background-opacity" = opacity
+    )
+  )
+  list(
+    version = 8,
+    layers = list(background_layer)
+  )
 }
 
 #' Create a raster style

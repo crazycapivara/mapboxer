@@ -4,10 +4,12 @@
 \alias{basemap_background_style}
 \title{Create a background style}
 \usage{
-basemap_background_style(color = "#111")
+basemap_background_style(color = "#111", opacity = 1)
 }
 \arguments{
 \item{color}{The color of the background.}
+
+\item{opacity}{The opacity of the background.}
 }
 \description{
 Create a background style
