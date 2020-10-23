@@ -1,14 +1,3 @@
-#' Get Carto vector style URL
-#' @param theme The theme of the style, \code{dark-matter}, \code{positron} or \code{voyager}.
-#' @export
-basemap_carto_style <- function(theme = "dark-matter") {
-  if (!theme %in% c("dark-matter", "voyager", "positron")) {
-    stop("Unknown theme.")
-  }
-
-  sprintf("https://basemaps.cartocdn.com/gl/%s-gl-style/style.json", theme)
-}
-
 #' Create a background style
 #' @param color The color of the background.
 #' @export
