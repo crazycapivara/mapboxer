@@ -107,6 +107,11 @@ function fitBounds(args) {
   map.fitBounds(args.bounds, args.options || { });
 }
 
+function setStyle(args) {
+  const map = this;
+  map.setStyle(args.style);
+}
+
 // Plugins
 function addDrawControl(args) {
   const map = this;
@@ -132,5 +137,6 @@ export default {
   setLayoutProperty,
   setData,
   fitBounds,
+  setStyle,
   addDrawControl
 };
