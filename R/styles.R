@@ -26,11 +26,6 @@ basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = N
     attribution <- attributes(tiles)$attribution
   }
 
-  #style <- get_style_file("stamen-raster-style.yml") %>%
-  #  read_style()
-  #style$sources$`raster-tiles`$tiles <- tiles
-  #style$sources$`raster-tiles`$attribution <- attribution
-  #style
   raster_source <- list(
     type = "raster",
     tiles = tiles,
