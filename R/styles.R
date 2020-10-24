@@ -1,4 +1,6 @@
 #' Create a background style
+#'
+#' Creates a background style that can be used as basemap.
 #' @param color The color of the background.
 #' @param opacity The opacity of the background.
 #' @export
@@ -18,10 +20,12 @@ basemap_background_style <- function(color = "#111", opacity = 1) {
 }
 
 #' Create a raster style
-#' @param tiles A list of tile urls.
+#'
+#' Creates a raster style that can be used as a basemap.
+#' @param tiles A list of tile URLs.
 #' @param attribution The attribution text of the tile layer.
 #' @export
-basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL) {
+basemap_raster_style <- function(tiles = stamen_raster_tiles("terrain"), attribution = NULL) {
   if (utils_has_attr(tiles, "attribution")) {
     attribution <- attributes(tiles)$attribution
   }
@@ -50,20 +54,35 @@ basemap_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = N
   )
 }
 
-#' Get OSM raster tile URLs
-#' @export
+### obsolete, maybe add 'osm_raster_tiles' as data
 get_osm_raster_tiles <- function() {
   sprintf("//%s.tile.openstreetmap.org/{z}/{x}/{y}.png", c(letters[1:3])) %>%
     structure(attribution = OSM_ATTRIBUTION)
 }
 
-#' Get Stamen raster tile URLs
-#' @param theme The theme of the tiles.
-#' @export
+### obsolete
 get_stamen_raster_tiles <- function(theme = "watercolor") {
   sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:3], theme) %>%
     structure(attribution = STAMEN_ATTRIBUTION)
 }
+
+### ---
+stamen_attribution <- list(
+  default = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+  watercolor = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+)
+
+#' Get Stamen raster tile URLs
+#' @param theme The theme of the tiles.
+#' @export
+stamen_raster_tiles <- function(theme = c("watercolor")) {
+  attribution <- ifelse(theme == "watercolor",
+                        stamen_attribution$watercolor,
+                        stamen_attribution$default)
+  sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:4], theme) %>%
+    structure(attribution = attribution)
+}
+### ---
 
 read_style <- function(filename) {
   yaml::read_yaml(filename)

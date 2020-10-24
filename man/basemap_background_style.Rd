@@ -12,5 +12,5 @@ basemap_background_style(color = "#111", opacity = 1)
 \item{opacity}{The opacity of the background.}
 }
 \description{
-Create a background style
+Creates a background style that can be used as basemap.
 }

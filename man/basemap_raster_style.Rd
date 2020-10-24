@@ -4,14 +4,14 @@
 \alias{basemap_raster_style}
 \title{Create a raster style}
 \usage{
-basemap_raster_style(tiles = get_osm_raster_tiles(),
+basemap_raster_style(tiles = stamen_raster_tiles("terrain"),
   attribution = NULL)
 }
 \arguments{
-\item{tiles}{A list of tile urls.}
+\item{tiles}{A list of tile URLs.}
 
 \item{attribution}{The attribution text of the tile layer.}
 }
 \description{
-Create a raster style
+Creates a raster style that can be used as a basemap.
 }
