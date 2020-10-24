@@ -1,5 +1,4 @@
 import { render } from "mustache";
-// import customControls from "./custom-controls";
 import * as customControls from "./custom-controls";
 import { DEFAULT_SOURCE } from "./constants";
 
@@ -12,46 +11,28 @@ function addControl(args) {
 function addSource(args) {
   const map = this;
   map.addSource(args.id, args.source);
-  // map.on("load", () => map.addSource(args.id, args.source));
 }
 
 function addLayer(args) {
   const map = this;
   args.style.source = args.style.source || DEFAULT_SOURCE;
   map.addLayer(args.style);
-  // map.on("load", () => map.addLayer(args.style));
 }
 
 function addPopups(args) {
   const map = this;
   const layer = args.layer;
-    map.on("click", layer, (e) => {
-      const lngLat = Object.values(e.lngLat);
-      const feature = e.features[0];
-      const content = render(args.popup, feature.properties);
-      new mapboxgl.Popup()
-        .setLngLat(lngLat)
-        .setHTML(content)
-        .addTo(map);
-    });
-    map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-    map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
-  /*
-  map.on("load", () => {
-    const layer = args.layer;
-    map.on("click", layer, (e) => {
-      const lngLat = Object.values(e.lngLat);
-      const feature = e.features[0];
-      const content = render(args.popup, feature.properties);
-      new mapboxgl.Popup()
-        .setLngLat(lngLat)
-        .setHTML(content)
-        .addTo(map);
-    });
-    map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-    map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
+  map.on("click", layer, (e) => {
+    const lngLat = Object.values(e.lngLat);
+    const feature = e.features[0];
+    const content = render(args.popup, feature.properties);
+    new mapboxgl.Popup()
+      .setLngLat(lngLat)
+      .setHTML(content)
+      .addTo(map);
   });
-  */
+  map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
+  map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
 }
 
 function addMarker(args) {
@@ -65,7 +46,6 @@ function addMarker(args) {
   }
 
   marker.addTo(map);
-  // map.on("load", () => marker.addTo(map));
 }
 
 function addCustomControl(args) {
@@ -77,13 +57,6 @@ function addCustomControl(args) {
 function setFilter(args) {
   const map = this;
   map.setFilter(args.layer, args.filter);
-  /*
-  if (map.loaded()) {
-    map.setFilter(args.layer, args.filter);
-  } else {
-    map.on("load", () => map.setFilter(args.layer, args.filter));
-  }
-  */
 }
 
 function setPaintProperty(args) {
