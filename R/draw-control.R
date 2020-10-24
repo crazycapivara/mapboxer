@@ -1,6 +1,6 @@
-#' Add a draw control to the map
+#' Add a draw control to the map (experimental)
 #' @inheritParams add_control
-#' @param data (experimental) A \code{GeoJSON} or \link[sf] object.
+#' @param data A \code{GeoJSON} or \code{sf} object.
 #' @seealso \url{https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md}
 #'   for available options for the draw control.
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/draw-control.R
 \name{add_draw_control}
 \alias{add_draw_control}
-\title{Add a draw control to the map}
+\title{Add a draw control to the map (experimental)}
 \usage{
 add_draw_control(map, ..., pos = NULL, data = NULL)
 }
@@ -14,10 +14,10 @@ add_draw_control(map, ..., pos = NULL, data = NULL)
 \item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
 
-\item{data}{(experimental) A \code{GeoJSON} or \link[sf] object.}
+\item{data}{A \code{GeoJSON} or \code{sf} object.}
 }
 \description{
-Add a draw control to the map
+Add a draw control to the map (experimental)
 }
 \seealso{
 \url{https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md}
