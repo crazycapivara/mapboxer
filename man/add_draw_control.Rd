@@ -14,7 +14,7 @@ add_draw_control(map, ..., pos = NULL, data = NULL)
 \item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
 
-\item{data}{(experimental) A \code{GeoJSON} object.}
+\item{data}{(experimental) A \code{GeoJSON} or \link[sf] object.}
 }
 \description{
 Add a draw control to the map
