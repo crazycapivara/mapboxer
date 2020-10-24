@@ -97,7 +97,7 @@ get_style_file <- function(filename) {
 #' @inheritParams set_view_state
 #' @inheritParams mapboxer
 #' @export
-set_map_style <- function(map, style) {
+set_style <- function(map, style) {
   if (inherits(map, "mapboxer_proxy")) {
     return(invoke_method(map, "setStyle", style = style))
   }
