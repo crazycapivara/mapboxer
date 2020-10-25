@@ -17,6 +17,22 @@ function addLayer(args) {
   const map = this;
   args.style.source = args.style.source || DEFAULT_SOURCE;
   map.addLayer(args.style);
+
+  // Pass data back to R in 'shinyMode'
+  if (HTMLWidgets.shinyMode) {
+    map.on("click", args.style.id, (e) => {
+      const widgetId = map.getContainer().id;
+      const feature = e.features[0];
+      const data = {
+        coords: e.lngLat,
+        props: feature.properties,
+        layer_id: feature.layer.id,
+        widget_id: widgetId
+      };
+      console.log(data);
+      Shiny.onInputChange(widgetId + "_onclick", data);
+    });
+  }
 }
 
 function addPopups(args) {
