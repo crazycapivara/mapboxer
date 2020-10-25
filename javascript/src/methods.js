@@ -21,8 +21,8 @@ function addLayer(args) {
 
 function addPopups(args) {
   const map = this;
-  const layer = args.layer;
-  map.on("click", layer, (e) => {
+  const layerId = args.layerId;
+  map.on("click", layerId, (e) => {
     const lngLat = Object.values(e.lngLat);
     const feature = e.features[0];
     const content = render(args.popup, feature.properties);
@@ -31,8 +31,8 @@ function addPopups(args) {
       .setHTML(content)
       .addTo(map);
   });
-  map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-  map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
+  map.on("mouseenter", layerId, () => map.getCanvas().style.cursor = "pointer");
+  map.on("mouseleave", layerId, () => map.getCanvas().style.cursor = "");
 }
 
 function addTooltips(args) {

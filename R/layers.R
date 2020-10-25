@@ -30,7 +30,7 @@ add_layer <- function(map, style, popup = NULL) {
 #' @example examples/api-reference/popups.R
 #' @export
 add_popups <- function(map, layer_id, popup) {
-  invoke_method(map, "addPopups", layer = layer_id, popup = popup)
+  invoke_method(map, "addPopups", layerId = layer_id, popup = popup)
 }
 
 #' Add tooltips to a layer
