@@ -34,7 +34,7 @@ add_mouse_position_control <- function(map, mustache_template = NULL, pos = NULL
 #' @export
 add_filter_control <- function(map, layer_id, filter = NULL, pos = NULL, rows = 1, cols = 20) {
   options <- list(
-    layer = layer_id,
+    layerId = layer_id,
     filter = filter,
     textareaAttributes = list(rows = rows, cols = cols)
   )

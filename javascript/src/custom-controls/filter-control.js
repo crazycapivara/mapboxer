@@ -16,15 +16,15 @@ export default class FilterControl {
     Object.assign(input, { spellcheck: false, id: "filter" }, this._options.textareaAttributes);
     if (this._options.filter) {
       input.value = JSON.stringify(this._options.filter);
-      map.setFilter(this._options.layer, this._options.filter);
-      // map.on("load", () => map.setFilter(this._options.layer, this._options.filter));
+      map.setFilter(this._options.layerId, this._options.filter);
+      // map.on("load", () => map.setFilter(this._options.layerId, this._options.filter));
     }
 
     input.addEventListener("keyup", e => {
       const expressionString = input.value;
       try {
         const expression = JSON.parse(expressionString);
-        map.setFilter(this._options.layer, expression);
+        map.setFilter(this._options.layerId, expression);
       } catch(err) {
         // console.log(err);
       }
