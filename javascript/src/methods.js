@@ -78,7 +78,7 @@ function addCustomControl(args) {
 
 function setFilter(args) {
   const map = this;
-  map.setFilter(args.layer, args.filter);
+  map.setFilter(args.layerId, args.filter);
 }
 
 function setPaintProperty(args) {
