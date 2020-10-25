@@ -4,7 +4,7 @@ library(mapboxer)
 view <- fluidPage(
   h1("mapboxer"),
   mapboxerOutput("map"),
-  textOutput("feature")
+  htmlOutput("feature")
 )
 
 server <- function(input, output) {
@@ -21,7 +21,12 @@ server <- function(input, output) {
   })
 
   output$feature <- renderText({
-    whisker::whisker.render("{{coords.lng}} {{coords.lat}}, {{layer_id}}, {{props.AREASQKM}}", input$map_onclick)
+    info <- input$map_onclick
+    if (is.null(info)) return("<p>Click on a feature to show its details.</p>")
+
+    whisker::whisker.render(
+      "<p>{{coords.lng}}, {{coords.lat}}</p>
+       <p><b>Layer Id:</b> {{layer_id}}, <b>Area:</b> {{props.AREASQKM}} km<sup>2</sup></p>", info)
   })
 }
 
