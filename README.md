@@ -11,7 +11,7 @@ Mapboxer makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an ope
 Installation
 ------------
 
-Once on cran, you can can install mapboxer with:
+Install the release version from [CRAN](https://cran.r-project.org/) with:
 
 ``` r
 install.packages("mapboxer")
@@ -31,7 +31,9 @@ Usage
 library(mapboxer)
 
 map <- motor_vehicle_collisions_nyc %>%
-  dplyr::mutate(color = ifelse(injured == 0, "yellow", "red")) %>%
+  dplyr::mutate(
+    color = ifelse(injured == 0, "yellow", "red")
+  ) %>%
   as_mapbox_source() %>%
   mapboxer(
     center = c(-73.9165, 40.7114),
@@ -39,11 +41,11 @@ map <- motor_vehicle_collisions_nyc %>%
   ) %>%
   add_navigation_control() %>%
   add_circle_layer(
-    circle_color = list("get", "color"),
+    circle_color = c("get", "color"),
     circle_blur = 1,
     circle_stroke_color = "red",
     circle_stroke_width = 1,
-    popup = "<p>{{date}} {{time}}</p><p>Number of injured persons: {{injured}}</p>"
+    popup = "<p>{{date}} {{time}}</p><p>Number of persons injured: {{injured}}</p>"
   )
 
 if (interactive()) map
