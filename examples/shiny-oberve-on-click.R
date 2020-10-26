@@ -26,7 +26,9 @@ server <- function(input, output) {
 
     whisker::whisker.render(
       "<p>{{coords.lng}}, {{coords.lat}}</p>
-       <p><b>Layer Id:</b> {{layer_id}}, <b>Area:</b> {{props.AREASQKM}} km<sup>2</sup></p>", info)
+       <p><b>Layer Id:</b> {{layer_id}}</p>
+       <p><b>Area:</b> {{props.AREASQKM}} km<sup>2</sup></p>
+       <p><b>Name:</b> {{props.SA2_NAME}}</p>", info)
   })
 }
 
