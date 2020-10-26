@@ -47,10 +47,13 @@ export default function(widgetElement, width, height) {
   }
 
   if (HTMLWidgets.shinyMode) {
-    console.log("Adding proxy")
+    // console.log("Adding proxy")
     Shiny.addCustomMessageHandler('mapboxer', (obj) => {
       console.log("proxyObject", obj);
-      obj.widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+      if (obj.id === widgetElement.id) {
+        console.log("Updating " + widgetElement.id);
+        obj.widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+      }
     });
   }
 
