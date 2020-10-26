@@ -18,6 +18,10 @@ function addLayer(args) {
   args.style.source = args.style.source || DEFAULT_SOURCE;
   map.addLayer(args.style);
 
+  const layerId = args.style.id;
+  map.on("mouseenter", layerId, () => map.getCanvas().style.cursor = "pointer");
+  map.on("mouseleave", layerId, () => map.getCanvas().style.cursor = "");
+
   // Pass data back to R in 'shinyMode'
   if (HTMLWidgets.shinyMode) {
     map.on("click", args.style.id, (e) => {
@@ -47,8 +51,8 @@ function addPopups(args) {
       .setHTML(content)
       .addTo(map);
   });
-  map.on("mouseenter", layerId, () => map.getCanvas().style.cursor = "pointer");
-  map.on("mouseleave", layerId, () => map.getCanvas().style.cursor = "");
+  //map.on("mouseenter", layerId, () => map.getCanvas().style.cursor = "pointer");
+  //map.on("mouseleave", layerId, () => map.getCanvas().style.cursor = "");
 }
 
 function addTooltips(args) {
@@ -59,7 +63,7 @@ function addTooltips(args) {
     closeOnClick: false
   });
   map.on("mousemove", layerId, (e) => {
-    map.getCanvas().style.cursor = "pointer";
+    //map.getCanvas().style.cursor = "pointer";
     const lngLat = Object.values(e.lngLat);
     const feature = e.features[0];
     const content = render(args.tooltip, feature.properties);
@@ -68,7 +72,7 @@ function addTooltips(args) {
       .addTo(map);
   });
   map.on("mouseleave", layerId, () => {
-    map.getCanvas().style.cursor = "";
+    //map.getCanvas().style.cursor = "";
     popup.remove();
   });
 }
