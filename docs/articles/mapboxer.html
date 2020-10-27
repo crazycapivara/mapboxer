@@ -106,7 +106,7 @@
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/markers/">Controls</a>: Controls are used to interact with the map. Besides the standard controls like <code>NavigationControl</code> included in Mapbox GL JS, mapboxer provides additional controls. For example, <code><a href="../reference/add_filter_control.html">add_filter_control()</a></code> can be used to filter your data on the fly without having to set up a Shiny app.</p></li>
 <li><p><a href="https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/">Expressions</a>: Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.</p></li>
-<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> to update an already rendered widget.</p></li>
+<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> to update an already rendered widget. Observe the <code>input$&lt;widget_id&gt;_onclick</code> event to get the properties for a clicked feature.</p></li>
 </ul>
 </div>
 <div id="quickstart" class="section level2">
@@ -128,16 +128,15 @@ motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
     <span class="dt">circle_color =</span> <span class="st">"red"</span>,
     <span class="dt">circle_radius =</span> <span class="dv">5</span>,
     <span class="co"># Use a mustache template to add popups to the layer</span>
-    <span class="dt">popup =</span> <span class="st">"Number of injured persons: {{injured}}"</span>
+    <span class="dt">popup =</span> <span class="st">"Number of persons injured: {{injured}}"</span>
   )</code></pre></div>
 </div>
 <div id="map" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map" class="anchor"></a>Map</h2>
-<p>With <code><a href="../reference/mapboxer.html">mapboxer()</a></code> you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the <code>add_*</code> and <code>set_*</code> functions. The parameters passed to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> itself are used to configure the initial setup of your map. The <code>style</code> parameter sets the style of the basemap. By default mapboxer uses a <a href="https://github.com/CartoDB/basemap-styles">Carto vector style</a>. It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers <code><a href="../reference/basemap_raster_style.html">basemap_raster_style()</a></code> or <code><a href="../reference/basemap_background_style.html">basemap_background_style()</a></code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> <span class="kw"><a href="../reference/basemap_raster_style.html">basemap_raster_style</a></span>())</code></pre></div>
-<p>The <code>...</code> parameter allows you to pass any option to the map described in the <a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map API Reference</a>:</p>
+<p>With <code><a href="../reference/mapboxer.html">mapboxer()</a></code> you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the <code>add_*</code> and <code>set_*</code> functions. The options to configure your map are set via the <code>...</code> parameter that allows you to pass on any option described in the <a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map API Reference</a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
+  <span class="dt">style =</span> basemaps<span class="op">$</span>Carto<span class="op">$</span>dark_matter,
   <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
   <span class="dt">zoom =</span> <span class="dv">9</span>,
   <span class="dt">minZoom =</span> <span class="dv">8</span>
@@ -153,6 +152,16 @@ motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(<span class="dt">circle_color =</span> <span class="st">"red"</span>)</code></pre></div>
 <p>As you can see above mapboxer is designed to use the widely used piping style provided by <a href="https://magrittr.tidyverse.org/">magrittr</a>.</p>
 </div>
+<div id="basemaps" class="section level2">
+<h2 class="hasAnchor">
+<a href="#basemaps" class="anchor"></a>Basemaps</h2>
+<p>The <code>style</code> parameter passed to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> sets the style of the basemap. By default mapboxer uses a <a href="https://github.com/CartoDB/basemap-styles">Carto vector style</a>. It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers <code><a href="../reference/basemap_raster_style.html">basemap_raster_style()</a></code> or <code><a href="../reference/basemap_background_style.html">basemap_background_style()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> <span class="kw"><a href="../reference/basemap_raster_style.html">basemap_raster_style</a></span>())</code></pre></div>
+<p>To use styles from <a href="https://www.mapbox.com/maps">Mapbox</a> it is recommened that your store your API token in an environment variable called <code>MAPBOX_API_TOKEN</code>. If not set globally you can store it as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">MAPBOX_API_TOKEN =</span> <span class="st">"&lt;yourSuperSecretToken&gt;"</span>)
+
+<span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> basemaps<span class="op">$</span>Mapbox<span class="op">$</span>satellite_v9)</code></pre></div>
+</div>
 <div id="sources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sources" class="anchor"></a>Sources</h2>
@@ -165,7 +174,7 @@ mvc_source_from_sf &lt;-<span class="st"> </span>mvc_sf <span class="op">%&gt;%<
 
 mvc_source_from_df &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"lng"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>)</code></pre></div>
-<p>With the <code>...</code> parameter you can pass further options to the source:</p>
+<p>With the <code>...</code> parameter you can pass additional options to the source:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mvc_cluster &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(
     <span class="dt">lat =</span> <span class="st">"lat"</span>,
@@ -189,12 +198,13 @@ mvc_source_from_df &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <s
     <span class="dt">circle_color =</span> <span class="st">"red"</span>,
     <span class="dt">circle_radius =</span> <span class="dv">5</span>
   )</code></pre></div>
-<div id="popups" class="section level3">
-<h3 class="hasAnchor">
-<a href="#popups" class="anchor"></a>Popups</h3>
+</div>
+<div id="popups-and-tooltips" class="section level2">
+<h2 class="hasAnchor">
+<a href="#popups-and-tooltips" class="anchor"></a>Popups and tooltips</h2>
 <p>Usually popups are added to a layer with the <code>popup</code> parameter of the <code>add_*_layer()</code> functions. Optionally you can also use <code><a href="../reference/add_popups.html">add_popups()</a></code>. The popup text (HTML) is specified by a <a href="https://github.com/janl/mustache.js">mustache</a> template in which the tags refer to the properties of the layer’s data object. If your data contains the properties <code>name</code> and <code>population</code>, it could look like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popup_template &lt;-<span class="st"> "Name: {{name}}&lt;/br&gt;Population: {{population}}"</span></code></pre></div>
-</div>
+<p>With <code><a href="../reference/add_tooltips.html">add_tooltips()</a></code> you can add tooltips to a layer in the same way.</p>
 </div>
 <div id="controls" class="section level2">
 <h2 class="hasAnchor">
@@ -223,7 +233,8 @@ mvc_source_from_df &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <s
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">[expression_name<span class="op">,</span> argument_0<span class="op">,</span> argument_1<span class="op">,</span> ...]</code></pre></div>
 <p>Therefore, in R you must use the <code>list</code> structure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(expression_name, argument_<span class="dv">0</span>, argument_<span class="dv">1</span>, ...)</code></pre></div>
-<p>If all elements are of the same type you can also use a vector, e. g. <code><a href="https://rdrr.io/r/base/c.html">c("get", "&lt;data-property&gt;")</a></code>.</p>
+<p>If all elements are of the same type you can also use a vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">expr_get_property &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"&lt;data-property&gt;"</span>)<span class="st">`</span></code></pre></div>
 <p>A simple expression is to use a data property to style your data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
@@ -286,7 +297,7 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
 START_VALUE &lt;-<span class="st"> </span><span class="dv">4</span>
 
 view &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/bootstrapPage.html">basicPage</a></span>(
-  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"slider"</span>, <span class="st">"Number of injured persons:"</span>,
+  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"slider"</span>, <span class="st">"Number of persons injured:"</span>,
               <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">7</span>, <span class="dt">step =</span> <span class="dv">1</span>, <span class="dt">value =</span> START_VALUE),
   <span class="kw"><a href="../reference/mapboxer-shiny.html">mapboxerOutput</a></span>(<span class="st">"map"</span>)
 )
@@ -314,6 +325,7 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
 }
 
 <span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
+<p>Observe the <code>input$&lt;widget_id&gt;_onclick</code> event to get the properties for a clicked feature.</p>
 </div>
   </div>
 
@@ -325,8 +337,10 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
 <li><a href="#overview">Overview</a></li>
       <li><a href="#quickstart">Quickstart</a></li>
       <li><a href="#map">Map</a></li>
+      <li><a href="#basemaps">Basemaps</a></li>
       <li><a href="#sources">Sources</a></li>
       <li><a href="#layers">Layers</a></li>
+      <li><a href="#popups-and-tooltips">Popups and tooltips</a></li>
       <li><a href="#controls">Controls</a></li>
       <li><a href="#expressions">Expressions</a></li>
       <li><a href="#shiny-bindings">Shiny Bindings</a></li>

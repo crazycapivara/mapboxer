@@ -30,7 +30,7 @@ This guide covers the basic usage.
 
 * [Expressions](https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/): Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.
 
-* [Shiny Bindings](https://shiny.rstudio.com/): With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `update_mapboxer()` to update an already rendered widget.
+* [Shiny Bindings](https://shiny.rstudio.com/): With `renderMapboxer()` and `mapboxerOutput()` you can integrate your visualizations in Shiny apps. Furthermore, you can use `mapboxer_proxy()` and `update_mapboxer()` to update an already rendered widget. Observe the `input$<widget_id>_onclick` event to get the properties for a clicked feature.
 
 ## Quickstart
 
@@ -51,23 +51,18 @@ motor_vehicle_collisions_nyc %>%
     circle_color = "red",
     circle_radius = 5,
     # Use a mustache template to add popups to the layer
-    popup = "Number of injured persons: {{injured}}"
+    popup = "Number of persons injured: {{injured}}"
   )
 ```
 
 ## Map
 
-With `mapboxer()` you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the `add_*` and `set_*` functions. The parameters passed to `mapboxer()` itself are used to configure the initial setup of your map. The `style` parameter sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a
-background color as basemap. Therefore, you can use the helpers `basemap_raster_style()` or `basemap_background_style()`:
-
-```r
-mapboxer(style = basemap_raster_style())
-```
-
-The `...` parameter allows you to pass any option to the map described in the [Map API Reference](https://docs.mapbox.com/mapbox-gl-js/api/map/):
+With `mapboxer()` you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the `add_*` and `set_*` functions.
+The options to configure your map are set via the `...` parameter that allows you to pass on any option described in the [Map API Reference](https://docs.mapbox.com/mapbox-gl-js/api/map/):
 
 ```r
 mapboxer(
+  style = basemaps$Carto$dark_matter,
   center = c(-73.9165, 40.7114),
   zoom = 9,
   minZoom = 8
@@ -89,6 +84,22 @@ motor_vehicle_collisions_nyc %>%
 
 As you can see above mapboxer is designed to use the widely used piping style provided by [magrittr](https://magrittr.tidyverse.org/).
 
+## Basemaps
+
+The `style` parameter passed to `mapboxer()` sets the style of the basemap. By default mapboxer uses a [Carto vector style](https://github.com/CartoDB/basemap-styles). It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers `basemap_raster_style()` or `basemap_background_style()`:
+
+```r
+mapboxer(style = basemap_raster_style())
+```
+
+To use styles from [Mapbox](https://www.mapbox.com/maps) it is recommened that your store your API token in an environment variable called `MAPBOX_API_TOKEN`. If not set globally you can store it as follows:
+
+```r
+Sys.setenv(MAPBOX_API_TOKEN = "<yourSuperSecretToken>")
+
+mapboxer(style = basemaps$Mapbox$satellite_v9)
+```
+
 ## Sources
 
 Sources state which data the map should display. To show the data on the map you need
@@ -108,7 +119,7 @@ mvc_source_from_df <- motor_vehicle_collisions_nyc %>%
   as_mapbox_source(lng = "lng", lat = "lat")
 ```
 
-With the `...` parameter you can pass further options to the source:
+With the `...` parameter you can pass additional options to the source:
 
 ```r
 mvc_cluster <- motor_vehicle_collisions_nyc %>%
@@ -121,7 +132,7 @@ mvc_cluster <- motor_vehicle_collisions_nyc %>%
   )
 ```
 
-See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/) for available options for the used source type. Sources are either passed to the `add_*_layer` functions or as first parameter to `mapboxer()` setting it as default source. With `add_source()` you can add a source to the map that you refer to in the layer definition by its ID.  
+See the [Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/) for available options for the used source type. Sources are either passed to the `add_*_layer` functions or as first parameter to `mapboxer()` setting it as default source. With `add_source()` you can add a source to the map that you refer to in the layer definition by its ID.
 
 ## Layers
 
@@ -139,7 +150,7 @@ mapboxer(
   )
 ```
 
-### Popups
+## Popups and tooltips
 
 Usually popups are added to a layer with the `popup` parameter of the `add_*_layer()` functions. Optionally you can also use `add_popups()`. The popup text (HTML) is specified by a [mustache](https://github.com/janl/mustache.js) template in which the tags refer to the properties of the layer's data object. If your data contains the properties `name` and `population`, it could look like this:
 
@@ -147,12 +158,14 @@ Usually popups are added to a layer with the `popup` parameter of the `add_*_lay
 popup_template <- "Name: {{name}}</br>Population: {{population}}"
 ```
 
+With `add_tooltips()` you can add tooltips to a layer in the same way.
+
 ## Controls
 
 Controls are used to interact with the user. They are displayed as overlays on top of the map. Options of the standard controls described in the [Markers and Controls API Reference](https://docs.mapbox.com/mapbox-gl-js/api/markers/) are provided with the
 `...` parameter. The position is set with the `pos` parameter, one of `top-left`, `top-right`, `bottom-right`, `bottom-left`:
 
-```r
+```{r, eval = FALSE}
 mapboxer() %>%
   add_navigation_control(
     pos = "top-left",
@@ -184,7 +197,10 @@ Therefore, in R you must use the `list` structure:
 list(expression_name, argument_0, argument_1, ...)
 ```
 
-If all elements are of the same type you can also use a vector, e. g. `c("get", "<data-property>")`.
+If all elements are of the same type you can also use a vector:
+```r
+expr_get_property <- c("get", "<data-property>")`
+```
 
 A simple expression is to use a data property to style your data:
 
@@ -266,7 +282,7 @@ LAYER_ID <- "crashes"
 START_VALUE <- 4
 
 view <- basicPage(
-  sliderInput("slider", "Number of injured persons:",
+  sliderInput("slider", "Number of persons injured:",
               min = 0, max = 7, step = 1, value = START_VALUE),
   mapboxerOutput("map")
 )
@@ -295,3 +311,5 @@ backend <- function(input, output) {
 
 if (interactive()) shinyApp(view, backend)
 ```
+
+Observe the `input$<widget_id>_onclick` event to get the properties for a clicked feature.
