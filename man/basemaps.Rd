@@ -3,12 +3,12 @@
 \docType{data}
 \name{basemaps}
 \alias{basemaps}
-\title{A list of basemaps styles}
+\title{A list of basemap style URLs}
 \format{An object of class \code{list} of length 2.}
 \usage{
 basemaps
 }
 \description{
-A list of basemaps styles
+A list of basemap style URLs
 }
 \keyword{datasets}

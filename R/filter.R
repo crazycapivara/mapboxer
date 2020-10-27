@@ -1,4 +1,4 @@
-#' Update the filter of a layer
+#' Set the filter of a layer
 #' @inheritParams set_paint_property
 #' @inheritParams add_circle_layer
 #' @export

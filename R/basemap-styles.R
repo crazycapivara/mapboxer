@@ -1,3 +1,5 @@
+### OBSOLETE - delete file
+
 PROVIDERS <- list(
   Carto = list(
     url = "https://basemaps.cartocdn.com/gl/%s-gl-style/style.json",
@@ -18,9 +20,7 @@ build_urls <- function(provider) {
   urls
 }
 
-#' Get list of basemaps
-#' @example examples/api-reference/basemaps.R
-#' @export
+### OBSOLETE
 get_basemaps <- function() {
   lapply(PROVIDERS, build_urls)
 }
