@@ -45,7 +45,8 @@ view <- basicPage(
     value = 0
   ),
   checkboxInput("hide", "Hide layer"),
-  mapboxerOutput("map")
+  mapboxerOutput("map"),
+  htmlOutput("datetime")
 )
 
 server <- function(input, output) {
@@ -54,11 +55,11 @@ server <- function(input, output) {
       mapboxer(
         center = c(-73.9165, 40.7114),
         zoom = 10,
-        style = basemap_raster_style(get_stamen_raster_tiles())
+        style = basemap_raster_style(stamen_raster_tiles())
       ) \%>\%
       add_circle_layer(
         circle_color = "black",
-        popup = "{{injured}}",
+        popup = "Number of persons injured {{injured}}",
         id = LAYER_ID
       ) \%>\%
       add_mouse_position_control(
@@ -78,6 +79,11 @@ server <- function(input, output) {
     mapboxer_proxy("map") \%>\%
       set_layout_property(LAYER_ID, "visibility", !input$hide) \%>\%
       update_mapboxer()
+  })
+
+  output$datetime <- renderText({
+    props <- input$map_onclick$props
+    sprintf("<p>\%s \%s</p>", props$date, props$time)
   })
 }
 
