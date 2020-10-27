@@ -23,7 +23,8 @@ plot(sf::st_geometry(grid_sf), add = TRUE, col = grid_sf$color)
 as_mapbox_source(grid_sf) %>%
   mapboxer(
     bounds = sf::st_bbox(grid_sf),
-    fitBoundsOptions = list(padding = 20)
+    fitBoundsOptions = list(padding = 20),
+    element_id = "bender"
   ) %>%
   add_navigation_control() %>%
   add_circle_layer(
