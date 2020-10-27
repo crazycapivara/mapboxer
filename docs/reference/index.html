@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9001</span>
       </span>
     </div>
 
@@ -80,6 +80,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/examples/showcase.html">Showcase</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -145,9 +157,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="send_mapboxer_update.html">send_mapboxer_update()</a></code> </p>
+          <p><code><a href="update_mapboxer.html">update_mapboxer()</a></code> </p>
         </td>
         <td><p>Update a mapboxer proxy object in a Shiny app</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fit_bounds.html">fit_bounds()</a></code> </p>
+        </td>
+        <td><p>Fit the map to a bounding box</p></td>
       </tr><tr>
         
         <td>
@@ -223,7 +241,7 @@
         <td>
           <p><code><a href="set_filter.html">set_filter()</a></code> </p>
         </td>
-        <td><p>Update the filter of a layer</p></td>
+        <td><p>Set the filter of a layer</p></td>
       </tr><tr>
         
         <td>
@@ -239,6 +257,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="add_tooltips.html">add_tooltips()</a></code> </p>
+        </td>
+        <td><p>Add tooltips to a layer</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="add_marker.html">add_marker()</a></code> </p>
         </td>
         <td><p>Add a single marker to the map</p></td>
@@ -246,46 +270,40 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-styles" class="hasAnchor"><a href="#section-styles" class="anchor"></a>Styles</h2>
+          <h2 id="section-basemap-styles" class="hasAnchor"><a href="#section-basemap-styles" class="anchor"></a>Basemap Styles</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="set_map_style.html">set_map_style()</a></code> </p>
+          <p><code><a href="basemap_background_style.html">basemap_background_style()</a></code> </p>
+        </td>
+        <td><p>Create a background style</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="basemap_raster_style.html">basemap_raster_style()</a></code> </p>
+        </td>
+        <td><p>Create a raster style</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_style.html">set_style()</a></code> </p>
         </td>
         <td><p>Set the style of the map</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="use_background_style.html">use_background_style()</a></code> </p>
+          <p><code><a href="stamen_raster_tiles.html">stamen_raster_tiles()</a></code> </p>
         </td>
-        <td><p>Use a background color as map style</p></td>
+        <td><p>Get Stamen raster tile URLs</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="use_carto_style.html">use_carto_style()</a></code> </p>
+          <p><code><a href="basemaps.html">basemaps</a></code> </p>
         </td>
-        <td><p>Use Carto vector tiles as map style</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="use_raster_style.html">use_raster_style()</a></code> </p>
-        </td>
-        <td><p>Use raster tiles as map style</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="use_stamen_raster_style.html">use_stamen_raster_style()</a></code> </p>
-        </td>
-        <td><p>Use Stamen raster tiles as map style</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_osm_raster_tiles.html">get_osm_raster_tiles()</a></code> </p>
-        </td>
-        <td><p>Get OSM raster tile urls</p></td>
+        <td><p>A list of basemap style URLs</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -300,6 +318,12 @@
           <p><code><a href="add_control.html">add_control()</a></code> <code><a href="add_control.html">add_navigation_control()</a></code> <code><a href="add_control.html">add_scale_control()</a></code> <code><a href="add_control.html">add_fullscreen_control()</a></code> </p>
         </td>
         <td><p>Add a standard control to the map</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_draw_control.html">add_draw_control()</a></code> </p>
+        </td>
+        <td><p>Add a draw control to the map (experimental)</p></td>
       </tr><tr>
         
         <td>
@@ -319,6 +343,20 @@
         </td>
         <td><p>Add a text control to the map</p></td>
       </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-sample-data" class="hasAnchor"><a href="#section-sample-data" class="anchor"></a>Sample Data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="motor_vehicle_collisions_nyc.html">motor_vehicle_collisions_nyc</a></code> </p>
+        </td>
+        <td><p>Motor Vehicle Collisions in NYC</p></td>
+      </tr>
     </tbody>
     </table>
   </div>
@@ -329,8 +367,9 @@
       <li><a href="#section-map">Map</a></li>
       <li><a href="#section-sources">Sources</a></li>
       <li><a href="#section-layers">Layers</a></li>
-      <li><a href="#section-styles">Styles</a></li>
+      <li><a href="#section-basemap-styles">Basemap Styles</a></li>
       <li><a href="#section-controls">Controls</a></li>
+      <li><a href="#section-sample-data">Sample Data</a></li>
     </ul>
   </div>
 </div>
