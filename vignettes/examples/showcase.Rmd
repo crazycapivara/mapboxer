@@ -43,7 +43,7 @@ Use the textbox on the map to filter your data.
 
 ## Clustered Point Layer
 
-Point features can be clustered into groups by setting `cluster = TRUE` in your source definition. Clustered points have the additional properties `point_count` and `point_count_abbreviated` that can be used in expressions and popups. See [Mapbox Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson) for more details.
+Point features can be clustered into groups by setting `cluster = TRUE` in your source definition. Clustered points have the additional properties `point_count` and `point_count_abbreviated` that can be used in expressions and popups. Furthermore, you can define custom cluster properties using expressions. See [Mapbox Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson) for more details.
 
 ```{r}
 map <- as_mapbox_source(
