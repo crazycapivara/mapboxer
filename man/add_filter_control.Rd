@@ -4,7 +4,8 @@
 \alias{add_filter_control}
 \title{Add a filter control to the map}
 \usage{
-add_filter_control(map, layer_id, filter = NULL, pos = NULL)
+add_filter_control(map, layer_id, filter = NULL, pos = NULL,
+  rows = 1, cols = 20)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
@@ -15,6 +16,10 @@ add_filter_control(map, layer_id, filter = NULL, pos = NULL)
 
 \item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
+
+\item{rows}{The number of rows of the textarea input.}
+
+\item{cols}{The number of columns of the textarea input.}
 }
 \description{
 Add a filter control to the map

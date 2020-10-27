@@ -8,16 +8,21 @@
 #' @param element_id The unique ID of the widget.
 #' @param token A Mapbox API access token. Only needed if you want to use styles from Mapbox.
 #' @export
-mapboxer <- function(source = NULL, style = use_carto_style(), ...,
+mapboxer <- function(source = NULL, style = basemaps$Carto$dark_matter, ...,
                      width = NULL, height = NULL, element_id = NULL,
                      token = Sys.getenv("MAPBOX_API_TOKEN")) {
+  map_props <- list(
+    style = style,
+    ...
+  )
+  if (inherits(map_props$bounds, "bbox")) {
+    map_props$bounds %<>% unname()
+  }
+
   widget_data <- list(
     source = source,
     calls = list(),
-    mapProps = list(
-      style = style,
-      ...
-    ),
+    mapProps = map_props,
     accessToken = token
   )
 
@@ -45,6 +50,7 @@ mapboxer <- function(source = NULL, style = use_carto_style(), ...,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #' @name mapboxer-shiny
+#' @example examples/api-reference/shiny.R
 #' @export
 mapboxerOutput <- function(outputId, width = "100%", height = "400px") {
   htmlwidgets::shinyWidgetOutput(outputId, "mapboxer", width, height, package = "mapboxer")

@@ -1,5 +1,4 @@
 import { render } from "mustache";
-// import customControls from "./custom-controls";
 import * as customControls from "./custom-controls";
 import { DEFAULT_SOURCE } from "./constants";
 
@@ -12,46 +11,70 @@ function addControl(args) {
 function addSource(args) {
   const map = this;
   map.addSource(args.id, args.source);
-  // map.on("load", () => map.addSource(args.id, args.source));
 }
 
 function addLayer(args) {
   const map = this;
   args.style.source = args.style.source || DEFAULT_SOURCE;
   map.addLayer(args.style);
-  // map.on("load", () => map.addLayer(args.style));
+
+  const layerId = args.style.id;
+  map.on("mouseenter", layerId, () => map.getCanvas().style.cursor = "pointer");
+  map.on("mouseleave", layerId, () => map.getCanvas().style.cursor = "");
+
+  // Pass data back to R in 'shinyMode'
+  if (HTMLWidgets.shinyMode) {
+    map.on("click", args.style.id, (e) => {
+      const widgetId = map.getContainer().id;
+      const feature = e.features[0];
+      const data = {
+        coords: e.lngLat,
+        props: feature.properties,
+        layer_id: feature.layer.id,
+        widget_id: widgetId
+      };
+      console.log(data);
+      Shiny.onInputChange(widgetId + "_onclick", data);
+    });
+  }
 }
 
 function addPopups(args) {
   const map = this;
-  const layer = args.layer;
-    map.on("click", layer, (e) => {
-      const lngLat = Object.values(e.lngLat);
-      const feature = e.features[0];
-      const content = render(args.popup, feature.properties);
-      new mapboxgl.Popup()
-        .setLngLat(lngLat)
-        .setHTML(content)
-        .addTo(map);
-    });
-    map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-    map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
-  /*
-  map.on("load", () => {
-    const layer = args.layer;
-    map.on("click", layer, (e) => {
-      const lngLat = Object.values(e.lngLat);
-      const feature = e.features[0];
-      const content = render(args.popup, feature.properties);
-      new mapboxgl.Popup()
-        .setLngLat(lngLat)
-        .setHTML(content)
-        .addTo(map);
-    });
-    map.on("mouseenter", layer, () => map.getCanvas().style.cursor = "pointer");
-    map.on("mouseleave", layer, () => map.getCanvas().style.cursor = "");
+  const layerId = args.layerId;
+  map.on("click", layerId, (e) => {
+    const lngLat = Object.values(e.lngLat);
+    const feature = e.features[0];
+    const content = render(args.popup, feature.properties);
+    new mapboxgl.Popup()
+      .setLngLat(lngLat)
+      .setHTML(content)
+      .addTo(map);
   });
-  */
+  //map.on("mouseenter", layerId, () => map.getCanvas().style.cursor = "pointer");
+  //map.on("mouseleave", layerId, () => map.getCanvas().style.cursor = "");
+}
+
+function addTooltips(args) {
+  const map = this;
+  const layerId = args.layerId;
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+  map.on("mousemove", layerId, (e) => {
+    //map.getCanvas().style.cursor = "pointer";
+    const lngLat = Object.values(e.lngLat);
+    const feature = e.features[0];
+    const content = render(args.tooltip, feature.properties);
+    popup.setLngLat(lngLat)
+      .setHTML(content)
+      .addTo(map);
+  });
+  map.on("mouseleave", layerId, () => {
+    //map.getCanvas().style.cursor = "";
+    popup.remove();
+  });
 }
 
 function addMarker(args) {
@@ -65,7 +88,6 @@ function addMarker(args) {
   }
 
   marker.addTo(map);
-  // map.on("load", () => marker.addTo(map));
 }
 
 function addCustomControl(args) {
@@ -76,14 +98,7 @@ function addCustomControl(args) {
 
 function setFilter(args) {
   const map = this;
-  map.setFilter(args.layer, args.filter);
-  /*
-  if (map.loaded()) {
-    map.setFilter(args.layer, args.filter);
-  } else {
-    map.on("load", () => map.setFilter(args.layer, args.filter));
-  }
-  */
+  map.setFilter(args.layerId, args.filter);
 }
 
 function setPaintProperty(args) {
@@ -102,16 +117,42 @@ function setData(args) {
   map.getSource(source).setData(args.data);
 }
 
+function fitBounds(args) {
+  const map = this;
+  map.fitBounds(args.bounds, args.options || { });
+}
+
+function setStyle(args) {
+  const map = this;
+  map.setStyle(args.style);
+}
+
+// Plugins
+function addDrawControl(args) {
+  const map = this;
+  const draw = new MapboxDraw(args.options);
+  map.addControl(draw, args.pos);
+  if (args.data) draw.add(args.data);
+  map.on("draw.create", e => {
+    console.log(e.features);
+    console.log(draw.getAll());
+  });
+}
+
 export default {
   addControl,
   addSource,
   addLayer,
   addPopups,
+  addTooltips,
   addMarker,
   addCustomControl,
   customControls,
   setFilter,
   setPaintProperty,
   setLayoutProperty,
-  setData
+  setData,
+  fitBounds,
+  setStyle,
+  addDrawControl
 };

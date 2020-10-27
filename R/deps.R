@@ -14,3 +14,8 @@ use_deps <- function(dep_names) {
     do.call(htmltools::htmlDependency, dep)
   })
 }
+
+add_deps <- function(widget, deps) {
+  widget$dependencies <- c(widget$dependencies, deps)
+  widget
+}

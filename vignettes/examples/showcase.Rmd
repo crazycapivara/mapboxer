@@ -1,0 +1,122 @@
+---
+title: Showcase
+---
+
+The examples below show Motor Vehicle Collisions in NYC.
+
+## Point Layer
+
+```{r}
+library(mapboxer)
+
+LAYER_ID <- "crashes"
+
+mvc <- motor_vehicle_collisions_nyc
+mvc$color <- cut(
+  mvc$injured,
+  breaks = c(0, 1, 2, Inf),
+  labels = c("yellow", "orange", "red"),
+  right = FALSE
+) %>% as.character()
+
+map <- as_mapbox_source(mvc) %>%
+  mapboxer(
+    center = c(-73.9165, 40.7114),
+    zoom = 10
+  ) %>%
+  add_navigation_control() %>%
+  add_circle_layer(
+    id = LAYER_ID,
+    circle_color = c("get", "color"),
+    popup = "<p>{{date}} {{time}}</p><p>Number of persons injured: {{injured}}</p>"
+  ) %>%
+  add_filter_control(
+    LAYER_ID,
+    filter = list(">=", "injured", 0),
+    pos = "top-left"
+  )
+
+map
+```
+
+Use the textbox on the map to filter your data.
+
+## Clustered Point Layer
+
+Point features can be clustered into groups by setting `cluster = TRUE` in your source definition. Clustered points have the additional properties `point_count` and `point_count_abbreviated` that can be used in expressions and popups. See [Mapbox Sources API Reference](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson) for more details.
+
+```{r}
+map <- as_mapbox_source(
+  mvc,
+  cluster = TRUE,
+  clusterMaxZoom = 11,
+  clusterRadius = 50,
+  clusterProperties = list(
+    sumInjured = list("+", c("get", "injured"))
+  )
+) %>%
+  mapboxer(
+    center = c(-73.9165, 40.7114),
+    zoom = 10,
+    minZoom = 9
+  ) %>%
+  add_navigation_control() %>%
+  add_circle_layer(
+    id = "clustered",
+    circle_color = "blue",
+    circle_radius = list(
+      "step", c("get", "point_count"),
+      10, 40, # 10px if point count < 40
+      15, 60, # 15px if point count >= 40 and < 60
+      20, 80, # 20px if point count >= 60 and < 80
+      25, 100, # 25px if point count >= 80 and < 100
+      30 # 30px if point count >= 100
+    ),
+    popup = "Number of crashes: {{point_count}}</br>Number of persons injured: {{sumInjured}}",
+    filter = c("has", "point_count")
+  ) %>%
+  add_circle_layer(
+    id = "unclustered",
+    filter = list("!", c("has", "point_count")),
+    circle_color = "red",
+    circle_radius = 5,
+    popup = "{{date}} {{time}}</br>Number of persons injured: {{injured}}"
+  )
+
+map
+```
+
+## Filled Polygon Layer
+
+```{r}
+mvc_sf <- sf::st_as_sf(
+  motor_vehicle_collisions_nyc,
+  coords = c("lng", "lat"),
+  crs = 4326
+)
+
+sf::sf_use_s2(TRUE)
+
+grid_sf <- sf::st_make_grid(mvc_sf, square = TRUE)[mvc_sf] %>%
+  sf::st_sf()
+
+grid_sf %<>% dplyr::mutate(
+  count = lengths(sf::st_intersects(grid_sf, mvc_sf)),
+  color = scales::col_quantile("Blues", count)(count)
+)
+
+map <- as_mapbox_source(grid_sf) %>%
+  mapboxer(
+    bounds = sf::st_bbox(grid_sf),
+    fitBoundsOptions = list(padding = 20)
+  ) %>%
+  add_navigation_control() %>%
+  add_fill_layer(
+    fill_color = c("get", "color"),
+    fill_antialias = FALSE,
+    fill_opacity = 0.4,
+    popup = "Number of crashes: {{count}}"
+  )
+
+map
+```

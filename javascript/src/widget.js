@@ -14,7 +14,7 @@ export default function(widgetElement, width, height) {
 
   function renderValue(widgetData) {
     console.log("mapboxgl", mapboxgl.version);
-    console.log(widgetData);
+    console.log("widgetData", widgetData);
     const mapStyle = widgetData.mapProps.style;
 
     // The background layer needs an empty sources object.
@@ -40,21 +40,6 @@ export default function(widgetElement, width, height) {
     map.on("load", () => widgetData.calls.forEach(({ methodName, args }) => {
       methods[methodName].call(map, args);
     }));
-    /*
-    widgetData.calls.forEach(({ methodName, args }) => {
-      map.on("load", () => methods[methodName].call(map, args));
-    });
-    */
-    /*
-    if (map.loaded()) {
-      widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
-    } else {
-      map.on("load", () => widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args)));
-    }
-    */
-
-
-
   }
 
   function resize(width, height) {
@@ -62,10 +47,13 @@ export default function(widgetElement, width, height) {
   }
 
   if (HTMLWidgets.shinyMode) {
-    console.log("Adding proxy")
-    Shiny.addCustomMessageHandler('mapboxer', function(obj) {
-      console.log("proxyObj", obj);
-      obj.widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+    // console.log("Adding proxy")
+    Shiny.addCustomMessageHandler('mapboxer', (obj) => {
+      console.log("proxyObject", obj);
+      if (obj.id === widgetElement.id) {
+        console.log("Updating " + widgetElement.id);
+        obj.widgetData.calls.forEach(({ methodName, args }) => methods[methodName].call(map, args));
+      }
     });
   }
 

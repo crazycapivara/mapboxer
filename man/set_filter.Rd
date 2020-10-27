@@ -2,7 +2,7 @@
 % Please edit documentation in R/filter.R
 \name{set_filter}
 \alias{set_filter}
-\title{Update the filter of a layer}
+\title{Set the filter of a layer}
 \usage{
 set_filter(map, layer_id, filter)
 }
@@ -14,5 +14,5 @@ set_filter(map, layer_id, filter)
 \item{filter}{A filter expression that is applied to the \code{source}.}
 }
 \description{
-Update the filter of a layer
+Set the filter of a layer
 }

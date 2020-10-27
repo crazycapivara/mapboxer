@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9001</span>
       </span>
     </div>
 
@@ -48,6 +48,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/examples/showcase.html">Showcase</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -90,11 +102,11 @@
 <a href="#overview" class="anchor"></a>Overview</h2>
 <ul>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map</a>: The map is the main component of your visualization to which you then add other components like layers, controls or sources. Maps are created with <code><a href="../reference/mapboxer.html">mapboxer()</a></code>.</p></li>
-<li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/">Sources</a>: Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with <code><a href="../reference/as_mapbox_source.html">as_mapbox_source()</a></code>.</p></li>
-<li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shorcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
+<li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/">Sources</a>: Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with <code><a href="../reference/as_mapbox_source.html">as_mapbox_source()</a></code>. With <code><a href="../reference/add_source.html">add_source()</a></code> or as first parameter of <code><a href="../reference/mapboxer.html">mapboxer()</a></code> sources can be added to the map so that they can be used accross layers.</p></li>
+<li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/markers/">Controls</a>: Controls are used to interact with the map. Besides the standard controls like <code>NavigationControl</code> included in Mapbox GL JS, mapboxer provides additional controls. For example, <code><a href="../reference/add_filter_control.html">add_filter_control()</a></code> can be used to filter your data on the fly without having to set up a Shiny app.</p></li>
 <li><p><a href="https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/">Expressions</a>: Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.</p></li>
-<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/send_mapboxer_update.html">send_mapboxer_update()</a></code> to update the already rendered widget.</p></li>
+<li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> to update an already rendered widget. Observe the <code>input$&lt;widget_id&gt;_onclick</code> event to get the properties for a clicked feature.</p></li>
 </ul>
 </div>
 <div id="quickstart" class="section level2">
@@ -104,84 +116,95 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mapboxer)
 
 <span class="co"># Create a source</span>
-quakes <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"long"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># Setup a map</span>
+motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"lng"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># Setup a map with the default source above</span>
 <span class="st">  </span><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
-    <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>),
-    <span class="dt">zoom =</span> <span class="dv">4</span>
+    <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
+    <span class="dt">zoom =</span> <span class="dv">9</span>
   ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># Add a layer styling the data of the source</span>
+<span class="st">  </span><span class="co"># Add a layer styling the data of the default source</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
     <span class="dt">circle_color =</span> <span class="st">"red"</span>,
     <span class="dt">circle_radius =</span> <span class="dv">5</span>,
     <span class="co"># Use a mustache template to add popups to the layer</span>
-    <span class="dt">popup =</span> <span class="st">"Magnitude: {{mag}}"</span>
+    <span class="dt">popup =</span> <span class="st">"Number of persons injured: {{injured}}"</span>
   )</code></pre></div>
 </div>
 <div id="map" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map" class="anchor"></a>Map</h2>
-<p>With <code><a href="../reference/mapboxer.html">mapboxer()</a></code> you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the <code>add_*</code> and <code>set_*</code> functions. The parameters passed to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> itself are used to configure the initial setup of your map. The <code>style</code> parameter sets the style of the basemap. By default mapboxer uses a <a href="https://github.com/CartoDB/basemap-styles">Carto vector style</a>. It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers <code><a href="../reference/use_raster_style.html">use_raster_style()</a></code> or <code><a href="../reference/use_background_style.html">use_background_style()</a></code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> <span class="kw"><a href="../reference/use_raster_style.html">use_raster_style</a></span>())</code></pre></div>
-<p>The <code>...</code> parameter allows you to pass any option to the map described in the <a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map API Reference</a>:</p>
+<p>With <code><a href="../reference/mapboxer.html">mapboxer()</a></code> you create a map object. This is the main component of your vizualization. To add components like layers or controls or to modify your map you use the <code>add_*</code> and <code>set_*</code> functions. The options to configure your map are set via the <code>...</code> parameter that allows you to pass on any option described in the <a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map API Reference</a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
-  <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>),
-  <span class="dt">zoom =</span> <span class="dv">4</span>
+  <span class="dt">style =</span> basemaps<span class="op">$</span>Carto<span class="op">$</span>dark_matter,
+  <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
+  <span class="dt">zoom =</span> <span class="dv">9</span>,
+  <span class="dt">minZoom =</span> <span class="dv">8</span>
 )</code></pre></div>
 <p>With the optional <code>source</code> parameter you can add a default source to the map that will be used by the layers if no source is provided. Therefore, it is easy to integrate <code><a href="../reference/mapboxer.html">mapboxer()</a></code> into your workflow:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes <span class="op">%&gt;%</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(mag <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"long"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(killed <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
-    <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>),
-    <span class="dt">zoom =</span> <span class="dv">4</span> 
+    <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
+    <span class="dt">zoom =</span> <span class="dv">9</span>
   ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(<span class="dt">circle_color =</span> <span class="st">"red"</span>)</code></pre></div>
 <p>As you can see above mapboxer is designed to use the widely used piping style provided by <a href="https://magrittr.tidyverse.org/">magrittr</a>.</p>
+</div>
+<div id="basemaps" class="section level2">
+<h2 class="hasAnchor">
+<a href="#basemaps" class="anchor"></a>Basemaps</h2>
+<p>The <code>style</code> parameter passed to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> sets the style of the basemap. By default mapboxer uses a <a href="https://github.com/CartoDB/basemap-styles">Carto vector style</a>. It is also possible to use raster tiles or a background color as basemap. Therefore, you can use the helpers <code><a href="../reference/basemap_raster_style.html">basemap_raster_style()</a></code> or <code><a href="../reference/basemap_background_style.html">basemap_background_style()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> <span class="kw"><a href="../reference/basemap_raster_style.html">basemap_raster_style</a></span>())</code></pre></div>
+<p>To use styles from <a href="https://www.mapbox.com/maps">Mapbox</a> it is recommened that your store your API token in an environment variable called <code>MAPBOX_API_TOKEN</code>. If not set globally you can store it as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">MAPBOX_API_TOKEN =</span> <span class="st">"&lt;yourSuperSecretToken&gt;"</span>)
+
+<span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">style =</span> basemaps<span class="op">$</span>Mapbox<span class="op">$</span>satellite_v9)</code></pre></div>
 </div>
 <div id="sources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sources" class="anchor"></a>Sources</h2>
 <p>Sources state which data the map should display. To show the data on the map you need to bind a source to a layer which contains the styling details like color or width. This makes it possible to style the same source in different ways. The easiest way to create a source from an R data object is to use <code><a href="../reference/as_mapbox_source.html">as_mapbox_source()</a></code>. Supported structures are <a href="https://r-spatial.github.io/sf/index.html">sf</a>-objects and data frames that contain longitudes and latitudes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes_sf &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
-<span class="st">  </span>sf<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf</a></span>(<span class="dt">coords =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"long"</span>, <span class="st">"lat"</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mvc_sf &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
+<span class="st">  </span>sf<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf</a></span>(<span class="dt">coords =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"lng"</span>, <span class="st">"lat"</span>), <span class="dt">crs =</span> <span class="dv">4326</span>)
 
-quakes_source_from_sf &lt;-<span class="st"> </span>quakes_sf <span class="op">%&gt;%</span>
+mvc_source_from_sf &lt;-<span class="st"> </span>mvc_sf <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>()
 
-quakes_source_from_df &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lat =</span> <span class="st">"lat"</span>, <span class="dt">lng =</span> <span class="st">"long"</span>)</code></pre></div>
-<p>With the <code>...</code> parameter you can pass further options to the source:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes_cluster &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
+mvc_source_from_df &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"lng"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>)</code></pre></div>
+<p>With the <code>...</code> parameter you can pass additional options to the source:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mvc_cluster &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(
     <span class="dt">lat =</span> <span class="st">"lat"</span>,
-    <span class="dt">lng =</span> <span class="st">"long"</span>,
+    <span class="dt">lng =</span> <span class="st">"lng"</span>,
     <span class="dt">cluster =</span> <span class="ot">TRUE</span>,
     <span class="dt">clusterMaxZoom =</span> <span class="dv">14</span>,
     <span class="dt">clusterRadius =</span> <span class="dv">50</span>
   )</code></pre></div>
-<p>See the <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/">Sources API Reference</a> for available options for the used source type. Sources are either passed to the <code>add_*_layer</code> functions or as first parameter to <code><a href="../reference/mapboxer.html">mapboxer()</a></code>.</p>
+<p>See the <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/">Sources API Reference</a> for available options for the used source type. Sources are either passed to the <code>add_*_layer</code> functions or as first parameter to <code><a href="../reference/mapboxer.html">mapboxer()</a></code> setting it as default source. With <code><a href="../reference/add_source.html">add_source()</a></code> you can add a source to the map that you refer to in the layer definition by its ID.</p>
 </div>
 <div id="layers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#layers" class="anchor"></a>Layers</h2>
 <p>Layers style the data of the source to which they refer. Optionally you can filter features. Each layer must have a unique ID. If you use the generic function <code><a href="../reference/add_layer.html">add_layer()</a></code>, the type of the layer is specified by the <code>type</code> property. See the <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers API Reference</a> for available types. In most cases it is convenient to use one of the <code>add_*_layer()</code> functions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
-  <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>),
-  <span class="dt">zoom =</span> <span class="dv">4</span>
+  <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
+  <span class="dt">zoom =</span> <span class="dv">9</span>
 ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
-    <span class="dt">source =</span> <span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(quakes, <span class="dt">lng =</span> <span class="st">"long"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>),
+    <span class="dt">source =</span> <span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(motor_vehicle_collisions_nyc),
     <span class="dt">circle_color =</span> <span class="st">"red"</span>,
     <span class="dt">circle_radius =</span> <span class="dv">5</span>
   )</code></pre></div>
-<div id="popups" class="section level3">
-<h3 class="hasAnchor">
-<a href="#popups" class="anchor"></a>Popups</h3>
+</div>
+<div id="popups-and-tooltips" class="section level2">
+<h2 class="hasAnchor">
+<a href="#popups-and-tooltips" class="anchor"></a>Popups and tooltips</h2>
 <p>Usually popups are added to a layer with the <code>popup</code> parameter of the <code>add_*_layer()</code> functions. Optionally you can also use <code><a href="../reference/add_popups.html">add_popups()</a></code>. The popup text (HTML) is specified by a <a href="https://github.com/janl/mustache.js">mustache</a> template in which the tags refer to the properties of the layer’s data object. If your data contains the properties <code>name</code> and <code>population</code>, it could look like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">popup_template &lt;-<span class="st"> "Name: {{name}}&lt;/br&gt;Population: {{population}}"</span></code></pre></div>
-</div>
+<p>With <code><a href="../reference/add_tooltips.html">add_tooltips()</a></code> you can add tooltips to a layer in the same way.</p>
 </div>
 <div id="controls" class="section level2">
 <h2 class="hasAnchor">
@@ -210,39 +233,41 @@ quakes_source_from_df &lt;-<span class="st"> </span>quakes <span class="op">%&gt
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">[expression_name<span class="op">,</span> argument_0<span class="op">,</span> argument_1<span class="op">,</span> ...]</code></pre></div>
 <p>Therefore, in R you must use the <code>list</code> structure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(expression_name, argument_<span class="dv">0</span>, argument_<span class="dv">1</span>, ...)</code></pre></div>
+<p>If all elements are of the same type you can also use a vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">expr_get_property &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"&lt;data-property&gt;"</span>)<span class="st">`</span></code></pre></div>
 <p>A simple expression is to use a data property to style your data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes_map &lt;-<span class="st"> </span>quakes <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span>motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-    <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(mag <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>)
+    <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(injured <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"red"</span>, <span class="st">"yellow"</span>)
   ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"long"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
-    <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>),
-    <span class="dt">zoom =</span> <span class="dv">4</span>
+    <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
+    <span class="dt">zoom =</span> <span class="dv">9</span>
   )
   
-quakes_map <span class="op">%&gt;%</span>
+map <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
     <span class="co"># Expression to get the color from the data's color property</span>
-    <span class="dt">circle_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"get"</span>, <span class="st">"color"</span>)
+    <span class="dt">circle_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"color"</span>)
   )</code></pre></div>
 <p>You can get the same result for the <code>circle_color</code> without modifying the data but using expressions only:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes_map <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
     <span class="dt">circle_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
       <span class="st">"case"</span>,
-      <span class="co"># 'red' if 'mag &gt; 5'</span>
-      <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"&gt;"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"get"</span>, <span class="st">"mag"</span>), <span class="dv">5</span>), <span class="st">"red"</span>,
-      <span class="co"># Defaults to 'blue'</span>
-      <span class="st">"blue"</span>
+      <span class="co"># 'red' if 'injured &gt; 0'</span>
+      <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"&gt;"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"injured"</span>), <span class="dv">0</span>), <span class="st">"red"</span>,
+      <span class="co"># Defaults to 'yellow'</span>
+      <span class="st">"yellow"</span>
     )
   )</code></pre></div>
 <p>A filter could look like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quakes_map <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
-    <span class="dt">circle_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"get"</span>, <span class="st">"color"</span>),
-    <span class="co"># Expression to display only data where 'mag &gt; 5'</span>
-    <span class="dt">filter =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"&gt;"</span>, <span class="st">"mag"</span>, <span class="dv">5</span>)
+    <span class="dt">circle_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"color"</span>),
+    <span class="co"># Expression to display only data where 'injured &gt; 1'</span>
+    <span class="dt">filter =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"&gt;"</span>, <span class="st">"injured"</span>, <span class="dv">1</span>)
   )</code></pre></div>
 <p>See also <code><a href="../reference/add_filter_control.html">add_filter_control()</a></code> to modify filter expressions on the fly to update your map without the need of a Shiny app, <a href="https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/">Get started with expressions</a> for a tutorial and the <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/">Expressions Style Specification</a> for details.</p>
 </div>
@@ -267,32 +292,40 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
 }
 
 <span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
-<p>With <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/send_mapboxer_update.html">send_mapboxer_update()</a></code> you can update your already rendered map:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">view &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/bootstrapPage.html">basicPage</a></span>(
-  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"slider"</span>, <span class="st">"mag larger than:"</span>,
-              <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">6</span>, <span class="dt">step =</span> <span class="dv">1</span>, <span class="dt">value =</span> <span class="dv">4</span>),
+<p>With <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> you can update your already rendered map:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LAYER_ID &lt;-<span class="st"> "crashes"</span>
+START_VALUE &lt;-<span class="st"> </span><span class="dv">4</span>
+
+view &lt;-<span class="st"> </span><span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/bootstrapPage.html">basicPage</a></span>(
+  <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(<span class="st">"slider"</span>, <span class="st">"Number of persons injured:"</span>,
+              <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">7</span>, <span class="dt">step =</span> <span class="dv">1</span>, <span class="dt">value =</span> START_VALUE),
   <span class="kw"><a href="../reference/mapboxer-shiny.html">mapboxerOutput</a></span>(<span class="st">"map"</span>)
 )
 
 backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   output<span class="op">$</span>map &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mapboxer-shiny.html">renderMapboxer</a></span>({
-    <span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(<span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">176.9</span>, <span class="op">-</span><span class="fl">24.655</span>), <span class="dt">zoom =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span>
+    <span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
+      <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
+      <span class="dt">zoom =</span> <span class="dv">9</span>
+    ) <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
-        <span class="dt">source =</span> <span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(quakes, <span class="dt">lng =</span> <span class="st">"long"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>),
+        <span class="dt">source =</span> <span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(motor_vehicle_collisions_nyc),
         <span class="dt">circle_color =</span> <span class="st">"red"</span>,
-        <span class="dt">popup =</span> <span class="st">"{{mag}}"</span>,
-        <span class="dt">id =</span> <span class="st">"quakes"</span>
+        <span class="dt">popup =</span> <span class="st">"{{injured}}"</span>,
+        <span class="dt">filter =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"=="</span>, <span class="st">"injured"</span>, START_VALUE),
+        <span class="dt">id =</span> LAYER_ID
       )
   })
 
   <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">observeEvent</a></span>(input<span class="op">$</span>slider, {
     <span class="kw"><a href="../reference/mapboxer_proxy.html">mapboxer_proxy</a></span>(<span class="st">"map"</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw"><a href="../reference/set_filter.html">set_filter</a></span>(<span class="st">"quakes"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"&gt;"</span>, <span class="st">"mag"</span>, input<span class="op">$</span>slider)) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw"><a href="../reference/send_mapboxer_update.html">send_mapboxer_update</a></span>()
+<span class="st">      </span><span class="kw"><a href="../reference/set_filter.html">set_filter</a></span>(LAYER_ID, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"=="</span>, <span class="st">"injured"</span>, input<span class="op">$</span>slider)) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw"><a href="../reference/update_mapboxer.html">update_mapboxer</a></span>()
   })
 }
 
 <span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span>()) <span class="kw"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(view, backend)</code></pre></div>
+<p>Observe the <code>input$&lt;widget_id&gt;_onclick</code> event to get the properties for a clicked feature.</p>
 </div>
   </div>
 
@@ -304,8 +337,10 @@ backend &lt;-<span class="st"> </span><span class="cf">function</span>(input, ou
 <li><a href="#overview">Overview</a></li>
       <li><a href="#quickstart">Quickstart</a></li>
       <li><a href="#map">Map</a></li>
+      <li><a href="#basemaps">Basemaps</a></li>
       <li><a href="#sources">Sources</a></li>
       <li><a href="#layers">Layers</a></li>
+      <li><a href="#popups-and-tooltips">Popups and tooltips</a></li>
       <li><a href="#controls">Controls</a></li>
       <li><a href="#expressions">Expressions</a></li>
       <li><a href="#shiny-bindings">Shiny Bindings</a></li>

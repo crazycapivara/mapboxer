@@ -1,9 +1,10 @@
 destination: docs
+
 reference:
 - title: Map
   contents:
   - matches("mapboxer")
-  - send_mapboxer_update
+  - fit_bounds
   - set_view_state
 
 - title: Sources
@@ -17,23 +18,19 @@ reference:
     - set_filter
     - set_layer_properties
     - add_popups
+    - add_tooltips
     - add_marker
 
-- title: Styles
+- title: Basemap Styles
   contents:
     - ends_with("_style")
-    - get_osm_raster_tiles
+    - ends_with("raster_tiles")
+    - basemaps
 
 - title: Controls
   contents:
     - ends_with("_control")
 
-#- title: Updates
-#  desc: >
-#    These function are usually called with a `mapboxer_proxy` object inside a __Shiny__ app
-#    to update the widget that is already rendered.
-#  contents:
-    #- set_data
-    #- set_filter
-    #- set_layer_properties
-#    - starts_with("set_")
+- title: Sample Data
+  contents:
+    - motor_vehicle_collisions_nyc

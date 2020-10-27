@@ -16,5 +16,5 @@ Create a \code{\link{mapboxer}}-like object that can be used to update a mapboxe
 that has already been rendered in a Shiny app.
 }
 \seealso{
-\link{send_mapboxer_update}
+\link{update_mapboxer}
 }

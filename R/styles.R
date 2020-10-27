@@ -1,57 +1,88 @@
-#' Use Carto vector tiles as map style
-#' @param theme The theme of the style, \code{dark-matter}, \code{positron} or \code{voyager}.
-#' @export
-use_carto_style <- function(theme = "dark-matter") {
-  if (!theme %in% c("dark-matter", "voyager", "positron")) {
-    stop("Unknown theme.")
-  }
-
-  sprintf("https://basemaps.cartocdn.com/gl/%s-gl-style/style.json", theme)
-}
-
-#' Use a background color as map style
+#' Create a background style
+#'
+#' Creates a background style that can be used as basemap.
 #' @param color The color of the background.
+#' @param opacity The opacity of the background.
 #' @export
-use_background_style <- function(color = "#111") {
-  style <- get_style_file("background-style.yml") %>%
-    read_style()
-  style$layers[[1]]$paint$`background-color` <- color
-  style
+basemap_background_style <- function(color = "#111", opacity = 1) {
+  background_layer <- list(
+    id = "background",
+    type = "background",
+    paint = list(
+      "background-color" = color,
+      "background-opacity" = opacity
+    )
+  )
+  list(
+    version = 8,
+    layers = list(background_layer)
+  )
 }
 
-#' Use Stamen raster tiles as map style
-#' @param theme The theme of the tiles.
-#' @export
-use_stamen_raster_style <- function(theme = "watercolor") {
-  paste0("//stamen-tiles-", letters[1:3], ".a.ssl.fastly.net/", theme, "/{z}/{x}/{y}.png") %>%
-    as.list() %>%
-    structure(attribution = STAMEN_ATTRIBUTION) %>%
-    use_raster_style()
-}
-
-#' Use raster tiles as map style
-#' @param tiles A list of tile urls.
+#' Create a raster style
+#'
+#' Creates a raster style that can be used as a basemap.
+#' @param tiles A list of tile URLs.
 #' @param attribution The attribution text of the tile layer.
 #' @export
-use_raster_style <- function(tiles = get_osm_raster_tiles(), attribution = NULL) {
-  if (is.null(attribution) & !is.null(attributes(tiles)$attribution)) {
+basemap_raster_style <- function(tiles = stamen_raster_tiles("terrain"), attribution = NULL) {
+  if (utils_has_attr(tiles, "attribution")) {
     attribution <- attributes(tiles)$attribution
   }
 
-  style <- get_style_file("stamen-raster-style.yml") %>%
-    read_style()
-  style$sources$`raster-tiles`$tiles <- tiles
-  style$sources$`raster-tiles`$attribution <- attribution
-  style
+  raster_source <- list(
+    type = "raster",
+    tiles = tiles,
+    tileSize = 256,
+    attribution = attribution
+  )
+
+  raster_layer <- list(
+    id = "simple-tiles",
+    type = "raster",
+    source = "raster-tiles",
+    minzoom = 0,
+    maxzoom = 22
+  )
+
+  list(
+    version = 8,
+    sources = list(
+      "raster-tiles" = raster_source
+    ),
+    layers = list(raster_layer)
+  )
 }
 
-#' Get OSM raster tile urls
-#' @export
+### obsolete, maybe add 'osm_raster_tiles' as data
 get_osm_raster_tiles <- function() {
-  paste0("//", c(letters[1:3]), ".tile.openstreetmap.org/{z}/{x}/{y}.png") %>%
-    as.list() %>%
+  sprintf("//%s.tile.openstreetmap.org/{z}/{x}/{y}.png", c(letters[1:3])) %>%
     structure(attribution = OSM_ATTRIBUTION)
 }
+
+### obsolete
+get_stamen_raster_tiles <- function(theme = "watercolor") {
+  sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:3], theme) %>%
+    structure(attribution = STAMEN_ATTRIBUTION)
+}
+
+### ---
+stamen_attribution <- list(
+  default = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+  watercolor = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+)
+
+#' Get Stamen raster tile URLs
+#' @param theme The theme of the tiles.
+#' @export
+stamen_raster_tiles <- function(theme = c("watercolor")) {
+  attribution <- ifelse(theme == "watercolor",
+                        stamen_attribution$watercolor,
+                        stamen_attribution$default)
+  sprintf("//stamen-tiles-%s.a.ssl.fastly.net/%s/{z}/{x}/{y}.png", letters[1:4], theme) %>%
+    structure(attribution = attribution)
+}
+### ---
 
 read_style <- function(filename) {
   yaml::read_yaml(filename)
@@ -66,7 +97,11 @@ get_style_file <- function(filename) {
 #' @inheritParams set_view_state
 #' @inheritParams mapboxer
 #' @export
-set_map_style <- function(map, style) {
+set_style <- function(map, style) {
+  if (inherits(map, "mapboxer_proxy")) {
+    return(invoke_method(map, "setStyle", style = style))
+  }
+
   map$x$mapProps$style <- style
   map
 }

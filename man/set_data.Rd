@@ -23,7 +23,7 @@ set_data(map, data, source_id = NULL, ...)
 \item{map}{A \link{mapboxer_proxy} object.}
 
 \item{data}{A \code{GeoJSON} object, an url pointing to an external \code{GeoJSON} document,
-a data frame that contains longitudes and latitudes in separate columns, an sf-object or a \link{mapbox_source} of type \code{GeoJSON}.}
+a data frame that contains longitudes and latitudes in separate columns or an sf-object.}
 
 \item{source_id}{The ID of the source whose data should be updated.}
 
@@ -38,7 +38,6 @@ Update the data of a Mapbox source
 }
 \seealso{
 \itemize{
-  \item \link{as_mapbox_source}
   \item \link[geojsonsf]{df_geojson}
   \item \link[geojsonsf]{sf_geojson}
 }

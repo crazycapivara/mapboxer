@@ -20,7 +20,7 @@
 #' @param circle_translate_anchor (paint) Controls the frame of reference for \code{circle_translate}.
 #'   One of "map", "viewport".
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#circle}
-#' @example examples/circle-layer.R
+#' @example examples/api-reference/circle-layer.R
 #' @export
 add_circle_layer <- function(map,
                              source = NULL,
@@ -39,9 +39,8 @@ add_circle_layer <- function(map,
                              circle_translate_anchor = NULL,
                              visibility = TRUE,
                              popup = NULL,
-                             id = "circle-layer"
-                             ) {
-  paint = list(
+                             id = "circle-layer") {
+  paint <- list(
     "circle-blur" = circle_blur,
     "circle-color" = circle_color,
     "circle-opacity" = circle_opacity,

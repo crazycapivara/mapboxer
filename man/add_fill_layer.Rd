@@ -53,8 +53,7 @@ in which the tags refer to the properties of the layer's data object.}
 Add a fill layer to the map
 }
 \examples{
-map <- geojsonsf::geo_melbourne \%>\%
-  as_mapbox_source() \%>\%
+ map <- as_mapbox_source(geojsonsf::geo_melbourne) \%>\%
   mapboxer() \%>\%
   set_view_state(
     lng =  144.9624,

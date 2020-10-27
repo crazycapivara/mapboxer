@@ -73,13 +73,17 @@ in which the tags refer to the properties of the layer's data object.}
 Add a line layer to the map
 }
 \examples{
-map <- geojsonsf::geo_melbourne \%>\%
-  as_mapbox_source() \%>\%
-  mapboxer(center = c(144.9624, -37.8105), zoom = 11, pitch = 45) \%>\%
+map <-  as_mapbox_source(geojsonsf::geo_melbourne) \%>\%
+  mapboxer(
+    center = c(144.9624, -37.8105),
+    zoom = 11,
+    pitch = 45
+  ) \%>\%
   add_navigation_control() \%>\%
   add_line_layer(
-    line_color = "red",
-    line_width = 2
+    line_color = c("get", "strokeColor"),
+    line_width = 2,
+    popup = "{{SA2_NAME}}"
   )
 
 if (interactive()) map
