@@ -1,5 +1,5 @@
 ---
-title: "Get started with mapboxer"
+title: "Get started with Mapbox for R"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{mapboxer}
@@ -24,7 +24,7 @@ This guide covers the basic usage.
 
 * [Sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/): Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with `as_mapbox_source()`. With `add_source()` or as first parameter of `mapboxer()` sources can be added to the map so that they can be used accross layers.
 
-* [Layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/): A layer's style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With `add_layer()` you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like `add_circle_layer()`.  
+* [Layers](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/): A layer's style define how a source is displayed on the map. Furthermore, you can apply filters to the data of a source. With `add_layer()` you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like `add_circle_layer()`.  
 
 * [Controls](https://docs.mapbox.com/mapbox-gl-js/api/markers/): Controls are used to interact with the map. Besides the standard controls like `NavigationControl` included in Mapbox GL JS, mapboxer provides additional controls. For example, `add_filter_control()` can be used to filter your data on the fly without having to set up a Shiny app.
 
