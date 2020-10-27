@@ -7,6 +7,7 @@
 #' @param height The height of the widget.
 #' @param element_id The unique ID of the widget.
 #' @param token A Mapbox API access token. Only needed if you want to use styles from Mapbox.
+#' @example examples/api-reference/map-options.R
 #' @export
 mapboxer <- function(source = NULL, style = basemaps$Carto$dark_matter, ...,
                      width = NULL, height = NULL, element_id = NULL,
