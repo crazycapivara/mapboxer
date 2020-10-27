@@ -6,7 +6,8 @@ Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = 
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Description: Makes 'Mapbox GL JS' <https://docs.mapbox.com/mapbox-gl-js/api/>,
   an open source JavaScript library that uses WebGL to render interactive maps,
-  available within R via the 'htmlwidgets' package.
+  available within R via the 'htmlwidgets' package. Visualizations can be used from the R console,
+  in R Markdown documents and in Shiny apps.
 License: MIT + file LICENSE
 Depends: R (>= 2.10)
 Imports:
