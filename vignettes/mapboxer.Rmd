@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -34,26 +35,31 @@ This guide covers the basic usage.
 
 ## Quickstart
 
-```{r quickstart, eval = FALSE}
+```{r quickstart}
 # Load the library
 library(mapboxer)
 
 # Create a source
 motor_vehicle_collisions_nyc %>%
+  dplyr::mutate(color = ifelse(injured > 0, "red", "yellow")) %>%
   as_mapbox_source(lng = "lng", lat = "lat") %>%
   # Setup a map with the default source above
   mapboxer(
     center = c(-73.9165, 40.7114),
-    zoom = 9
+    zoom = 10
   ) %>%
+  # Add a navigation control
+  add_navigation_control() %>%
   # Add a layer styling the data of the default source
   add_circle_layer(
-    circle_color = "red",
-    circle_radius = 5,
+    circle_color = c("get", "color"),
+    circle_radius = 3,
     # Use a mustache template to add popups to the layer
     popup = "Number of persons injured: {{injured}}"
   )
 ```
+
+![](pix/motor-vehicle-collisions-nyc.png)
 
 ## Map
 
