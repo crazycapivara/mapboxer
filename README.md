@@ -8,6 +8,8 @@ mapboxer: An R Interface to Mapbox GL JS
 
 Mapboxer makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source JavaScript library that uses WebGL to render interactive maps, available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
 
+![persons-in-manhatten](man/figures/README-persons-in-manhatten.png)
+
 Installation
 ------------
 
