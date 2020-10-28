@@ -18,7 +18,10 @@ raster_style <- list(
   )
 )
 
-map <- mapboxer(center = c(-75.789, 41.874), zoom = 5) %>%
+map <- mapboxer(
+  center = c(-75.789, 41.874),
+  zoom = 5
+) %>%
   add_layer(raster_style)
 
 if (interactive()) map

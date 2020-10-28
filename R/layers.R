@@ -9,6 +9,7 @@
 #'   for the used layer type.
 #' @inheritParams add_popups
 #' @seealso \link{add_popups} for an example of a mustache template used to generate the popup text.
+#' @example examples/api-reference/generic-layer.R
 #' @export
 add_layer <- function(map, style, popup = NULL) {
   map %<>%
