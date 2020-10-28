@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get started with mapboxer • mapboxer</title>
+<title>Get started with mapboxer: Mapbox GL JS for R • mapboxer</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Get started with mapboxer">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Get started with mapboxer: Mapbox GL JS for R">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Get started with mapboxer</h1>
+      <h1>Get started with mapboxer: Mapbox GL JS for R</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/crazycapivara/mapboxer/blob/master/vignettes/mapboxer.Rmd"><code>vignettes/mapboxer.Rmd</code></a></small>
@@ -103,7 +103,7 @@
 <ul>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/map/">Map</a>: The map is the main component of your visualization to which you then add other components like layers, controls or sources. Maps are created with <code><a href="../reference/mapboxer.html">mapboxer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/">Sources</a>: Sources state which type of data should be displayed on the map. R objects can be converted to Mapbox sources with <code><a href="../reference/as_mapbox_source.html">as_mapbox_source()</a></code>. With <code><a href="../reference/add_source.html">add_source()</a></code> or as first parameter of <code><a href="../reference/mapboxer.html">mapboxer()</a></code> sources can be added to the map so that they can be used accross layers.</p></li>
-<li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of the source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
+<li><p><a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/">Layers</a>: A layer’s style define how a source is displayed on the map. Furthermore, you can apply filters to the data of a source. With <code><a href="../reference/add_layer.html">add_layer()</a></code> you can add any type of layer to the map but in most cases it is easier to use one of the shortcuts like <code><a href="../reference/add_circle_layer.html">add_circle_layer()</a></code>.</p></li>
 <li><p><a href="https://docs.mapbox.com/mapbox-gl-js/api/markers/">Controls</a>: Controls are used to interact with the map. Besides the standard controls like <code>NavigationControl</code> included in Mapbox GL JS, mapboxer provides additional controls. For example, <code><a href="../reference/add_filter_control.html">add_filter_control()</a></code> can be used to filter your data on the fly without having to set up a Shiny app.</p></li>
 <li><p><a href="https://docs.mapbox.com/help/tutorials/mapbox-gl-js-expressions/">Expressions</a>: Expressions are pretty powerful. Among other things, they can be used for data-driven-styling or to filter your data.</p></li>
 <li><p><a href="https://shiny.rstudio.com/">Shiny Bindings</a>: With <code><a href="../reference/mapboxer-shiny.html">renderMapboxer()</a></code> and <code><a href="../reference/mapboxer-shiny.html">mapboxerOutput()</a></code> you can integrate your visualizations in Shiny apps. Furthermore, you can use <code><a href="../reference/mapboxer_proxy.html">mapboxer_proxy()</a></code> and <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> to update an already rendered widget. Observe the <code>input$&lt;widget_id&gt;_onclick</code> event to get the properties for a clicked feature.</p></li>
@@ -117,19 +117,25 @@
 
 <span class="co"># Create a source</span>
 motor_vehicle_collisions_nyc <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(injured <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">"red"</span>, <span class="st">"yellow"</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="../reference/as_mapbox_source.html">as_mapbox_source</a></span>(<span class="dt">lng =</span> <span class="st">"lng"</span>, <span class="dt">lat =</span> <span class="st">"lat"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># Setup a map with the default source above</span>
 <span class="st">  </span><span class="kw"><a href="../reference/mapboxer.html">mapboxer</a></span>(
     <span class="dt">center =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">73.9165</span>, <span class="fl">40.7114</span>),
-    <span class="dt">zoom =</span> <span class="dv">9</span>
+    <span class="dt">zoom =</span> <span class="dv">10</span>
   ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># Add a navigation control</span>
+<span class="st">  </span><span class="kw"><a href="../reference/add_control.html">add_navigation_control</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># Add a layer styling the data of the default source</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_circle_layer.html">add_circle_layer</a></span>(
-    <span class="dt">circle_color =</span> <span class="st">"red"</span>,
-    <span class="dt">circle_radius =</span> <span class="dv">5</span>,
+    <span class="dt">circle_color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"get"</span>, <span class="st">"color"</span>),
+    <span class="dt">circle_radius =</span> <span class="dv">3</span>,
     <span class="co"># Use a mustache template to add popups to the layer</span>
     <span class="dt">popup =</span> <span class="st">"Number of persons injured: {{injured}}"</span>
   )</code></pre></div>
+<div class="figure">
+<img src="pix/motor-vehicle-collisions-nyc.png">
+</div>
 </div>
 <div id="map" class="section level2">
 <h2 class="hasAnchor">

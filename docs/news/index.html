@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -122,6 +122,25 @@
       <small>Source: <a href='https://github.com/crazycapivara/mapboxer/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="mapboxer-0-4-0" class="section level1">
+<h1 class="page-header">
+<a href="#mapboxer-0-4-0" class="anchor"></a>mapboxer 0.4.0</h1>
+<ul>
+<li>Renamed <code>send_mapboxer_update()</code> to <code><a href="../reference/update_mapboxer.html">update_mapboxer()</a></code> (<a href='https://github.com/crazycapivara/mapboxer/issues/32'>#32</a>)</li>
+<li>Send data back to R in Shiny app (<a href='https://github.com/crazycapivara/mapboxer/issues/44'>#44</a>)</li>
+<li>Support for tooltips (<a href='https://github.com/crazycapivara/mapboxer/issues/43'>#43</a>)</li>
+<li>Added constant with basemap style URLs, added <code>basemap_</code> prefix to funcs creating basemap styles (<a href='https://github.com/crazycapivara/mapboxer/issues/41'>#41</a>, <a href='https://github.com/crazycapivara/mapboxer/issues/27'>#27</a>)</li>
+<li>Updated examles (<a href='https://github.com/crazycapivara/mapboxer/issues/39'>#39</a>)</li>
+<li>Support <code>set_style</code> in Shiny apps (<a href='https://github.com/crazycapivara/mapboxer/issues/24'>#24</a>)</li>
+<li>Added <code>draw</code> plugin as experimental feature, in this case js library for the feature is loaded externally (<a href='https://github.com/crazycapivara/mapboxer/issues/17'>#17</a>)</li>
+<li>Added <code>motor_vehicle_collisions_nyc</code> sample dataset (<a href='https://github.com/crazycapivara/mapboxer/issues/3'>#3</a>)</li>
+<li>Added <code>row</code> and <code>col</code> parameter to <code>add_filter_control</code> (<a href='https://github.com/crazycapivara/mapboxer/issues/33'>#33</a>)</li>
+<li>Support <code>sf</code> bounding boxes for <code>bounds</code> parameter in <code><a href="../reference/mapboxer.html">mapboxer()</a></code> and <code><a href="../reference/fit_bounds.html">fit_bounds()</a></code>
+</li>
+<li>Added showcases to <code>pkgdown</code> site (<a href='https://github.com/crazycapivara/mapboxer/issues/37'>#37</a>)</li>
+<li>Moved API examples to examples folder (<a href='https://github.com/crazycapivara/mapboxer/issues/40'>#40</a>)</li>
+</ul>
+</div>
     <div id="mapboxer-0-3-2" class="section level1">
 <h1 class="page-header">
 <a href="#mapboxer-0-3-2" class="anchor"></a>mapboxer 0.3.2</h1>
@@ -208,6 +227,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#mapboxer-0-4-0">0.4.0</a></li>
         <li><a href="#mapboxer-0-3-2">0.3.2</a></li>
         <li><a href="#mapboxer-0-3-1">0.3.1</a></li>
         <li><a href="#mapboxer-0-3-0">0.3.0</a></li>

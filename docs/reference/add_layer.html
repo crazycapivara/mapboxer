@@ -68,7 +68,7 @@ layer definintion." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mapboxer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -163,6 +163,34 @@ in which the tags refer to the properties of the layer's data object.</p></td>
     <div class='dont-index'><p><a href='add_popups.html'>add_popups</a> for an example of a mustache template used to generate the popup text.</p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>image_src</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mapbox_source.html'>mapbox_source</a></span>(
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"image"</span>,
+  <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://docs.mapbox.com/mapbox-gl-js/assets/radar.gif"</span>,
+  <span class='kw'>coordinates</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>80.425</span>, <span class='fl'>46.437</span>),
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>71.516</span>, <span class='fl'>46.437</span>),
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>71.516</span>, <span class='fl'>37.936</span>),
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>80.425</span>, <span class='fl'>37.936</span>)
+  )
+)
+
+<span class='no'>raster_style</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"overlay"</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"raster"</span>,
+  <span class='kw'>source</span> <span class='kw'>=</span> <span class='no'>image_src</span>,
+  <span class='kw'>paint</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='st'>"raster-opacity"</span> <span class='kw'>=</span> <span class='fl'>0.85</span>
+  )
+)
+
+<span class='no'>map</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mapboxer.html'>mapboxer</a></span>(
+  <span class='kw'>center</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>75.789</span>, <span class='fl'>41.874</span>),
+  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>5</span>
+) <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_layer</span>(<span class='no'>raster_style</span>)
+
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) <span class='no'>map</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -170,7 +198,9 @@ in which the tags refer to the properties of the layer's data object.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
