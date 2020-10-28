@@ -9,7 +9,8 @@ fit_bounds(map, bounds, ...)
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{bounds}{The bounding box as a vector in [west, south, east, north] order.}
+\item{bounds}{The bounding box as a vector in [west, south, east, north] order
+or a \code{bbox} object.}
 
 \item{...}{Optional arguments, see \url{https://docs.mapbox.com/mapbox-gl-js/api/map/#map#fitbounds}.}
 }
