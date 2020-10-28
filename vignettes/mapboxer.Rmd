@@ -1,5 +1,5 @@
 ---
-title: "Get started with Mapbox for R"
+title: "Get started with mapboxer: Mapbox for R"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{mapboxer}
