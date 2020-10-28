@@ -1,3 +1,16 @@
+# mapboxer 0.4.0
+
+* Renamed `send_mapboxer_update()` to `update_mapboxer()` (#32)
+* Send data back to R in Shiny app (#44)
+* Support for tooltips (#43)
+* Added constant with basemap style URLs, add `basemap_` prefix to funcs creating basemap styles (#41, #27)
+* Updated examles (#39)
+* Change basemap in Shiny apps (#24)
+* Add `draw` plugin as experimental feature, in this case js library for the feature is loaded externally (#17)
+* Added `motor_vehicle_collisions_nyc` sample dataset (#3)
+* Added `row` and `col` parameter to `add_filter_control` (#33)
+* Support `sf` bounding boxes for `bounds` parameter in `mapboxer()` and `fit_bounds()`
+
 # mapboxer 0.3.2
 
 * Added _Getting started_ vignette.
