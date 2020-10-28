@@ -10,3 +10,4 @@
 ^tmp$
 ^examples$
 ^data-raw$
+^cran-comments\.md$
