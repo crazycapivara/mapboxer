@@ -10,6 +10,8 @@
 * Added `motor_vehicle_collisions_nyc` sample dataset (#3)
 * Added `row` and `col` parameter to `add_filter_control` (#33)
 * Support `sf` bounding boxes for `bounds` parameter in `mapboxer()` and `fit_bounds()`
+* Added showcases to `pkgdown` site (#37)
+* Moved API examples to examples folder (#40)
 
 # mapboxer 0.3.2
 
