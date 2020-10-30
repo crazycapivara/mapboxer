@@ -55,7 +55,7 @@ if (interactive()) map
 
 By default mapboxer uses [Carto vector styles](https://github.com/CartoDB/basemap-styles) as basemaps. It is also possible to use raster tiles or a background color.
 
-If you want to use styles from [Mapbox](https://www.mapbox.com/maps) it is recommended that you store your API token in an environment vatiable called `MAPBOX_API_TOKEN`.
+If you want to use styles from [Mapbox](https://www.mapbox.com/maps) it is recommended that you store your API token in an environment variable called `MAPBOX_API_TOKEN`.
 
 Documentation
 -------------
