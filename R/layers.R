@@ -44,5 +44,5 @@ add_popups <- function(map, layer_id, popup, event = c("click", "hover")) {
 #' @export
 add_tooltips <- function(map, layer_id, tooltip) {
   .Deprecated(NULL, msg = "'add_tooltips' is deprecated.\nUse 'add_popups' instead and pass event = 'hover'.")
-  invoke_method(map, "addTooltips", layerId = layer_id, tooltip = tooltip)
+  invoke_method(map, "addTooltips", layerId = layer_id, template = tooltip)
 }
