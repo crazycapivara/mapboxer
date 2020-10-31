@@ -4,7 +4,7 @@
 \alias{add_popups}
 \title{Add popups to a layer}
 \usage{
-add_popups(map, layer_id, popup)
+add_popups(map, layer_id, popup, event = c("click", "hover"))
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
@@ -13,6 +13,8 @@ add_popups(map, layer_id, popup)
 
 \item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
 in which the tags refer to the properties of the layer's data object.}
+
+\item{event}{The event on which the popup is displayed.}
 }
 \description{
 Usually you will add the popups in the \link{add_layer} function by setting the \code{popup}
@@ -41,7 +43,8 @@ map <- motor_vehicle_collisions_nyc \%>\%
   ) \%>\%
   add_popups(
     LAYER_ID,
-    popup = mustache_tpl
+    popup = mustache_tpl,
+    event = "hover"
   )
 
 if (interactive()) map
