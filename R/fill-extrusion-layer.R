@@ -15,6 +15,7 @@
 #' @param fill_extrusion_vertical_gradient (paint) Whether to apply a vertical gradient to the sides of a fill-extrusion layer.
 #'   If true, sides will be shaded slightly darker farther down.
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill-extrusion}
+#' @example examples/api-reference/fill-extrusion-layer.R
 #' @export
 add_fill_extrusion_layer <- function(map,
                                      source = NULL,
@@ -41,8 +42,6 @@ add_fill_extrusion_layer <- function(map,
     "fill-extrusion-vertical-gradient" = fill_extrusion_vertical_gradient
   )
   layout <- list(
-    # Do this in 'create_layer_style'
-    #"visibility" = ifelse(visibility, "visible", "none")
     visibility = match.arg(visibility)
   )
   style <- create_layer_style(id, "fill-extrusion", source, filter, paint, layout)
