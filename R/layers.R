@@ -32,11 +32,8 @@ add_layer <- function(map, style, popup = NULL) {
 #' @example examples/api-reference/popups.R
 #' @export
 add_popups <- function(map, layer_id, popup, event = c("click", "hover")) {
-  if (match.arg(event) == "hover") {
-    return(invoke_method(map, "addTooltips", layerId = layer_id, tooltip = popup))
-  }
-
-  invoke_method(map, "addPopups", layerId = layer_id, popup = popup)
+  method_name <- ifelse(match.arg(event) == "click", "addPopups", "addTooltips")
+  invoke_method(map, method_name, layerId = layer_id, template = popup)
 }
 
 #' Add tooltips to a layer
