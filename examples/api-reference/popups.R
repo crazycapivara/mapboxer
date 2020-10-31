@@ -20,7 +20,8 @@ map <- motor_vehicle_collisions_nyc %>%
   ) %>%
   add_popups(
     LAYER_ID,
-    popup = mustache_tpl
+    popup = mustache_tpl,
+    event = "hover"
   )
 
 if (interactive()) map
