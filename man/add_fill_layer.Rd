@@ -8,8 +8,8 @@ add_fill_layer(map, source = NULL, filter = NULL,
   fill_antialias = TRUE, fill_color = NULL, fill_opacity = NULL,
   fill_outline_color = NULL, fill_pattern = NULL,
   fill_sort_key = NULL, fill_translate = NULL,
-  fill_translate_anchor = NULL, visibility = TRUE, popup = NULL,
-  id = "fill-layer")
+  fill_translate_anchor = NULL, visibility = c("visible", "none"),
+  popup = NULL, id = "fill-layer")
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
@@ -42,7 +42,7 @@ Values are [x, y] where negatives indicate left and up, respectively.}
 \item{fill_translate_anchor}{(paint) Controls the frame of reference for \code{fill_translate}.
 One of "map", "viewport".}
 
-\item{visibility}{(layout) Whether the layer should be displayed.}
+\item{visibility}{(layout) Whether the layer should be displayed. One of "visible", "none".}
 
 \item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
 in which the tags refer to the properties of the layer's data object.}
