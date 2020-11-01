@@ -24,7 +24,8 @@ RoxygenNote: 6.1.1
 Suggests: 
     knitr,
     rmarkdown,
-    shiny
+    shiny,
+    sf
 VignetteBuilder: knitr
 URL: https://github.com/crazycapivara/mapboxer
 BugReports: https://github.com/crazycapivara/mapboxer/issues
