@@ -46,7 +46,7 @@ function addPopups(args) {
     const lngLat = Object.values(e.lngLat);
     const feature = e.features[0];
     const content = render(args.template, feature.properties);
-    new mapboxgl.Popup()
+    new mapboxgl.Popup(args.options || { })
       .setLngLat(lngLat)
       .setHTML(content)
       .addTo(map);

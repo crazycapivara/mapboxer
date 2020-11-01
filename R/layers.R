@@ -26,14 +26,32 @@ add_layer <- function(map, style, popup = NULL) {
 #'   parameter.
 #' @param map A \link{mapboxer} object.
 #' @param layer_id The ID of the layer to which you want to add the popups.
-#' @param popup A \href{https://github.com/janl/mustache.js}{mustache} template
-#'   in which the tags refer to the properties of the layer's data object.
-#' @param event The event on which the popup is displayed.
+#' @param popup a \link{mapbox_popup} object or a template string.
 #' @example examples/api-reference/popups.R
 #' @export
-add_popups <- function(map, layer_id, popup, event = c("click", "hover")) {
-  method_name <- ifelse(match.arg(event) == "click", "addPopups", "addTooltips")
-  invoke_method(map, method_name, layerId = layer_id, template = popup)
+add_popups <- function(map, layer_id, popup) {
+  if (is.character(popup)) {
+    popup <- mapbox_popup(
+      template = popup
+    )
+  }
+
+  invoke_method(map, ifelse(popup$event == "click", "addPopups", "addTooltips"),
+                layerId = layer_id, template = popup$template, options = popup$options)
+}
+
+#' Create a popup object
+#' @param template A \href{https://github.com/janl/mustache.js}{mustache} template
+#'   in which the tags refer to the properties of the layer's data object.
+#' @param ... The options of the popup element, see see https://docs.mapbox.com/mapbox-gl-js/api/markers/#popup
+#' @param event The event on which the popup is displayed.
+#' @export
+mapbox_popup <- function(template, ..., event = c("click", "hover")) {
+  list(
+    template = template,
+    options = list(...),
+    event = match.arg(event)
+  )
 }
 
 #' Add tooltips to a layer
