@@ -47,10 +47,13 @@ add_popups <- function(map, layer_id, popup) {
 #' @param event The event on which the popup is displayed.
 #' @export
 mapbox_popup <- function(template, ..., event = c("click", "hover")) {
-  list(
-    template = template,
-    options = list(...),
-    event = match.arg(event)
+  structure(
+    list(
+      template = template,
+      options = list(...),
+      event = match.arg(event)
+    ),
+    class = "mapbox_popup"
   )
 }
 
