@@ -48,7 +48,7 @@ add_line_layer <- function(map,
                            line_translate = NULL,
                            line_translate_anchor = NULL,
                            line_width = NULL,
-                           visibility = NULL,
+                           visibility = c("visible", "none"),
                            popup = NULL,
                            id = "line-layer") {
   paint <- list(
@@ -70,7 +70,7 @@ add_line_layer <- function(map,
     "line-miter-limit" = line_miter_limit,
     "line-round-limit" = line_round_limit,
     "line-sort-key" = line_sort_key,
-    "visibility" = ifelse(visibility, "visible", "none")
+    "visibility" = match.arg(visibility)
   )
   style <- create_layer_style(id, "line", source, filter, paint, layout)
   map %>%

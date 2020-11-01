@@ -1,3 +1,10 @@
+# mapboxer 0.4.1
+
+## 0.4.0.9001
+
+* `add_fill_extrusion_layer()`
+* `add_tooltips()` is deprecated, use `mapbox_popup()` with `event = "hover"` instead
+
 # mapboxer 0.4.0
 
 * Renamed `send_mapboxer_update()` to `update_mapboxer()` (#32)

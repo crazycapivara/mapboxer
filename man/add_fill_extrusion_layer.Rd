@@ -41,10 +41,9 @@ One of "map", "viewport".}
 \item{fill_extrusion_vertical_gradient}{(paint) Whether to apply a vertical gradient to the sides of a fill-extrusion layer.
 If true, sides will be shaded slightly darker farther down.}
 
-\item{visibility}{(layout) Whether the layer should be displayed.}
+\item{visibility}{(layout) Whether the layer should be displayed. One of "visible", "none".}
 
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
-in which the tags refer to the properties of the layer's data object.}
+\item{popup}{a \link{mapbox_popup} object or a template string.}
 
 \item{id}{The unique id of the layer.}
 }

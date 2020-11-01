@@ -45,8 +45,8 @@ function addPopups(args) {
   map.on("click", layerId, (e) => {
     const lngLat = Object.values(e.lngLat);
     const feature = e.features[0];
-    const content = render(args.popup, feature.properties);
-    new mapboxgl.Popup()
+    const content = render(args.template, feature.properties);
+    new mapboxgl.Popup(args.options || { })
       .setLngLat(lngLat)
       .setHTML(content)
       .addTo(map);
@@ -66,7 +66,7 @@ function addTooltips(args) {
     //map.getCanvas().style.cursor = "pointer";
     const lngLat = Object.values(e.lngLat);
     const feature = e.features[0];
-    const content = render(args.tooltip, feature.properties);
+    const content = render(args.template, feature.properties);
     popup.setLngLat(lngLat)
       .setHTML(content)
       .addTo(map);

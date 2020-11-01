@@ -17,7 +17,7 @@
 #'   Values are [x, y] where negatives indicate left and up, respectively.
 #' @param fill_translate_anchor (paint) Controls the frame of reference for \code{fill_translate}.
 #'   One of "map", "viewport".
-#' @param visibility (layout) Whether the layer should be displayed.
+#' @param visibility (layout) Whether the layer should be displayed. One of "visible", "none".
 #' @inheritParams add_popups
 #' @param id The unique id of the layer.
 #' @seealso \url{https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill}
@@ -35,7 +35,7 @@ add_fill_layer <- function(
                            fill_sort_key = NULL,
                            fill_translate = NULL,
                            fill_translate_anchor = NULL,
-                           visibility = TRUE,
+                           visibility = c("visible", "none"),
                            popup = NULL,
                            id = "fill-layer") {
   paint <- list(
@@ -49,7 +49,7 @@ add_fill_layer <- function(
   )
   layout <- list(
     "fill-sort-key" = fill_sort_key,
-    "visibility" = ifelse(visibility, "visible", "none")
+    "visibility" = match.arg(visibility)
   )
   style <- create_layer_style(id, "fill", source, filter, paint, layout)
   map %>%

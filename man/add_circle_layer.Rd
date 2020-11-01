@@ -10,8 +10,8 @@ add_circle_layer(map, source = NULL, filter = NULL,
   circle_radius = NULL, circle_sort_key = NULL,
   circle_stroke_color = NULL, circle_stroke_opacity = NULL,
   circle_stroke_width = NULL, circle_translate = NULL,
-  circle_translate_anchor = NULL, visibility = TRUE, popup = NULL,
-  id = "circle-layer")
+  circle_translate_anchor = NULL, visibility = c("visible", "none"),
+  popup = NULL, id = "circle-layer")
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
@@ -51,10 +51,9 @@ Values are [x, y] where negatives indicate left and up, respectively.}
 \item{circle_translate_anchor}{(paint) Controls the frame of reference for \code{circle_translate}.
 One of "map", "viewport".}
 
-\item{visibility}{(layout) Whether the layer should be displayed.}
+\item{visibility}{(layout) Whether the layer should be displayed. One of "visible", "none".}
 
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
-in which the tags refer to the properties of the layer's data object.}
+\item{popup}{a \link{mapbox_popup} object or a template string.}
 
 \item{id}{The unique id of the layer.}
 }

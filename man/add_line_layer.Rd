@@ -10,7 +10,7 @@ add_line_layer(map, source = NULL, filter = NULL, line_blur = NULL,
   line_miter_limit = NULL, line_offset = NULL, line_opacity = NULL,
   line_pattern = NULL, line_round_limit = NULL, line_sort_key = NULL,
   line_translate = NULL, line_translate_anchor = NULL,
-  line_width = NULL, visibility = NULL, popup = NULL,
+  line_width = NULL, visibility = c("visible", "none"), popup = NULL,
   id = "line-layer")
 }
 \arguments{
@@ -62,10 +62,9 @@ Features with a higher sort key will appear above features with a lower sort key
 
 \item{line_width}{(paint) Stroke thickness.}
 
-\item{visibility}{(layout) Whether the layer should be displayed.}
+\item{visibility}{(layout) Whether the layer should be displayed. One of "visible", "none".}
 
-\item{popup}{A \href{https://github.com/janl/mustache.js}{mustache} template
-in which the tags refer to the properties of the layer's data object.}
+\item{popup}{a \link{mapbox_popup} object or a template string.}
 
 \item{id}{The unique id of the layer.}
 }
