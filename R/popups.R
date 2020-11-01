@@ -22,7 +22,7 @@ add_popups <- function(map, layer_id, popup) {
 #' @param template A \href{https://github.com/janl/mustache.js}{mustache} template
 #'   in which the tags refer to the properties of the layer's data object.
 #' @param ... The options of the popup element, see see https://docs.mapbox.com/mapbox-gl-js/api/markers/#popup
-#' @param event The event on which the popup is displayed.
+#' @param event The event on which the popup is displayed. Use 'hover' if you want to create a tooltip.
 #' @export
 mapbox_popup <- function(template, ..., event = c("click", "hover")) {
   structure(

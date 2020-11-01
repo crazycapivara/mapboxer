@@ -12,7 +12,7 @@ in which the tags refer to the properties of the layer's data object.}
 
 \item{...}{The options of the popup element, see see https://docs.mapbox.com/mapbox-gl-js/api/markers/#popup}
 
-\item{event}{The event on which the popup is displayed.}
+\item{event}{The event on which the popup is displayed. Use 'hover' if you want to create a tooltip.}
 }
 \description{
 Create a popup object
