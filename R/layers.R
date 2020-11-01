@@ -57,13 +57,13 @@ mapbox_popup <- function(template, ..., event = c("click", "hover")) {
   )
 }
 
-#' Add tooltips to a layer
+#' Add tooltips to a layer (deprecated)
 #' @param map A \link{mapboxer} object.
-#' @param layer_id The ID of the layer to which you want to add the tooltips.
-#' @param tooltip A \href{https://github.com/janl/mustache.js}{mustache} template
-#'   in which the tags refer to the properties of the layer's data object.
+#' @param ... ignored
 #' @export
-add_tooltips <- function(map, layer_id, tooltip) {
-  .Deprecated(NULL, msg = "'add_tooltips' is deprecated.\nUse 'add_popups' instead and pass event = 'hover'.")
-  invoke_method(map, "addTooltips", layerId = layer_id, template = tooltip)
+add_tooltips <- function(map, ...) {
+  warning("Nothing added.\n",
+          "'add_tooltips' is deprecated.\n",
+          "Use 'add_popups' instead and pass event = 'hover' to 'mapbox_popup'.")
+  map
 }
