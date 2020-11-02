@@ -15,9 +15,11 @@ mapboxer(
   add_deckgl_layer(
     type = "ArcLayer",
     data = flights,
-    getSourcePosition = htmlwidgets::JS("d => [d.start_lon, d.start_lat]"),
+    #getSourcePosition = htmlwidgets::JS("d => [d.start_lon, d.start_lat]"),
+    getSourcePosition = "@=[{{start_lon}}, {{start_lat}}]",
     getTargetPosition = htmlwidgets::JS("d => [d.end_lon, d.end_lat]"),
     getSourceColor = c(64, 255, 0),
-    getTargetColor = c(0, 128, 200)
+    getTargetColor = c(0, 128, 200),
+    testProp = "@=[{{lng}}, {{lat}}]"
   ) %>%
   add_navigation_control()

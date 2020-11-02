@@ -140,14 +140,32 @@ function addDrawControl(args) {
 }
 
 // Experimental
+const EXPRESSION_IDENTIFIER = "@=";
+
 function addDeckLayer(args) {
   const map = this;
   console.log("deck.gl", deck.version);
   args.props.type = deck[args.type];
-  args.props.data = HTMLWidgets.dataframeToD3(args.props.data);
+  args.props.data = HTMLWidgets.dataframeToD3(args.props.data); // allow urls
+
+  // Convert mapboxer expressions
+  const convertedProps = { };
+  for (let key in args.props) {
+    const value = args.props[key];
+    if (isMapboxerExpression(value)) {
+      console.log(value);
+      convertedProps[key] = (data) => JSON.parse(render(value.replace(EXPRESSION_IDENTIFIER, ""), data));
+    }
+  }
+
+  Object.assign(args.props, convertedProps);
   console.log(args.props);
   const layer = new deck.MapboxLayer(args.props);
   map.addLayer(layer);
+}
+
+function isMapboxerExpression(value) {
+  return typeof value === "string" && value.startsWith(EXPRESSION_IDENTIFIER);
 }
 
 export default {
