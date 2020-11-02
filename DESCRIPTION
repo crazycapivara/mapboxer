@@ -1,7 +1,7 @@
 Package: mapboxer
 Title: An R Interface to 'Mapbox GL JS'
-Version: 0.4.0.9002
-Date: 2020-11-01
+Version: 0.4.0.9003
+Date: 2020-11-02
 Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Description: Makes 'Mapbox GL JS' <https://docs.mapbox.com/mapbox-gl-js/api/>,
