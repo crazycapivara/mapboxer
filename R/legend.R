@@ -4,6 +4,7 @@
 #' @param labels The labels of the legend items.
 #' @param title The title of the legend.
 #' @inheritParams add_control
+#' @example examples/api-reference/legend.R
 #' @export
 add_legend_control <- function(map, colors, labels, title = NULL,
                                pos = c("bottom-right", "bottom-left", "top-left", "top-right")) {
