@@ -1,4 +1,5 @@
-.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl /*, .mapboxer-filter-ctrl */ {
+.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl,
+.mapboxer-legend-ctrl /*, .mapboxer-filter-ctrl */ {
   background: #FFFFFF;
   border-radius: 4px;
   padding: 8px;
@@ -32,4 +33,28 @@
   /* border: 1px solid #46514E; */
   resize: none;
   vertical-align: middle;
+}
+
+/* Legend */
+.mapboxer-legend ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.mapboxer-legend li {
+  list-style-type: none;
+  /*margin: 0 0 8px 0;*/
+  display: flex;
+  vertical-align: middle;
+}
+
+.point-mark {
+  width: 12px;
+  height: 12px;
+  align-self: center;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin-right: 12px;
+  box-sizing: border-box;
+  display: inline-block;
 }
