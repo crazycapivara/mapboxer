@@ -9,10 +9,15 @@ export default class LegendControl {
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl", "mapboxer-legend");
     this._container.style.cssText = this._options.cssText || "";
     console.log(this._options.items);
+    const items = this._options.items.map(item => `
+      <li>
+        <span class="point-mark" style="background-color: ${item.color}"></span>
+        <span>${item.label}</span>
+      </li>
+    `);
     const html = `
       <ul>
-        <li>Label 1</li>
-        <li>Label 2</li>
+        ${items.join("")}
       </ul>
     `;
     this._container.innerHTML = html;

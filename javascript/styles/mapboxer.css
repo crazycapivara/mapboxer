@@ -52,6 +52,7 @@
   height: 10px;
   align-self: center;
   border-radius: 50%;
+  border: 1px solid black;
   margin-right: 12px;
   box-sizing: border-box;
   display: inline-block;
