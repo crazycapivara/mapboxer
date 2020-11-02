@@ -6,7 +6,7 @@ export default class LegendControl {
   onAdd(map) {
     this._map = map;
     this._container = document.createElement("div");
-    this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl", "mapboxer-legend");
+    this._container.classList.add("mapboxgl-ctrl", "mapboxer-legend-ctrl");
     this._container.style.cssText = this._options.cssText || "";
     console.log(this._options.items);
     const items = this._options.items.map(item => `
@@ -16,9 +16,10 @@ export default class LegendControl {
       </li>
     `);
     const html = `
-      <ul>
-        ${items.join("")}
-      </ul>
+      <div class="mapboxer-legend">
+        <div class="mapboxer-legend-title">${this._options.title || ""}</div>
+        <div class="mapboxer-legend-items"><ul>${items.join("")}</ul></div>
+      </div>
     `;
     this._container.innerHTML = html;
     return this._container;
@@ -27,9 +28,5 @@ export default class LegendControl {
   onRemove() {
     this._container.parentNode.removeChild(this._container);
     this._map = undefined;
-  }
-
-  getContainer() {
-    return this._container;
   }
 }

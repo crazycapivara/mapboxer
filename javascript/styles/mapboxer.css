@@ -1,4 +1,5 @@
-.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl /*, .mapboxer-filter-ctrl */ {
+.mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl,
+.mapboxer-legend-ctrl /*, .mapboxer-filter-ctrl */ {
   background: #FFFFFF;
   border-radius: 4px;
   padding: 8px;
