@@ -33,3 +33,26 @@
   resize: none;
   vertical-align: middle;
 }
+
+/* Legend */
+.mapboxer-legend ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.mapboxer-legend li {
+  list-style-type: none;
+  margin: 0 0 8px 0;
+  display: flex;
+  vertical-align: middle;
+}
+
+.point-mark {
+  width: 10px;
+  height: 10px;
+  align-self: center;
+  border-radius: 50%;
+  margin-right: 12px;
+  box-sizing: border-box;
+  display: inline-block;
+}

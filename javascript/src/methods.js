@@ -96,6 +96,18 @@ function addCustomControl(args) {
   map.addControl(control, args.pos);
 }
 
+function addLegendControl(args) {
+  const map = this;
+  args.options = args.options || { };
+  args.options.text = `
+    <div class='legend'>
+      <p>This is your legend</p>
+    </div>
+  `;
+  const control = new customControls.TextControl(args.options);
+  map.addControl(control, args.pos);
+}
+
 function setFilter(args) {
   const map = this;
   map.setFilter(args.layerId, args.filter);
@@ -147,6 +159,7 @@ export default {
   addTooltips,
   addMarker,
   addCustomControl,
+  addLegendControl,
   customControls,
   setFilter,
   setPaintProperty,

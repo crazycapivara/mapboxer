@@ -1,4 +1,4 @@
-export default class TextControl {
+export default class LegendControl {
   constructor(options) {
     this._options = options || { };
   }
@@ -6,10 +6,16 @@ export default class TextControl {
   onAdd(map) {
     this._map = map;
     this._container = document.createElement("div");
-    this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl");
-    //(options.classNames || [ ]).forEach(className => this.container.classList.add(className));
+    this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl", "mapboxer-legend");
     this._container.style.cssText = this._options.cssText || "";
-    this._container.innerHTML = this._options.text || "Hello mapboxer!";
+    console.log(this._options.items);
+    const html = `
+      <ul>
+        <li>Label 1</li>
+        <li>Label 2</li>
+      </ul>
+    `;
+    this._container.innerHTML = html;
     return this._container;
   }
 
