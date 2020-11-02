@@ -1,5 +1,9 @@
 # mapboxer 0.4.1
 
+## 0.4.0.9002
+
+* `add_legend_control()`
+
 ## 0.4.0.9001
 
 * `add_fill_extrusion_layer()`
