@@ -139,6 +139,17 @@ function addDrawControl(args) {
   });
 }
 
+// Experimental
+function addDeckLayer(args) {
+  const map = this;
+  console.log("deck.gl", deck.version);
+  args.props.type = deck[args.type];
+  args.props.data = HTMLWidgets.dataframeToD3(args.props.data);
+  console.log(args.props);
+  const layer = new deck.MapboxLayer(args.props);
+  map.addLayer(layer);
+}
+
 export default {
   addControl,
   addSource,
@@ -154,5 +165,6 @@ export default {
   setData,
   fitBounds,
   setStyle,
-  addDrawControl
+  addDrawControl,
+  addDeckLayer
 };
