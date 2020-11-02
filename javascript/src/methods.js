@@ -146,7 +146,9 @@ function addDeckLayer(args) {
   const map = this;
   console.log("deck.gl", deck.version);
   args.props.type = deck[args.type];
-  args.props.data = HTMLWidgets.dataframeToD3(args.props.data); // allow urls
+  if (typeof args.props.data === "object") {
+    args.props.data = HTMLWidgets.dataframeToD3(args.props.data); // allow urls
+  }
 
   // Convert mapboxer expressions
   const convertedProps = { };
