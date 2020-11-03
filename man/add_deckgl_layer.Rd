@@ -24,19 +24,24 @@ add_deckgl_layer(map, type, data, ..., id = "deckgl-layer",
 Add a deck.gl layer to the map (experimental)
 }
 \examples{
-mapboxer(
-  style = basemaps$Carto$positron,
+# deck.gl HexagonLayer
+
+map <- mapboxer(
   center = c(-73.9165, 40.7114),
-  zoom = 10
+  zoom = 10,
+  pitch = 35
 ) \%>\%
   add_deckgl_layer(
-    type = "ScatterplotLayer",
-    id = "deckgl-layer",
+    type = "HexagonLayer",
     data = motor_vehicle_collisions_nyc,
+    extruded = TRUE,
+    radius = 300,
+    elevationScale = 4,
     getPosition = "@=[{{lng}}, {{lat}}]",
-    radiusMinPixels = 3,
-    radiusScale = 10,
-    getFillColor = c(255, 140, 0)
+    opacity = 0.5,
+    popup = "Number of crashes: {{points.length}}"
   ) \%>\%
   add_navigation_control()
+
+if (interactive()) map
 }

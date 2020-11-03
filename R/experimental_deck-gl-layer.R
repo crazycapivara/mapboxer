@@ -5,7 +5,7 @@
 #' @param ... The properties of the layer.
 #' @param id The unique ID of the layer
 #' @param popup A mustache template string.
-#' @example examples/api-reference/deckgl-layer.R
+#' @example examples/api-reference/deckgl-hexagon-layer.R
 #' @export
 add_deckgl_layer <- function(map, type, data, ..., id = "deckgl-layer", popup = NULL) {
   map %<>%
