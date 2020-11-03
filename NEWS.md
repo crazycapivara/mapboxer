@@ -1,5 +1,9 @@
 # mapboxer 0.4.1
 
+## 0.4.0.9003
+
+* `add_deckgl_layer()`
+
 ## 0.4.0.9002
 
 * `add_legend_control()`
