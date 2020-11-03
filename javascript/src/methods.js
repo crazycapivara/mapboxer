@@ -152,14 +152,15 @@ function addDeckLayer(args) {
     const popup = new mapboxgl.Popup({
       closeOnClick: false
     });
+
     args.props.pickable = true;
     args.props.onClick = ({object, lngLat}) => {
       console.log(object);
       console.log(lngLat);
 
-    popup.setLngLat(lngLat)
-      .setHTML("Hi there." + render(args.popup, object))
-      .addTo(map);
+      popup.setLngLat(lngLat)
+        .setHTML(render(args.popup, object))
+        .addTo(map);
     };
   }
 

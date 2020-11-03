@@ -13,6 +13,6 @@ mapboxer(
     elevationScale = 4,
     getPosition = "@=[{{lng}}, {{lat}}]",
     opacity = 0.5,
-    popup = "{{points.length}}"
+    popup = "Number of crashes: {{points.length}}"
   ) %>%
   add_navigation_control()
