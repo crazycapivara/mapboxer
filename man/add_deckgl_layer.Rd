@@ -4,7 +4,8 @@
 \alias{add_deckgl_layer}
 \title{Add a deck.gl layer to the map (experimental)}
 \usage{
-add_deckgl_layer(map, type, data, ..., id = "deckgl-layer")
+add_deckgl_layer(map, type, data, ..., id = "deckgl-layer",
+  popup = NULL)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object}
@@ -16,6 +17,8 @@ add_deckgl_layer(map, type, data, ..., id = "deckgl-layer")
 \item{...}{The properties of the layer.}
 
 \item{id}{The unique ID of the layer}
+
+\item{popup}{A mustache template string.}
 }
 \description{
 Add a deck.gl layer to the map (experimental)

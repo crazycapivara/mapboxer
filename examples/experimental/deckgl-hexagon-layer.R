@@ -12,6 +12,7 @@ mapboxer(
     radius = 300,
     elevationScale = 4,
     getPosition = "@=[{{lng}}, {{lat}}]",
-    opacity = 0.5
+    opacity = 0.5,
+    popup = "{{points.length}}"
   ) %>%
   add_navigation_control()

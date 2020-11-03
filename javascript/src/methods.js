@@ -146,6 +146,23 @@ function addDeckLayer(args) {
   const map = this;
   console.log("deck.gl", deck.version);
   args.props.type = deck[args.type];
+
+  // Add popup
+  if (args.popup) {
+    const popup = new mapboxgl.Popup({
+      closeOnClick: false
+    });
+    args.props.pickable = true;
+    args.props.onClick = ({object, lngLat}) => {
+      console.log(object);
+      console.log(lngLat);
+
+    popup.setLngLat(lngLat)
+      .setHTML("Hi there." + render(args.popup, object))
+      .addTo(map);
+    };
+  }
+
   if (typeof args.props.data === "object") {
     args.props.data = HTMLWidgets.dataframeToD3(args.props.data); // allow urls
   }
