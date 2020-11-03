@@ -1,5 +1,5 @@
 as_mapboxer_viz <- function(data, style = basemaps$Carto$voyager, ...,
-                            coords = NULL) {
+                            layer_id = "mapboxer-viz", coords = NULL) {
   # Use classes imstead
   if (!is.null(coords)) data <- sf::st_as_sf(data, coords = coords)
 
@@ -10,5 +10,5 @@ as_mapboxer_viz <- function(data, style = basemaps$Carto$voyager, ...,
       element_id = "mapboxerviz"
     ) %>%
     add_navigation_control() %>%
-    add_circle_layer(...)
+    add_circle_layer(..., id = layer_id)
 }
