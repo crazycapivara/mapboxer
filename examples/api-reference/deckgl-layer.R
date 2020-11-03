@@ -1,0 +1,15 @@
+mapboxer(
+  style = basemaps$Carto$positron,
+  center = c(-73.9165, 40.7114),
+  zoom = 10
+) %>%
+  add_deckgl_layer(
+    type = "ScatterplotLayer",
+    id = "deckgl-layer",
+    data = motor_vehicle_collisions_nyc,
+    getPosition = "@=[{{lng}}, {{lat}}]",
+    radiusMinPixels = 3,
+    radiusScale = 10,
+    getFillColor = c(255, 140, 0)
+  ) %>%
+  add_navigation_control()

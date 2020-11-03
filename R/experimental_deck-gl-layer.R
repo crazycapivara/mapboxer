@@ -1,0 +1,15 @@
+#' Add a deck.gl layer to the map (experimental)
+#' @param map A \link{mapboxer} object
+#' @param type The type of the deck.gl layer, e. g. \code{ScatterplotLayer}.
+#' @param data The data object.
+#' @param ... The properties of the layer.
+#' @param id The unique ID of the layer
+#' @param popup A mustache template string.
+#' @example examples/api-reference/deckgl-hexagon-layer.R
+#' @export
+add_deckgl_layer <- function(map, type, data, ..., id = "deckgl-layer", popup = NULL) {
+  map %<>%
+    add_deps(use_deps("deck-gl"))
+  invoke_method(map, "addDeckLayer", type = type,
+                props = list(data = data, id = id, ...), popup = popup)
+}
