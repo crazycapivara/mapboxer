@@ -3,6 +3,10 @@ add_control_panel <- function(map, ..., pos = NULL) {
                 options = list(...), pos = pos)
 }
 
+int_filder_slider <- function() {
+
+}
+
 elem_range_slider <- function(min, max, step, value = min) {
   list(props = list(min = min, max = max, step = step, value = value), type = "Slider")
 }
