@@ -42,10 +42,15 @@ canvas:focus {
 .mapboxer-slider-ctrl {
   display: flex;
   align-items: center;
+  /*padding: 5px;*/
 }
 
 .mapboxer-slider-ctrl label {
-  padding-right: 10px;
+  width: 40%;
+  /*padding-right: 10px;*/
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 /* Legend */
