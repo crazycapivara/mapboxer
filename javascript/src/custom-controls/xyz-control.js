@@ -30,16 +30,25 @@ export default class XYZControl {
   }
 
   _createSlider(props) {
+    const container = document.createElement("div");
+    container.classList.add("mapboxer-slider-ctrl");
+
+    const output = document.createElement("output");
+
     const slider = document.createElement("input");
     slider.type = "range";
     Object.assign(slider, props);
     slider.onchange = (e) => {
+      output.innerHTML = slider.value;
       // e.target
       const expression = [ slider.mapboxOperator, slider.mapboxProperty, parseInt(slider.value) ];
       console.log(expression);
       this._map.setFilter(slider.mapboxLayerId, expression);
     };
-    return slider;
+
+    output.innerHTML = slider.value;
+    container.append(output, slider);
+    return container;
   }
 }
 
