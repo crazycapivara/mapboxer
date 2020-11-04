@@ -36,15 +36,19 @@ export default class XYZControl {
     const slider = document.createElement("input");
     slider.type = "range";
     Object.assign(slider, props);
-
+    const setLabel = (value) => {
+      label.innerHTML = [filter.property, filter.operator, value].join(" ");
+    };
     slider.onchange = (e) => {
-      label.innerHTML = e.target.value;
+      //label.innerHTML = e.target.value;
+      setLabel(e.target.value);
       const expression = [ filter.operator, filter.property, parseInt(e.target.value) ];
       console.log(expression);
       this._map.setFilter(filter.layerId, expression);
     };
 
-    label.innerHTML = slider.value;
+    setLabel(slider.value);
+    //label.innerHTML = slider.value;
     this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
     container.append(label, slider);
     return container;

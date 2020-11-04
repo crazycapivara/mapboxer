@@ -1,10 +1,10 @@
-add_control_panel <- function(map, ...) {
+add_control_panel <- function(map, ..., pos = NULL) {
   invoke_method(map, "addCustomControl", controlName = "XYZControl",
-                options = list(...))
+                options = list(...), pos = pos)
 }
 
 elem_range_slider <- function(min, max, step, value = min) {
-  list(props = list(min = min, max = max, step = step, value = value))
+  list(props = list(min = min, max = max, step = step, value = value), type = "Slider")
 }
 
 on_change_filter <- function(elem, layer_id, property, operator = "==") {
