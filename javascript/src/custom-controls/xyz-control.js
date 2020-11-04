@@ -32,23 +32,21 @@ export default class XYZControl {
   _createSlider({props, filter}) {
     const container = document.createElement("div");
     container.classList.add("mapboxer-slider-ctrl");
-
-    const output = document.createElement("output");
-
+    const label = document.createElement("label");
     const slider = document.createElement("input");
     slider.type = "range";
     Object.assign(slider, props);
+
     slider.onchange = (e) => {
-      output.innerHTML = slider.value;
-      // e.target
+      label.innerHTML = e.target.value;
       const expression = [ filter.operator, filter.property, parseInt(e.target.value) ];
       console.log(expression);
       this._map.setFilter(filter.layerId, expression);
     };
 
-    output.innerHTML = slider.value;
-    container.append(output, slider);
+    label.innerHTML = slider.value;
     this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
+    container.append(label, slider);
     return container;
   }
 }
