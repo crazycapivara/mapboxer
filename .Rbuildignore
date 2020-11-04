@@ -10,3 +10,5 @@
 ^tmp$
 ^examples$
 ^data-raw$
+^cran-comments\.md$
+^CRAN-RELEASE$
