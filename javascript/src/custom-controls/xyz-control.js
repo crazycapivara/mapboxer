@@ -29,7 +29,7 @@ export default class XYZControl {
     this._map = undefined;
   }
 
-  _createSlider(props) {
+  _createSlider({props, filter}) {
     const container = document.createElement("div");
     container.classList.add("mapboxer-slider-ctrl");
 
@@ -41,13 +41,14 @@ export default class XYZControl {
     slider.onchange = (e) => {
       output.innerHTML = slider.value;
       // e.target
-      const expression = [ slider.mapboxOperator, slider.mapboxProperty, parseInt(slider.value) ];
+      const expression = [ filter.operator, filter.property, parseInt(e.target.value) ];
       console.log(expression);
-      this._map.setFilter(slider.mapboxLayerId, expression);
+      this._map.setFilter(filter.layerId, expression);
     };
 
     output.innerHTML = slider.value;
     container.append(output, slider);
+    this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
     return container;
   }
 }
