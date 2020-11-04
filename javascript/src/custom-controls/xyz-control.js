@@ -9,18 +9,10 @@ export default class XYZControl {
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl");
     this._container.style.cssText = this._options.cssText || "";
     //this._container.innerHTML = "Control Panel";
-
-    // Create slider
-    console.log("slider", this._options);
-    /*
-    const slider = document.createElement("input");
-    slider.type = "range";
-    Object.assign(slider, this._options[0]);
-    slider.onchange = (e) => console.log(slider.value, e.target.value);
-    */
-    const slider = this._createSlider(this._options[0]);
-    this._container.append(slider);
-
+    console.log("control panel", this._options);
+    this._options.forEach(item => {
+      if(item.type === "Slider") this._addSlider(item);
+    });
     return this._container;
   }
 
@@ -29,7 +21,7 @@ export default class XYZControl {
     this._map = undefined;
   }
 
-  _createSlider({props, filter}) {
+  _addSlider({props, filter}) {
     const container = document.createElement("div");
     container.classList.add("mapboxer-slider-ctrl");
     const label = document.createElement("label");
@@ -47,10 +39,11 @@ export default class XYZControl {
       this._map.setFilter(filter.layerId, expression);
     };
 
-    setLabel(slider.value);
     //label.innerHTML = slider.value;
+    setLabel(slider.value);
     this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
     container.append(label, slider);
+    this._container.append(container);
     return container;
   }
 }
