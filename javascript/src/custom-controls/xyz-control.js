@@ -1,6 +1,7 @@
 export default class XYZControl {
   constructor(options) {
     this._options = options || { };
+    this._sliders = [ ];
   }
 
   onAdd(map) {
@@ -31,20 +32,36 @@ export default class XYZControl {
     const setLabel = (value) => {
       label.innerHTML = [filter.property, filter.operator, value].join(" ");
     };
+    const getExpression = () => [filter.operator, filter.property, parseInt(slider.value)];
     slider.onchange = (e) => {
       //label.innerHTML = e.target.value;
       setLabel(e.target.value);
-      const expression = [ filter.operator, filter.property, parseInt(e.target.value) ];
+      //const expression = [ filter.operator, filter.property, parseInt(e.target.value) ];
+      //const expression = getExpression();
+      const expression = this._getFilterExpressions(filter.layerId);
       console.log(expression);
       this._map.setFilter(filter.layerId, expression);
     };
 
     //label.innerHTML = slider.value;
     setLabel(slider.value);
-    this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
+    //this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
+    this._sliders.push({
+      layerId: filter.layerId,
+      getExpression
+    });
+    this._map.setFilter(filter.layerId, this._getFilterExpressions(filter.layerId));
+
+    // Add container
     container.append(label, slider);
     this._container.append(container);
     return container;
+  }
+
+  _getFilterExpressions(layerId) {
+    const expressions = this._sliders.filter(slider => slider.layerId === layerId)
+      .map(slider => slider.getExpression());
+    return [ "all" ].concat(expressions);
   }
 }
 
