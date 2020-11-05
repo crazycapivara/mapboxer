@@ -9,7 +9,6 @@ export default class PanelControl {
     this._container = document.createElement("div");
     this._container.classList.add("mapboxgl-ctrl", "mapboxer-panel-ctrl");
     this._container.style.cssText = this._options.cssText || "";
-    //this._container.innerHTML = "Control Panel";
     console.log("control panel", this._options);
     this._options.items.forEach(item => {
       if(item.type === "Slider") this._addSlider(item);

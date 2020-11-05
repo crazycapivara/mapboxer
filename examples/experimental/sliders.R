@@ -14,5 +14,6 @@ as_mapboxer_viz(mvc, coords = c("lng", "lat"), layer_id = LAYER_ID) %>%
     slider,
     slider2,
     pos = "top-left"
+    , css_text = htmltools::css(background = "black", color = "white")
   ) %>%
   add_popups(LAYER_ID, mapbox_popup("{{injured}}", event = "hover"))

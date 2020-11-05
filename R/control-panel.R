@@ -1,6 +1,6 @@
-add_control_panel <- function(map, ..., pos = NULL) {
+add_control_panel <- function(map, ..., pos = NULL, css_text = NULL) {
   invoke_method(map, "addCustomControl", controlName = "PanelControl",
-                options = list(items = list(...)), pos = pos)
+                options = list(items = list(...), cssText = css_text), pos = pos)
 }
 
 int_filder_slider <- function() {
