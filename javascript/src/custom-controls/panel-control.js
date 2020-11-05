@@ -1,17 +1,17 @@
 export default class PanelControl {
   constructor(options) {
-    this._options = options || { };
+    this._options = options || { items: [ ] };
     this._sliders = [ ];
   }
 
   onAdd(map) {
     this._map = map;
     this._container = document.createElement("div");
-    this._container.classList.add("mapboxgl-ctrl", "mapboxer-text-ctrl");
+    this._container.classList.add("mapboxgl-ctrl", "mapboxer-panel-ctrl");
     this._container.style.cssText = this._options.cssText || "";
     //this._container.innerHTML = "Control Panel";
     console.log("control panel", this._options);
-    this._options.forEach(item => {
+    this._options.items.forEach(item => {
       if(item.type === "Slider") this._addSlider(item);
     });
     return this._container;

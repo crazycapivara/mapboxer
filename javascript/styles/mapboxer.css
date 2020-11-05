@@ -3,7 +3,7 @@ canvas:focus {
 }
 
 .mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl,
-.mapboxer-legend-ctrl /*, .mapboxer-filter-ctrl */ {
+.mapboxer-legend-ctrl, .mapboxer-panel-ctrl /*, .mapboxer-filter-ctrl */ {
   background: #FFFFFF;
   border-radius: 4px;
   padding: 8px;
