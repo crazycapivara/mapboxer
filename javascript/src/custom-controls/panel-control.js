@@ -1,4 +1,4 @@
-export default class XYZControl {
+export default class PanelControl {
   constructor(options) {
     this._options = options || { };
     this._sliders = [ ];

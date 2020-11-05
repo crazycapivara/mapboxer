@@ -1,5 +1,5 @@
 add_control_panel <- function(map, ..., pos = NULL) {
-  invoke_method(map, "addCustomControl", controlName = "XYZControl",
+  invoke_method(map, "addCustomControl", controlName = "PanelControl",
                 options = list(...), pos = pos)
 }
 
