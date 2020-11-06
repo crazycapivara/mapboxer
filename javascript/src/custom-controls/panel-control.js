@@ -11,8 +11,11 @@ export default class PanelControl {
     this._container.style.cssText = this._options.cssText || "";
     console.log("control panel", this._options);
     this._options.items.forEach(item => {
-      if(item.type === "Slider") this._addSlider(item);
+      if (item.type === "Slider") this._addSlider(item);
+
+      if (typeof item === "string") this._addHTML(item);
     });
+
     return this._container;
   }
 
@@ -60,5 +63,11 @@ export default class PanelControl {
       .map(slider => slider.getExpression());
     console.log(expressions);
     return [ "all" ].concat(expressions);
+  }
+
+  _addHTML(html) {
+    const container = document.createElement("div");
+    container.innerHTML = html;
+    this._container.append(container);
   }
 }

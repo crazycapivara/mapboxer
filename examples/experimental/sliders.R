@@ -11,9 +11,12 @@ slider2 <- elem_range_slider(min = min(mvc$day), max = max(mvc$day), step = 1) %
 
 as_mapboxer_viz(mvc, coords = c("lng", "lat"), layer_id = LAYER_ID) %>%
   add_control_panel(
+    "<p><b>Number of persons <i>injured</i></b></p>",
     slider,
+    "<p><b>2019-09-<i>day</i></b></p>",
     slider2,
     pos = "top-left"
-    , css_text = htmltools::css(background = "black", color = "white")
+    , css_text = htmltools::css(width = "220px")
+    #, css_text = htmltools::css(background = "black", color = "white")
   ) %>%
   add_popups(LAYER_ID, mapbox_popup("{{injured}}", event = "hover"))
