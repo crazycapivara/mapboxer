@@ -15,7 +15,7 @@ export default class PanelControl {
 
       if (typeof item === "string") this._addHTML(item);
 
-      if (item.type === "LayerSwitcher") this._addCheckbox(item.layerId);
+      if (item.type === "LayerSwitcher") this._addCheckbox(item);
     });
 
     return this._container;
@@ -74,7 +74,7 @@ export default class PanelControl {
   }
 
   // At the moment only used to switch a layer's visibility prop
-  _addCheckbox(layerId) {
+  _addCheckbox({layerId, freestyle}) {
     const container = document.createElement("div");
     container.classList.add("mapboxer-checkbox-ctrl", "mapboxer-ctrl-item");
     const label = document.createElement("label");
@@ -89,6 +89,11 @@ export default class PanelControl {
       console.log(input.checked);
       this._map.setLayoutProperty(layerId, "visibility", input.checked ? "visible" : "none");
     };
+    if (freestyle) {
+      label.style.width = "100%";
+      input.style.width = "auto";
+    }
+
     container.append(label, input);
     this._container.append(container);
   }
