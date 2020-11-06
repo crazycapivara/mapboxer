@@ -28,30 +28,28 @@ export default class PanelControl {
     const slider = document.createElement("input");
     slider.type = "range";
     Object.assign(slider, props);
-    const setLabel = (value) => {
-      label.innerHTML = [filter.property, filter.operator, value].join(" ");
-    };
-    const getExpression = () => [filter.operator, filter.property, parseInt(slider.value)];
-    slider.onchange = (e) => {
-      //label.innerHTML = e.target.value;
-      setLabel(e.target.value);
-      //const expression = [ filter.operator, filter.property, parseInt(e.target.value) ];
-      //const expression = getExpression();
-      const expression = this._getFilterExpressions(filter.layerId);
-      console.log(expression);
-      this._map.setFilter(filter.layerId, expression);
+
+    const setLabel = () => {
+      label.innerHTML = [ filter.property, filter.operator, slider.value ].join(" ");
     };
 
-    //label.innerHTML = slider.value;
-    setLabel(slider.value);
-    //this._map.setFilter(filter.layerId, [ filter.operator, filter.property, props.value ]);
+    const getExpression = () => [
+      filter.operator,
+      filter.property,
+      parseInt(slider.value)
+    ];
+
+    slider.onchange = (e) => {
+      setLabel();
+      const expression = this._getFilterExpressions(filter.layerId);
+      this._map.setFilter(filter.layerId, expression);
+    };
     this._sliders.push({
       layerId: filter.layerId,
       getExpression
     });
+    setLabel();
     this._map.setFilter(filter.layerId, this._getFilterExpressions(filter.layerId));
-
-    // Add container
     container.append(label, slider);
     this._container.append(container);
     return container;
@@ -60,7 +58,7 @@ export default class PanelControl {
   _getFilterExpressions(layerId) {
     const expressions = this._sliders.filter(slider => slider.layerId === layerId)
       .map(slider => slider.getExpression());
+    console.log(expressions);
     return [ "all" ].concat(expressions);
   }
 }
-
