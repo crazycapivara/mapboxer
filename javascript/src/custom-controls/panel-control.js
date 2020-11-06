@@ -14,6 +14,8 @@ export default class PanelControl {
       if (item.type === "Slider") this._addSlider(item);
 
       if (typeof item === "string") this._addHTML(item);
+
+      if (item.type === "LayerSwitcher") this._addCheckbox(item.layerId);
     });
 
     return this._container;
@@ -26,7 +28,7 @@ export default class PanelControl {
 
   _addSlider({props, filter}) {
     const container = document.createElement("div");
-    container.classList.add("mapboxer-slider-ctrl");
+    container.classList.add("mapboxer-slider-ctrl", "mapboxer-ctrl-item");
     const label = document.createElement("label");
     const slider = document.createElement("input");
     slider.type = "range";
@@ -68,6 +70,26 @@ export default class PanelControl {
   _addHTML(html) {
     const container = document.createElement("div");
     container.innerHTML = html;
+    this._container.append(container);
+  }
+
+  // At the moment only used to switch a layer's visibility prop
+  _addCheckbox(layerId) {
+    const container = document.createElement("div");
+    container.classList.add("mapboxer-checkbox-ctrl", "mapboxer-ctrl-item");
+    const label = document.createElement("label");
+    label.innerHTML = layerId;
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = this._map.getLayoutProperty(layerId, "visibility") === "visible" ?
+      true
+      :
+      false;
+    input.onchange = (e) => {
+      console.log(input.checked);
+      this._map.setLayoutProperty(layerId, "visibility", input.checked ? "visible" : "none");
+    };
+    container.append(label, input);
     this._container.append(container);
   }
 }

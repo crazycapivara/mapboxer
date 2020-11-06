@@ -3,6 +3,10 @@ add_control_panel <- function(map, ..., pos = NULL, css_text = NULL) {
                 options = list(items = list(...), cssText = css_text), pos = pos)
 }
 
+layer_visibility_checkbox <- function(layer_id) {
+  list(type = "LayerSwitcher", layerId = LAYER_ID)
+}
+
 int_filder_slider <- function() {
 
 }
