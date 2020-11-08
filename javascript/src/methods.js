@@ -90,6 +90,15 @@ function addMarker(args) {
   marker.addTo(map);
 }
 
+function addImage({id, url}) {
+  const map = this;
+  map.loadImage(url, (error, image) => {
+    if (error) throw error;
+
+    map.addImage(id, image);
+  });
+}
+
 function addCustomControl(args) {
   const map = this;
   const control = new customControls[args.controlName](args.options);
@@ -204,5 +213,6 @@ export default {
   fitBounds,
   setStyle,
   addDrawControl,
-  addDeckLayer
+  addDeckLayer,
+  addImage
 };
