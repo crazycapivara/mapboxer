@@ -15,7 +15,7 @@ mod_map_view <- function(id) {
 }
 
 mod_map_server <- function(id) {
-  ns <- NS(id)
+  #ns <- NS(id)
   moduleServer(id, function(input, output, session) {
     output$map <- renderMapboxer({
       mapboxer(
@@ -32,7 +32,8 @@ mod_map_server <- function(id) {
     })
 
     observeEvent(input$slider, {
-      mapboxer_proxy(ns("map")) %>%
+      #mapboxer_proxy(ns("map")) %>%
+      mapboxer_proxy("map") %>%
         set_filter(LAYER_ID, list("==", "injured", input$slider)) %>%
         update_mapboxer()
     })
