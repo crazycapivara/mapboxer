@@ -1,5 +1,7 @@
 # mapboxer 0.4.1
 
+* Fix namespace bug in `mapboxer_proxy` (#62)
+
 ## 0.4.0.9003
 
 * `add_deckgl_layer()`
