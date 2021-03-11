@@ -21,7 +21,7 @@
 * Send data back to R in Shiny app (#44)
 * Support for tooltips (#43)
 * Added constant with basemap style URLs, added `basemap_` prefix to funcs creating basemap styles (#41, #27)
-* Updated examles (#39)
+* Updated examples (#39)
 * Support `set_style` in Shiny apps (#24)
 * Added `draw` plugin as experimental feature, in this case js library for the feature is loaded externally (#17)
 * Added `motor_vehicle_collisions_nyc` sample dataset (#3)
