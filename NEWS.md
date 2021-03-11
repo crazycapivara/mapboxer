@@ -1,3 +1,7 @@
+# mapboxer 0.4.1
+
+* Fix namespace bug in `mapboxer_proxy` (#62)
+
 # mapboxer 0.4.0
 
 * Renamed `send_mapboxer_update()` to `update_mapboxer()` (#32)
