@@ -1,5 +1,9 @@
+canvas:focus {
+  outline: none;
+}
+
 .mapboxer-text-ctrl, .mapboxer-mouse-position-ctrl,
-.mapboxer-legend-ctrl /*, .mapboxer-filter-ctrl */ {
+.mapboxer-legend-ctrl, .mapboxer-panel-ctrl /*, .mapboxer-filter-ctrl */ {
   background: #FFFFFF;
   border-radius: 4px;
   padding: 8px;
@@ -33,6 +37,25 @@
   /* border: 1px solid #46514E; */
   resize: none;
   vertical-align: middle;
+}
+
+.mapboxer-slider-ctrl, .mapboxer-checkbox-ctrl {
+/*.mapboxer-ctrl-item {*/
+  display: flex;
+  align-items: center;
+  /*padding: 5px;*/
+}
+
+.mapboxer-ctrl-item label {
+  width: 40%;
+  /*padding-right: 10px;*/
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.mapboxer-ctrl-item input {
+  width: 150px;
 }
 
 /* Legend */
