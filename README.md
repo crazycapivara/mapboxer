@@ -4,11 +4,16 @@ mapboxer: An R Interface to Mapbox GL JS
 ========================================
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/mapboxer)](https://CRAN.R-project.org/package=mapboxer) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/mapboxer.svg?branch=master)](https://travis-ci.org/crazycapivara/mapboxer) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
+[![CRAN status](https://www.r-pkg.org/badges/version/mapboxer)](https://CRAN.R-project.org/package=mapboxer) [![github\_status\_badge](https://img.shields.io/badge/github-0.4.1-blue.svg)](https://github.com/crazycapivara/mapboxer/releases/latest) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/mapboxer.svg?branch=master)](https://travis-ci.org/crazycapivara/mapboxer) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
 
-Mapboxer makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source JavaScript library that uses WebGL to render interactive maps, available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
+`mapboxer` makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source JavaScript library that uses WebGL to render interactive maps, available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
 
 ![persons-in-manhatten](man/figures/README-persons-in-manhatten.png)
+
+Note
+----
+
+`mapboxer` provides bindings to v1.x.x of Mapbox GL JS, which is under the 3-Clause BSD license. See also [breaking changes in Mapbox GL JS v2.0.0](https://github.com/mapbox/mapbox-gl-js/releases/tag/v2.0.0).
 
 Installation
 ------------
