@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mapboxer)](https://CRAN.R-project.org/package=mapboxer)
-[![github_status_badge](https://img.shields.io/badge/github-0.4.1-blue.svg)](https://github.com/crazycapivara/mapboxer/releases/latest)
+[![github_status_badge](https://img.shields.io/badge/github-0.4.2-blue.svg)](https://github.com/crazycapivara/mapboxer/releases/latest)
 [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/mapboxer.svg?branch=master)](https://travis-ci.org/crazycapivara/mapboxer)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->

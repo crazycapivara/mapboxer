@@ -1,24 +1,37 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-mapboxer: An R Interface to Mapbox GL JS
-========================================
+
+# mapboxer: An R Interface to Mapbox GL JS
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/mapboxer)](https://CRAN.R-project.org/package=mapboxer) [![github\_status\_badge](https://img.shields.io/badge/github-0.4.1-blue.svg)](https://github.com/crazycapivara/mapboxer/releases/latest) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/mapboxer.svg?branch=master)](https://travis-ci.org/crazycapivara/mapboxer) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <!-- badges: end -->
 
-`mapboxer` makes [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source JavaScript library that uses WebGL to render interactive maps, available within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
+[![CRAN
+status](https://www.r-pkg.org/badges/version/mapboxer)](https://CRAN.R-project.org/package=mapboxer)
+[![github\_status\_badge](https://img.shields.io/badge/github-0.4.2-blue.svg)](https://github.com/crazycapivara/mapboxer/releases/latest)
+[![Travis-CI Build
+Status](https://travis-ci.org/crazycapivara/mapboxer.svg?branch=master)](https://travis-ci.org/crazycapivara/mapboxer)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+<!-- badges: end -->
+
+`mapboxer` makes [Mapbox GL
+JS](https://docs.mapbox.com/mapbox-gl-js/api/), an open source
+JavaScript library that uses WebGL to render interactive maps, available
+within R via the [htmlwidgets](https://www.htmlwidgets.org/) package.
 
 ![persons-in-manhatten](man/figures/README-persons-in-manhatten.png)
 
-Note
-----
+## Note
 
-`mapboxer` provides bindings to v1.x.x of Mapbox GL JS, which is under the 3-Clause BSD license. See also [breaking changes in Mapbox GL JS v2.0.0](https://github.com/mapbox/mapbox-gl-js/releases/tag/v2.0.0).
+`mapboxer` provides bindings to v1.x.x of Mapbox GL JS, which is under
+the 3-Clause BSD license. See also [breaking changes in Mapbox GL JS
+v2.0.0](https://github.com/mapbox/mapbox-gl-js/releases/tag/v2.0.0).
 
-Installation
-------------
+## Installation
 
-Install the release version from [CRAN](https://cran.r-project.org/) with:
+Install the release version from [CRAN](https://cran.r-project.org/)
+with:
 
 ``` r
 install.packages("mapboxer")
@@ -31,8 +44,7 @@ Install the development version from [GitHub](https://github.com/) with:
 remotes::install_github("crazycapivara/mapboxer")
 ```
 
-Usage
------
+## Usage
 
 ``` r
 library(mapboxer)
@@ -58,20 +70,24 @@ map <- motor_vehicle_collisions_nyc %>%
 if (interactive()) map
 ```
 
-By default mapboxer uses [Carto vector styles](https://github.com/CartoDB/basemap-styles) as basemaps. It is also possible to use raster tiles or a background color.
+By default mapboxer uses [Carto vector
+styles](https://github.com/CartoDB/basemap-styles) as basemaps. It is
+also possible to use raster tiles or a background color.
 
-If you want to use styles from [Mapbox](https://www.mapbox.com/maps) it is recommended that you store your API token in an environment vatiable called `MAPBOX_API_TOKEN`.
+If you want to use styles from [Mapbox](https://www.mapbox.com/maps) it
+is recommended that you store your API token in an environment vatiable
+called `MAPBOX_API_TOKEN`.
 
-Documentation
--------------
+## Documentation
 
--   [Get Started](https://crazycapivara.github.io/mapboxer/articles/mapboxer.html)
--   [API Reference](https://crazycapivara.github.io/mapboxer/reference/)
--   [Examples](https://github.com/crazycapivara/mapboxer/tree/master/examples)
--   [Showcase](https://crazycapivara.github.io/mapboxer/articles/examples/showcase.html)
+  - [Get
+    Started](https://crazycapivara.github.io/mapboxer/articles/mapboxer.html)
+  - [API
+    Reference](https://crazycapivara.github.io/mapboxer/reference/)
+  - [Examples](https://github.com/crazycapivara/mapboxer/tree/master/examples)
+  - [Showcase](https://crazycapivara.github.io/mapboxer/articles/examples/showcase.html)
 
-Development
------------
+## Development
 
 All JavaScript code of mapboxer is located in `javascript/src`.
 
