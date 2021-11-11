@@ -5,7 +5,7 @@ PROVIDERS <- list(
   ),
   Mapbox = list(
     url = "mapbox://styles/mapbox/%s",
-    themes = c("streets-v11", "outdoors-v11", "light-v10", "dark-v10", "satellite-v9", "satellite-steets-v11")
+    themes = c("streets-v11", "outdoors-v11", "light-v10", "dark-v10", "satellite-v9", "satellite-streets-v11")
   )
 )
 
@@ -19,4 +19,4 @@ build_urls <- function(provider) {
 }
 
 basemaps <- lapply(PROVIDERS, build_urls)
-usethis::use_data(basemaps)
+usethis::use_data(basemaps, overwrite = TRUE)
