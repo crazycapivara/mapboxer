@@ -1,3 +1,7 @@
+# mapboxer 0.4.2
+
+* Fix typo in mapbox basemaps (#87)
+
 # mapboxer 0.4.1
 
 * Fix namespace bug in `mapboxer_proxy` (#62)
