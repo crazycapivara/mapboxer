@@ -106,11 +106,12 @@ set_style <- function(map, style) {
   map
 }
 
-create_layer_style <- function(id, type, source, filter, paint, layout) {
+create_layer_style <- function(id, type, source, filter, paint, layout, source_layer) {
   list(
     id = id,
     type = type,
     source = source,
+    "source-layer" = source_layer,
     filter = filter,
     paint = purrr::compact(paint),
     layout = purrr::compact(layout)

@@ -4,14 +4,31 @@
 \alias{add_line_layer}
 \title{Add a line layer to the map}
 \usage{
-add_line_layer(map, source = NULL, filter = NULL, line_blur = NULL,
-  line_cap = NULL, line_color = NULL, line_dasharray = NULL,
-  line_gap_width = NULL, line_gradient = NULL, line_join = NULL,
-  line_miter_limit = NULL, line_offset = NULL, line_opacity = NULL,
-  line_pattern = NULL, line_round_limit = NULL, line_sort_key = NULL,
-  line_translate = NULL, line_translate_anchor = NULL,
-  line_width = NULL, visibility = NULL, popup = NULL,
-  id = "line-layer")
+add_line_layer(
+  map,
+  source = NULL,
+  filter = NULL,
+  line_blur = NULL,
+  line_cap = NULL,
+  line_color = NULL,
+  line_dasharray = NULL,
+  line_gap_width = NULL,
+  line_gradient = NULL,
+  line_join = NULL,
+  line_miter_limit = NULL,
+  line_offset = NULL,
+  line_opacity = NULL,
+  line_pattern = NULL,
+  line_round_limit = NULL,
+  line_sort_key = NULL,
+  line_translate = NULL,
+  line_translate_anchor = NULL,
+  line_width = NULL,
+  visibility = NULL,
+  popup = NULL,
+  id = "line-layer",
+  source_layer = NULL
+)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
@@ -68,6 +85,8 @@ Features with a higher sort key will appear above features with a lower sort key
 in which the tags refer to the properties of the layer's data object.}
 
 \item{id}{The unique id of the layer.}
+
+\item{source_layer}{The layer to use in the source for vector sources..}
 }
 \description{
 Add a line layer to the map

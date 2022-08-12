@@ -39,6 +39,7 @@ add_circle_layer <- function(map,
                              circle_translate_anchor = NULL,
                              visibility = TRUE,
                              popup = NULL,
+                             source_layer = NULL,
                              id = "circle-layer") {
   paint <- list(
     "circle-blur" = circle_blur,
@@ -58,7 +59,7 @@ add_circle_layer <- function(map,
     "circle-sort-key" = circle_sort_key,
     "visibility" = ifelse(visibility, "visible", "none")
   )
-  style <- create_layer_style(id, "circle", source, filter, paint, layout)
+  style <- create_layer_style(id, "circle", source, filter, paint, layout, source_layer)
   map %>%
     add_layer(style, popup)
 }
