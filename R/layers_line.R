@@ -50,7 +50,8 @@ add_line_layer <- function(map,
                            line_width = NULL,
                            visibility = NULL,
                            popup = NULL,
-                           id = "line-layer") {
+                           id = "line-layer",
+                           source_layer = NULL) {
   paint <- list(
     "line-blur" = line_blur,
     "line-color" = line_color,
@@ -72,7 +73,7 @@ add_line_layer <- function(map,
     "line-sort-key" = line_sort_key,
     "visibility" = ifelse(visibility, "visible", "none")
   )
-  style <- create_layer_style(id, "line", source, filter, paint, layout)
+  style <- create_layer_style(id, "line", source, filter, paint, layout, source_layer)
   map %>%
     add_layer(style, popup)
 }
