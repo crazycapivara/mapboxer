@@ -4,7 +4,7 @@ import { DEFAULT_SOURCE } from "./constants";
 
 function addControl(args) {
   const map = this;
-  const control = new window[args.controlName](args.options);
+  const control = args.topLevel ? new window[args.topLevel][args.controlName](args.options) : new window[args.controlName](args.options);
   map.addControl(control, args.pos);
 }
 
