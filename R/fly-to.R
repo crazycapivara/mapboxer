@@ -4,5 +4,5 @@
 #' @param ... Optional arguments, see \url{https://docs.mapbox.com/mapbox-gl-js/api/map/#map#flyto}.
 #' @export
 fly_to <- function(map, center, ...) {
-  invoke_method(map, "flyTo", center = center, ...)
+  invoke_method(map, "flyTo", options = list(center = center, ...))
 }

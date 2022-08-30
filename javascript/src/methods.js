@@ -124,7 +124,7 @@ function fitBounds(args) {
 
 function flyTo(args) {
   const map = this;
-  map.flyTo(args);
+  map.flyTo(args.options);
 }
 
 function setStyle(args) {
@@ -158,6 +158,7 @@ export default {
   setLayoutProperty,
   setData,
   fitBounds,
+  flyTo,
   setStyle,
   addDrawControl
 };
