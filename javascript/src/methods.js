@@ -122,6 +122,11 @@ function fitBounds(args) {
   map.fitBounds(args.bounds, args.options || { });
 }
 
+function flyTo(args) {
+  const map = this;
+  map.flyTo(args);
+}
+
 function setStyle(args) {
   const map = this;
   map.setStyle(args.style);
