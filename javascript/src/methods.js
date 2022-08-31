@@ -144,6 +144,13 @@ function addDrawControl(args) {
   });
 }
 
+// UpdateSource
+function setSourceTiles(args) {
+  const map = this;
+  map.getSource(args.sourceId).setTiles(args.tiles)
+
+}
+
 export default {
   addControl,
   addSource,
@@ -160,5 +167,6 @@ export default {
   fitBounds,
   flyTo,
   setStyle,
-  addDrawControl
+  addDrawControl,
+  setSourceTiles
 };

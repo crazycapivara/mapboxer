@@ -49,3 +49,12 @@ as_mapbox_source.sf <- function(data, ...) {
   geojsonsf::sf_geojson(data, simplify = FALSE) %>%
     mapbox_geojson_source(...)
 }
+
+
+#' @export
+#' @param source_id The id of the data source to update
+#' @param tiles A new list of tile urls
+#' @name as_mapbox_source
+set_source_tiles <- function(source_id, tiles) {
+  invoke_method(map, "setSourceTiles", options = list(sourceId = source_id, tiles = tile))
+}
