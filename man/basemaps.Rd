@@ -4,7 +4,9 @@
 \name{basemaps}
 \alias{basemaps}
 \title{A list of basemap style URLs}
-\format{An object of class \code{list} of length 2.}
+\format{
+An object of class \code{list} of length 2.
+}
 \usage{
 basemaps
 }

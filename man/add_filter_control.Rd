@@ -4,8 +4,14 @@
 \alias{add_filter_control}
 \title{Add a filter control to the map}
 \usage{
-add_filter_control(map, layer_id, filter = NULL, pos = NULL,
-  rows = 1, cols = 20)
+add_filter_control(
+  map,
+  layer_id,
+  filter = NULL,
+  pos = NULL,
+  rows = 1,
+  cols = 20
+)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}

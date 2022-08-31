@@ -24,8 +24,8 @@ Update layer properties
 }
 \section{Functions}{
 \itemize{
-\item \code{set_paint_property}: Update a paint property of a layer.
+\item \code{set_paint_property()}: Update a paint property of a layer.
 
-\item \code{set_layout_property}: Update a layout property of a layer.
+\item \code{set_layout_property()}: Update a layout property of a layer.
+
 }}
-

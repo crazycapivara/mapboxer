@@ -4,12 +4,22 @@
 \alias{add_fill_layer}
 \title{Add a fill layer to the map}
 \usage{
-add_fill_layer(map, source = NULL, filter = NULL,
-  fill_antialias = TRUE, fill_color = NULL, fill_opacity = NULL,
-  fill_outline_color = NULL, fill_pattern = NULL,
-  fill_sort_key = NULL, fill_translate = NULL,
-  fill_translate_anchor = NULL, visibility = TRUE, popup = NULL,
-  id = "fill-layer")
+add_fill_layer(
+  map,
+  source = NULL,
+  filter = NULL,
+  fill_antialias = TRUE,
+  fill_color = NULL,
+  fill_opacity = NULL,
+  fill_outline_color = NULL,
+  fill_pattern = NULL,
+  fill_sort_key = NULL,
+  fill_translate = NULL,
+  fill_translate_anchor = NULL,
+  visibility = TRUE,
+  popup = NULL,
+  id = "fill-layer"
+)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}

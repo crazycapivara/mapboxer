@@ -4,8 +4,12 @@
 \alias{add_mouse_position_control}
 \title{Add a mouse position control to the map}
 \usage{
-add_mouse_position_control(map, mustache_template = NULL, pos = NULL,
-  css_text = NULL)
+add_mouse_position_control(
+  map,
+  mustache_template = NULL,
+  pos = NULL,
+  css_text = NULL
+)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}
