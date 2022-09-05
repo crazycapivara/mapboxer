@@ -1,6 +1,6 @@
 mapbox-gl:
   name: "mapbox-gl"
-  version: "2.10.0"
+  version: "1.13.2"
   src: "htmlwidgets/lib/mapbox-gl"
   script: "mapbox-gl.js"
   stylesheet: "mapbox-gl.css"
