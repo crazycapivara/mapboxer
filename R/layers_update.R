@@ -66,3 +66,15 @@ set_data.sf <- function(map, data, source_id, ...) {
   map %>%
     set_data_(geojsonsf::sf_geojson(data, simplify = FALSE), source_id)
 }
+
+
+#' Set feature state
+#' See https://docs.mapbox.com/mapbox-gl-js/api/map/#map#setfeaturestate
+#' @param source A Mapbox source.
+#' @param feature_id The id of the feature to set the state for (one at a time)
+#' @param feature_source The source
+#' @param feature_source_layer The source layer (required for vector layers)
+#' @export
+set_feature_state <- function(map, feature_id, feature_source, feature_source_layer = NULL, state) {
+  invoke_method(map, "setFeatureState", feature = list(id = feature_id, source = feature_source, sourceLayer = feature_source_layer), state = state)
+}

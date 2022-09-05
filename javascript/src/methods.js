@@ -151,6 +151,13 @@ function setSourceTiles(args) {
 
 }
 
+// setFeatureState
+function setFeatureState(args) {
+  const map = this;
+  map.setFeatureState(args.feature, args.state)
+
+}
+
 export default {
   addControl,
   addSource,
@@ -168,5 +175,6 @@ export default {
   flyTo,
   setStyle,
   addDrawControl,
-  setSourceTiles
+  setSourceTiles,
+  setFeatureState
 };
