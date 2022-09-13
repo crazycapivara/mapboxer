@@ -11,8 +11,7 @@ as_mapbox_source(data, ...)
 
 \method{as_mapbox_source}{json}(data, ...)
 
-\method{as_mapbox_source}{data.frame}(data, lng = "lng", lat = "lat",
-  ...)
+\method{as_mapbox_source}{data.frame}(data, lng = "lng", lat = "lat", ...)
 
 \method{as_mapbox_source}{sf}(data, ...)
 }

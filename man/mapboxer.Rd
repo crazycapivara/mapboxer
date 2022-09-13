@@ -4,9 +4,15 @@
 \alias{mapboxer}
 \title{Create a mapboxer widget}
 \usage{
-mapboxer(source = NULL, style = basemaps$Carto$dark_matter, ...,
-  width = NULL, height = NULL, element_id = NULL,
-  token = Sys.getenv("MAPBOX_API_TOKEN"))
+mapboxer(
+  source = NULL,
+  style = basemaps$Carto$dark_matter,
+  ...,
+  width = NULL,
+  height = NULL,
+  element_id = NULL,
+  token = Sys.getenv("MAPBOX_API_TOKEN")
+)
 }
 \arguments{
 \item{source}{A \link{mapbox_source} that is added to the map with the ID \code{MAPBOXER}.}

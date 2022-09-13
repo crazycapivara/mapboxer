@@ -4,7 +4,8 @@
 \name{motor_vehicle_collisions_nyc}
 \alias{motor_vehicle_collisions_nyc}
 \title{Motor Vehicle Collisions in NYC}
-\format{A data frame with 1601 rows and 6 variables,
+\format{
+A data frame with 1601 rows and 6 variables,
   where each row is a Motor Vehicle Collision:
 \describe{
   \item{date}{occurrence date of collision}
@@ -13,7 +14,8 @@
   \item{lat}{longitude coordinate for Global Coordinate System, WGS 1984, decimal degrees (EPSG 4326)}
   \item{injured}{number of persons injured}
   \item{killed}{number of persons killed}
-}}
+}
+}
 \source{
 \url{https://opendata.cityofnewyork.us/}
 }

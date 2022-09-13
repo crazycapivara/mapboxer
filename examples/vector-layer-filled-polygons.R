@@ -1,4 +1,4 @@
-vector_src <- mapbox_source(
+zvector_src <- mapbox_source(
   type = "vector",
   url = "mapbox://mapbox.country-boundaries-v1"
 )
