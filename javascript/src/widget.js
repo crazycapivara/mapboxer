@@ -40,6 +40,11 @@ export default function(widgetElement, width, height) {
     map.on("load", () => widgetData.calls.forEach(({ methodName, args }) => {
       methods[methodName].call(map, args);
     }));
+
+    if (HTMLWidgets.shinyMode) {
+      map.on("load", () => {Shiny.setInputValue(widgetElement.id + "_loaded", true)});
+    };
+
   }
 
   function resize(width, height) {
