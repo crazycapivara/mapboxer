@@ -10,7 +10,7 @@ NULL
 #' @export
 set_paint_property <- function(map, layer_id, property, value) {
   map %>%
-    invoke_method("setPaintProperty", layer = layer_id, property = sub("_", "-", property), value = value)
+    invoke_method("setPaintProperty", layer = layer_id, property = gsub("_", "-", property), value = value)
 }
 
 #' @describeIn set_layer_properties Update a layout property of a layer.
@@ -21,7 +21,7 @@ set_layout_property <- function(map, layer_id, property, value) {
   }
 
   map %>%
-    invoke_method("setLayoutProperty", layer = layer_id, property = property, value = value)
+    invoke_method("setLayoutProperty", layer = layer_id, property = gsub("_", "-", property), value = value)
 }
 
 #' Update the data of a Mapbox source
