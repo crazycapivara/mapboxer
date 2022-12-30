@@ -7,6 +7,14 @@ add_source <- function(map, source, id = "mapboxer") {
   invoke_method(map, "addSource", id = id, source = source)
 }
 
+#' Remove a Mapbox source from the map
+#' @inheritParams set_view_state
+#' @param id The unique id of the data source to remove.
+#' @export
+remove_source <- function(map, id = "mapboxer") {
+  invoke_method(map, "removeSource", id = id)
+}
+
 #' Create a Mapbox source
 #' @param type The type of the source, e. g. \code{geojson}.
 #' @param ... The properties of the source.
@@ -48,4 +56,12 @@ as_mapbox_source.data.frame <- function(data, lng = "lng", lat = "lat", ...) {
 as_mapbox_source.sf <- function(data, ...) {
   geojsonsf::sf_geojson(data, simplify = FALSE) %>%
     mapbox_geojson_source(...)
+}
+
+#' Update the tiles URL of a vector source
+#' @param source_id The id of the data source to update
+#' @param tiles A new list of tile urls
+#' @export
+set_source_tiles <- function(map, source_id, tiles) {
+  invoke_method(map, "setSourceTiles", sourceId = source_id, tiles = tiles)
 }

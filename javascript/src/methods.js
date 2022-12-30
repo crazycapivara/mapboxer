@@ -4,13 +4,23 @@ import { DEFAULT_SOURCE } from "./constants";
 
 function addControl(args) {
   const map = this;
-  const control = new mapboxgl[args.controlName](args.options);
+  let control;
+  if (Array.isArray(args.options)) {
+    control = args.topLevel ? new window[args.topLevel][args.controlName](...args.options) : new window[args.controlName](...args.options)
+  } else {
+    control = args.topLevel ? new window[args.topLevel][args.controlName](args.options) : new window[args.controlName](args.options)
+  }
   map.addControl(control, args.pos);
 }
 
 function addSource(args) {
   const map = this;
   map.addSource(args.id, args.source);
+}
+
+function removeSource(args) {
+  const map = this;
+  map.removeSource(args.id);
 }
 
 function addLayer(args) {
@@ -122,6 +132,11 @@ function fitBounds(args) {
   map.fitBounds(args.bounds, args.options || { });
 }
 
+function flyTo(args) {
+  const map = this;
+  map.flyTo(args.options);
+}
+
 function setStyle(args) {
   const map = this;
   map.setStyle(args.style);
@@ -139,6 +154,20 @@ function addDrawControl(args) {
   });
 }
 
+// UpdateSource
+function setSourceTiles(args) {
+  const map = this;
+  map.getSource(args.sourceId).setTiles(args.tiles)
+
+}
+
+// setFeatureState
+function setFeatureState(args) {
+  const map = this;
+  map.setFeatureState(args.feature, args.state)
+
+}
+
 export default {
   addControl,
   addSource,
@@ -153,6 +182,9 @@ export default {
   setLayoutProperty,
   setData,
   fitBounds,
+  flyTo,
   setStyle,
-  addDrawControl
+  addDrawControl,
+  setSourceTiles,
+  setFeatureState
 };

@@ -9,7 +9,7 @@ add_draw_control(map, ..., pos = NULL, data = NULL)
 \arguments{
 \item{map}{A \link{mapboxer} object.}
 
-\item{...}{The options of the control.}
+\item{...}{The options of the control. If named, converted into an object passed to the constructor; if not, converted into arguments passed to tne constructor in the same order.}
 
 \item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}

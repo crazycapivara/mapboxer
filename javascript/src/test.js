@@ -10,6 +10,7 @@ const widgetData = {
       methodName: "addControl",
       args: {
         controlName: "NavigationControl",
+        topLevel: "mapboxgl",
         pos: "top-left",
         options: {
           showCompass: false
@@ -20,6 +21,7 @@ const widgetData = {
       methodName: "addControl",
       args: {
         controlName: "ScaleControl",
+        topLevel: "mapboxgl",
         pos: "bottom-right"
       }
     },

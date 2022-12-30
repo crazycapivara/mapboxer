@@ -7,7 +7,7 @@
 \alias{add_fullscreen_control}
 \title{Add a standard control to the map}
 \usage{
-add_control(map, control_name, ..., pos = NULL)
+add_control(map, control_name, ..., pos = NULL, top_level = "mapboxgl")
 
 add_navigation_control(map, ..., pos = NULL)
 
@@ -20,10 +20,12 @@ add_fullscreen_control(map, pos = NULL)
 
 \item{control_name}{The (class) name of the control.}
 
-\item{...}{The options of the control.}
+\item{...}{The options of the control. If named, converted into an object passed to the constructor; if not, converted into arguments passed to tne constructor in the same order.}
 
 \item{pos}{The position of the control. One of \code{top-left}, \code{top-right},
 \code{bottom-right} or \code{bottom-left}.}
+
+\item{top_level}{The name of the higher level class for the constrcutor (defaults to "mapboxgl")}
 }
 \description{
 Add a standard control to the map

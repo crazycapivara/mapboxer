@@ -4,14 +4,26 @@
 \alias{add_circle_layer}
 \title{Add a circle layer to the map}
 \usage{
-add_circle_layer(map, source = NULL, filter = NULL,
-  circle_blur = NULL, circle_color = NULL, circle_opacity = NULL,
-  circle_pitch_alignment = NULL, circle_pitch_scale = NULL,
-  circle_radius = NULL, circle_sort_key = NULL,
-  circle_stroke_color = NULL, circle_stroke_opacity = NULL,
-  circle_stroke_width = NULL, circle_translate = NULL,
-  circle_translate_anchor = NULL, visibility = TRUE, popup = NULL,
-  id = "circle-layer")
+add_circle_layer(
+  map,
+  source = NULL,
+  filter = NULL,
+  circle_blur = NULL,
+  circle_color = NULL,
+  circle_opacity = NULL,
+  circle_pitch_alignment = NULL,
+  circle_pitch_scale = NULL,
+  circle_radius = NULL,
+  circle_sort_key = NULL,
+  circle_stroke_color = NULL,
+  circle_stroke_opacity = NULL,
+  circle_stroke_width = NULL,
+  circle_translate = NULL,
+  circle_translate_anchor = NULL,
+  visibility = TRUE,
+  popup = NULL,
+  id = "circle-layer"
+)
 }
 \arguments{
 \item{map}{A \link{mapboxer} object.}

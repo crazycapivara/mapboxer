@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack src/index.js --mode production -o ../inst/htmlwidgets/mapboxer.js",
-    "start": "webpack-dev-server src/test.js --mode development -o bundle.js --open",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider; webpack src/index.js --mode production -o ../inst/htmlwidgets/mapboxer.js",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider; webpack-dev-server src/test.js --mode development -o bundle.js --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
