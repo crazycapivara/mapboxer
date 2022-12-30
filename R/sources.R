@@ -7,6 +7,14 @@ add_source <- function(map, source, id = "mapboxer") {
   invoke_method(map, "addSource", id = id, source = source)
 }
 
+#' Remove a Mapbox source from the map
+#' @inheritParams set_view_state
+#' @param id The unique id of the data source to remove.
+#' @export
+remove_source <- function(map, id = "mapboxer") {
+  invoke_method(map, "removeSource", id = id)
+}
+
 #' Create a Mapbox source
 #' @param type The type of the source, e. g. \code{geojson}.
 #' @param ... The properties of the source.

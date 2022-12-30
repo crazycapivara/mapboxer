@@ -13,6 +13,11 @@ function addSource(args) {
   map.addSource(args.id, args.source);
 }
 
+function removeSource(args) {
+  const map = this;
+  map.removeSource(args.id);
+}
+
 function addLayer(args) {
   const map = this;
   args.style.source = args.style.source || DEFAULT_SOURCE;
