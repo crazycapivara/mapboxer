@@ -14,8 +14,7 @@ set_data(map, data, source_id = NULL, ...)
 
 \method{set_data}{json}(map, data, source_id = NULL, ...)
 
-\method{set_data}{data.frame}(map, data, source_id = NULL, lng = "lng",
-  lat = "lat", ...)
+\method{set_data}{data.frame}(map, data, source_id = NULL, lng = "lng", lat = "lat", ...)
 
 \method{set_data}{sf}(map, data, source_id, ...)
 }

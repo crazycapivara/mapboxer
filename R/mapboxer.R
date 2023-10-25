@@ -27,6 +27,8 @@ mapboxer <- function(source = NULL, style = basemaps$Carto$dark_matter, ...,
     accessToken = token
   )
 
+  mb_version <- getOption("mapbox_version", "mapbox-gl")
+
   htmlwidgets::createWidget(
     name = "mapboxer",
     x = widget_data,
@@ -34,7 +36,7 @@ mapboxer <- function(source = NULL, style = basemaps$Carto$dark_matter, ...,
     height = height,
     package = "mapboxer",
     elementId = element_id,
-    dependencies = use_deps("mapbox-gl")
+    dependencies = use_deps(mb_version)
   )
 }
 
@@ -54,7 +56,15 @@ mapboxer <- function(source = NULL, style = basemaps$Carto$dark_matter, ...,
 #' @example examples/api-reference/shiny.R
 #' @export
 mapboxerOutput <- function(outputId, width = "100%", height = "400px") {
-  htmlwidgets::shinyWidgetOutput(outputId, "mapboxer", width, height, package = "mapboxer")
+
+  mb_version <- getOption("mapbox_version", "mapbox-gl")
+
+  htmltools::attachDependencies(
+    htmlwidgets::shinyWidgetOutput(outputId, "mapboxer", width, height, package = "mapboxer"),
+    use_deps(mb_version),
+    append = TRUE
+  )
+
 }
 
 #' @rdname mapboxer-shiny

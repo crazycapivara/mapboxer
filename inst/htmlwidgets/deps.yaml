@@ -6,11 +6,27 @@ mapbox-gl:
   stylesheet: "mapbox-gl.css"
   all_files: false
   package: "mapboxer"
+mapbox-gl2:
+  name: "mapbox-gl"
+  version: "2.11.0"
+  src:
+    href: "https://api.mapbox.com/mapbox-gl-js/v2.11.0"
+  script: "mapbox-gl.js"
+  stylesheet: "mapbox-gl.css"
+  all_files: false
+mapbox-gl3:
+  name: "mapbox-gl"
+  version: "3.0.0"
+  src:
+    href: "https://api.mapbox.com/mapbox-gl-js/v3.0.0-beta.1"
+  script: "mapbox-gl.js"
+  stylesheet: "mapbox-gl.css"
+  all_files: false
 mapbox-gl-draw:
   name: "mapbox-gl-draw"
   version: "1.2.0"
   src:
-    href: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/"
+    href: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0"
   script: "mapbox-gl-draw.js"
   stylesheet: "mapbox-gl-draw.css"
   all_files: false

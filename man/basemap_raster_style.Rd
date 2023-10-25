@@ -4,8 +4,10 @@
 \alias{basemap_raster_style}
 \title{Create a raster style}
 \usage{
-basemap_raster_style(tiles = stamen_raster_tiles("terrain"),
-  attribution = NULL)
+basemap_raster_style(
+  tiles = stamen_raster_tiles("terrain"),
+  attribution = NULL
+)
 }
 \arguments{
 \item{tiles}{A list of tile URLs.}
