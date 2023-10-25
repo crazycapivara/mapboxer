@@ -19,7 +19,8 @@ layer_style <- list(
 mapboxer(
   style = basemaps$Carto$positron,
   center = c(0, 0),
+  projection = "globe",
   zoom = 1
 ) %>%
   add_source(vector_src, id = SRC_ID) %>%
-  add_layer(layer_style)
+  add_layer(layer_style, popup = "Hiya!")

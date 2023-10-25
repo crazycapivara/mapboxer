@@ -63,3 +63,59 @@ mapboxer_use_v2 <- function(use_v2) {
   }
 
 }
+
+
+#' Switch between Mapbox GL JS versions in a mapboxer project
+#'
+#' @param version The version to use
+#'
+#' @return Returns the value of \code{version} invisibly.
+#' @export
+#' @examples \dontrun{
+#'
+#' library(mapboxer)
+#' mapboxer_use_version("mapbox-gl3")
+#'
+#' # Globe view is only available in V2
+#' mapboxer(
+#'  center = c(-73.9165, 40.7114),
+#'  style = basemaps$Mapbox$streets_v11,
+#'  zoom = 2,
+#'  projection = "globe"
+#' )
+#'
+#' }
+mapboxer_use_version <- function(version = c("mapbox-gl", "mapbox-gl2", "mapbox-gl3")) {
+
+  version <- match.arg(version)
+
+  current_opt <- getOption("mapbox_version", default = "mapbox-gl")
+
+  if (version == "mapbox-gl2") {
+
+    if (current_opt != "mapbox-gl2") {
+      options(mapbox_version = "mapbox-gl2")
+      message("Using Mapbox GL JS v2.\nPlease review the Mapbox terms of service for version 2\nat https://www.mapbox.com/legal/tos/.")
+      invisible(version)
+
+    }
+
+  } else if (version == "mapbox-gl3") {
+
+    if (current_opt != "mapbox-gl3") {
+      options(mapbox_version = "mapbox-gl3")
+      message("Using Mapbox GL JS v3.\nPlease review the Mapbox terms of service for version 3\nat https://www.mapbox.com/legal/tos/.")
+      invisible(version)
+
+    }
+
+
+  } else {
+    if (current_opt != "mapbox-gl") {
+      options(mapbox_version = "mapbox-gl")
+      message("Using Mapbox GL JS v1.")
+      invisible(version)
+    }
+  }
+
+}
