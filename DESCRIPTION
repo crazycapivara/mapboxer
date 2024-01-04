@@ -26,5 +26,5 @@ Suggests:
     rmarkdown,
     shiny
 VignetteBuilder: knitr
-URL: https://github.com/crazycapivara/mapboxer
+URL: https://github.com/crazycapivara/mapboxer, https://crazycapivara.github.io/mapboxer/
 BugReports: https://github.com/crazycapivara/mapboxer/issues
